@@ -1,0 +1,19 @@
+{
+  "name": "kiwtech-api",
+  "version": "1.0.0",
+  "description": "Kiwtech Meesho Tool Backend API",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0",
+    "razorpay": "^2.9.2",
+    "resend": "^3.2.0",
+    "node-fetch": "^2.7.0"
+  },
+  "engines": {
+    "node": "18.x"
+  }
+}
