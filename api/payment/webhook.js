@@ -3,16 +3,14 @@ const { saveLicense, saveOrder } = require("../../lib/supabase");
 const { sendLicenseEmail } = require("../../lib/email");
 const { genKey } = require("../../lib/helpers");
 
-// Sirf 2 plans — days + expected amount (paise, GST-inclusive)
 const PLANS = {
-  demo:    { days: 1,  paise: 5782   }, // ₹49 + 18% GST = ₹57.82
-  monthly: { days: 30, paise: 117882 }, // ₹999 + 18% GST = ₹1178.82
+  demo:    { days: 1,  paise: 5782   }, // ₹57.82
+  monthly: { days: 30, paise: 117882 }, // ₹1178.82
 };
 
 module.exports = async (req, res) => {
   if (req.method !== "POST") return res.status(405).end();
 
-  // Razorpay signature verify
   const sig = req.headers["x-razorpay-signature"];
   const body = JSON.stringify(req.body);
   const expected = crypto
@@ -27,21 +25,20 @@ module.exports = async (req, res) => {
   if (event !== "payment.captured") return res.json({ ok: true, skipped: event });
 
   const payment = req.body.payload.payment.entity;
-  const { plan, email, name } = payment.notes || {};
+  const { plan, email, name, state } = payment.notes || {};
 
   if (!email || !plan) {
     console.error("Missing notes in payment:", payment.notes);
     return res.status(400).json({ error: "Missing payment notes" });
   }
 
-  // Plan valid hai?
   const planCfg = PLANS[plan];
   if (!planCfg) {
     console.error("Unknown plan in notes:", plan);
     return res.status(400).json({ error: "Unknown plan" });
   }
 
-  // SECURITY: amount plan se match karta hai? (₹49 dekar monthly claim na ho paye)
+  // SECURITY: amount plan se match karta hai?
   if (payment.amount !== planCfg.paise) {
     console.error(`Amount mismatch: paid ${payment.amount}, expected ${planCfg.paise} for ${plan}`);
     return res.status(400).json({ error: "Amount mismatch" });
@@ -50,4 +47,24 @@ module.exports = async (req, res) => {
   try {
     const key = genKey();
     const days = planCfg.days;
-    const
+    const expiry = new Date(Date.now() + days * 86400000).toISOString().slice(0, 10);
+
+    await saveLicense({ key, email, name: name || "Customer", plan, expiry });
+    await saveOrder({
+      paymentId: payment.id,
+      orderId: payment.order_id,
+      email, name: name || "Customer", plan,
+      amount: payment.amount
+    });
+    await sendLicenseEmail({
+      email, name: name || "Customer", key, plan, expiry,
+      amount: payment.amount, state: state || "07"
+    });
+
+    console.log("License sent:", key, "to", email);
+    res.json({ ok: true });
+  } catch (e) {
+    console.error("Webhook processing error:", e);
+    res.status(500).json({ error: e.message });
+  }
+};
