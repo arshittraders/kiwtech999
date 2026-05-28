@@ -9,12 +9,12 @@
   },
   "dependencies": {
     "ws": "^8.18.0",
-    "@supabase/supabase-js": "^2.39.0",
+    "@supabase/supabase-js": "2.81.1",
     "razorpay": "^2.9.2",
     "resend": "^3.2.0",
     "node-fetch": "^2.7.0"
   },
   "engines": {
-    "node": "20.x"
+    "node": "22.x"
   }
 }
