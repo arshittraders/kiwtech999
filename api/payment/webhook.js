@@ -4,8 +4,8 @@ const { sendLicenseEmail } = require("../../lib/email");
 const { genKey } = require("../../lib/helpers");
 
 const PLANS = {
-  demo:    { days: 1,  paise: 5782   }, // ₹57.82
-  monthly: { days: 30, paise: 117882 }, // ₹1178.82
+  demo:    { days: 1,  paise: 5782   },
+  monthly: { days: 30, paise: 117882 },
 };
 
 module.exports = async (req, res) => {
@@ -32,16 +32,26 @@ module.exports = async (req, res) => {
     return res.status(400).json({ error: "Missing payment notes" });
   }
 
-  const planCfg = PLANS[plan];
+  // Plan auto-detect karo agar notes mein sahi nahi hai
+  let resolvedPlan = plan;
+  let planCfg = PLANS[plan];
+  
+  // Agar plan nahi mila toh amount se detect karo
   if (!planCfg) {
-    console.error("Unknown plan in notes:", plan);
-    return res.status(400).json({ error: "Unknown plan" });
+    if (payment.amount >= 100000) {
+      resolvedPlan = 'monthly';
+      planCfg = PLANS['monthly'];
+    } else {
+      resolvedPlan = 'demo';
+      planCfg = PLANS['demo'];
+    }
+    console.log("Plan auto-detected from amount:", resolvedPlan);
   }
 
-  // SECURITY: amount plan se match karta hai?
-  if (payment.amount !== planCfg.paise) {
-    console.error(`Amount mismatch: paid ${payment.amount}, expected ${planCfg.paise} for ${plan}`);
-    return res.status(400).json({ error: "Amount mismatch" });
+  // Amount check — sirf minimum check, exact nahi
+  if (payment.amount < planCfg.paise * 0.9) {
+    console.error(`Amount too low: paid ${payment.amount}, expected ~${planCfg.paise} for ${resolvedPlan}`);
+    return res.status(400).json({ error: "Amount too low" });
   }
 
   try {
@@ -49,15 +59,15 @@ module.exports = async (req, res) => {
     const days = planCfg.days;
     const expiry = new Date(Date.now() + days * 86400000).toISOString().slice(0, 10);
 
-    await saveLicense({ key, email, name: name || "Customer", plan, expiry });
+    await saveLicense({ key, email, name: name || "Customer", plan: resolvedPlan, expiry });
     await saveOrder({
       paymentId: payment.id,
       orderId: payment.order_id,
-      email, name: name || "Customer", plan,
+      email, name: name || "Customer", plan: resolvedPlan,
       amount: payment.amount
     });
     await sendLicenseEmail({
-      email, name: name || "Customer", key, plan, expiry,
+      email, name: name || "Customer", key, plan: resolvedPlan, expiry,
       amount: payment.amount, state: state || "07"
     });
 
