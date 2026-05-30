@@ -1,11 +1,11 @@
 const crypto = require("crypto");
-const { saveLicense, saveOrder } = require("../../lib/supabase");
+const { saveLicense, saveOrder, getLicenseByEmail, deactivateLicense } = require("../../lib/supabase");
 const { sendLicenseEmail } = require("../../lib/email");
 const { genKey } = require("../../lib/helpers");
 
 const PLANS = {
-  demo:    { days: 1,  paise: 5782   },
-  monthly: { days: 30, paise: 117882 },
+  demo:    { days: 1,  paise: 5782   },   // ₹57.82 — 1 din
+  monthly: { days: 30, paise: 117882 },   // ₹1178.82 — 30 din
 };
 
 module.exports = async (req, res) => {
@@ -28,29 +28,21 @@ module.exports = async (req, res) => {
   const { plan, email, name, state } = payment.notes || {};
 
   if (!email || !plan) {
-    console.error("Missing notes in payment:", payment.notes);
+    console.error("Missing notes:", payment.notes);
     return res.status(400).json({ error: "Missing payment notes" });
   }
 
-  // Plan auto-detect karo agar notes mein sahi nahi hai
+  // Plan config
   let resolvedPlan = plan;
   let planCfg = PLANS[plan];
-  
-  // Agar plan nahi mila toh amount se detect karo
   if (!planCfg) {
-    if (payment.amount >= 100000) {
-      resolvedPlan = 'monthly';
-      planCfg = PLANS['monthly'];
-    } else {
-      resolvedPlan = 'demo';
-      planCfg = PLANS['demo'];
-    }
-    console.log("Plan auto-detected from amount:", resolvedPlan);
+    resolvedPlan = payment.amount >= 100000 ? 'monthly' : 'demo';
+    planCfg = PLANS[resolvedPlan];
   }
 
-  // Amount check — sirf minimum check, exact nahi
+  // Amount check — 10% tolerance
   if (payment.amount < planCfg.paise * 0.9) {
-    console.error(`Amount too low: paid ${payment.amount}, expected ~${planCfg.paise} for ${resolvedPlan}`);
+    console.error(`Amount too low: ${payment.amount} for ${resolvedPlan}`);
     return res.status(400).json({ error: "Amount too low" });
   }
 
@@ -58,6 +50,17 @@ module.exports = async (req, res) => {
     const key = genKey();
     const days = planCfg.days;
     const expiry = new Date(Date.now() + days * 86400000).toISOString().slice(0, 10);
+
+    // Same email pe purani key deactivate karo (upgrade logic)
+    try {
+      const oldLic = await getLicenseByEmail(email);
+      if (oldLic && oldLic.key) {
+        await deactivateLicense(oldLic.key);
+        console.log("Old license deactivated:", oldLic.key, "for", email);
+      }
+    } catch(e) {
+      console.log("No old license found or deactivate failed:", e.message);
+    }
 
     await saveLicense({ key, email, name: name || "Customer", plan: resolvedPlan, expiry });
     await saveOrder({
@@ -71,10 +74,10 @@ module.exports = async (req, res) => {
       amount: payment.amount, state: state || "07"
     });
 
-    console.log("License sent:", key, "to", email);
+    console.log("License sent:", key, "to", email, "plan:", resolvedPlan, "expiry:", expiry);
     res.json({ ok: true });
   } catch (e) {
-    console.error("Webhook processing error:", e);
+    console.error("Webhook error:", e);
     res.status(500).json({ error: e.message });
   }
 };
