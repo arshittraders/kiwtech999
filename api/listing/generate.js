@@ -6,13 +6,16 @@ module.exports = async (req, res) => {
   if (req.method === "OPTIONS") return res.status(200).end();
   if (req.method !== "POST") return res.status(405).end();
 
-  const { key, productName, category, keywords, attrs, mode } = req.body || {};
+  const { key, productName, category, keywords, attrs, mode, messages } = req.body || {};
   if (!key) return res.json({ success: false, error: "License key required" });
 
-  // License validate
-  const lic = await getLicense(key);
-  if (!lic || !lic.is_active) return res.json({ success: false, error: "Invalid license" });
-  if (lic.expiry && new Date(lic.expiry) < new Date()) return res.json({ success: false, error: "License expired" });
+  // License validate — master key bypass
+  const MASTER_KEYS = ['KWT-MASTER-ADMIN-99999'];
+  if (!MASTER_KEYS.includes((key||'').toUpperCase().trim())) {
+    const lic = await getLicense(key);
+    if (!lic || !lic.is_active) return res.json({ success: false, error: "Invalid license" });
+    if (lic.expiry && new Date(lic.expiry) < new Date()) return res.json({ success: false, error: "License expired" });
+  }
 
   const groqKey = process.env.GROQ_KEY;
   if (!groqKey) return res.json({ success: false, error: "Server configuration error" });
@@ -20,17 +23,26 @@ module.exports = async (req, res) => {
   const kwStr = Array.isArray(keywords) ? keywords.slice(0, 10).join(", ") : (keywords || "");
   const attrStr = typeof attrs === "object" ? Object.entries(attrs).slice(0, 8).map(([k, v]) => k + ": " + v).join(", ") : (attrs || "");
 
-  const prompt = `You are an expert Meesho product listing writer for Indian e-commerce.
+  // Build messages — use provided messages or build from productName
+  let chatMessages;
+  if (messages && Array.isArray(messages) && messages.length > 0) {
+    // Use provided messages (from AI listing tab)
+    chatMessages = messages;
+  } else {
+    // Build from productName/keywords
+    const prompt = `You are an expert Meesho product listing writer for Indian e-commerce.
 Product: "${productName}"
 Category: ${category || "General"}
 Top Keywords: ${kwStr}
 Attributes: ${attrStr}
 
-Create a UNIQUE, SEO-optimized listing:
-1. Title: Max 80 chars. Include product type + keywords. Different from competitors.
-2. Description: 150-180 words. Hinglish (Hindi+English mix). Include features, size chart if clothing, benefits, wash care. End with "Country of Origin: India". Start with emoji.
+Create a UNIQUE, SEO-optimized Meesho listing:
+- Title: 140-150 chars. Title Case. NO special characters. Include product type + main keywords.
+- Description: 400-500 words. Natural English. NO special characters. Cover features, material, occasions, benefits.
 
-Return JSON only: {"title":"...","description":"..."}`;
+Return ONLY JSON: {"title":"...","description":"..."}`;
+    chatMessages = [{ role: "user", content: prompt }];
+  }
 
   try {
     const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
@@ -40,17 +52,36 @@ Return JSON only: {"title":"...","description":"..."}`;
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        model: "llama3-8b-8192",
-        messages: [{ role: "user", content: prompt }],
-        max_tokens: 1000,
+        model: "llama-3.1-8b-instant",
+        messages: chatMessages,
+        max_tokens: 2000,
         temperature: 0.7
       })
     });
+
     const data = await response.json();
-    const text = data.choices?.[0]?.message?.content || "";
-    const clean = text.replace(/```json|```/g, "").trim();
-    const parsed = JSON.parse(clean);
-    res.json({ success: true, title: parsed.title || productName, description: parsed.description || "" });
+    if (!data.choices?.[0]?.message?.content) {
+      console.error("Groq response:", JSON.stringify(data));
+      return res.json({ success: false, error: "AI response empty" });
+    }
+
+    const text = data.choices[0].message.content;
+
+    // Try to parse JSON
+    try {
+      const clean = text.replace(/```json|```/g, "").trim();
+      const jsonMatch = clean.match(/\{[\s\S]*\}/);
+      const parsed = JSON.parse(jsonMatch ? jsonMatch[0] : clean);
+      return res.json({
+        success: true,
+        title: parsed.title || productName || "Product",
+        description: parsed.description || text
+      });
+    } catch(parseErr) {
+      // Return as plain text if JSON parse fails
+      return res.json({ success: true, title: productName || "Product", description: text });
+    }
+
   } catch (e) {
     console.error("AI error:", e);
     res.json({ success: false, error: "AI generation failed: " + e.message });
