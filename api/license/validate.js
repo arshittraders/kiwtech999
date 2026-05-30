@@ -2,7 +2,7 @@ const { getLicense, bindMachine } = require("../../lib/supabase");
 const { cors } = require("../../lib/helpers");
 
 // Master keys — kisi bhi machine pe chalenge, expiry nahi
-const MASTER_KEYS = ['KWT-MASTER-ADMIN-99999'];
+const MASTER_KEYS = ['KWT-MASTER-ADMIN-99999', 'kwt-master-admin-99999'];
 
 module.exports = async (req, res) => {
   cors(res);
@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
   if (!key) return res.json({ valid: false, error: "Key nahi diya" });
 
   // Master key check — seedha valid
-  if (MASTER_KEYS.includes(key.trim().toUpperCase())) {
+  if (MASTER_KEYS.includes(key.trim())) {
     return res.json({ valid: true, plan: 'lifetime', expiry: null, name: 'Admin' });
   }
 
