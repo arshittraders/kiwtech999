@@ -23,10 +23,21 @@ module.exports = async (req, res) => {
   const kwStr = Array.isArray(keywords) ? keywords.slice(0, 10).join(", ") : (keywords || "");
   const attrStr = typeof attrs === "object" ? Object.entries(attrs).slice(0, 8).map(([k, v]) => k + ": " + v).join(", ") : (attrs || "");
 
+  // ── CHANGE 1: System prompt — category lock karta hai ──────────────
+  const systemPrompt = `You are an expert Indian e-commerce SEO specialist for Meesho sellers.
+Your job is to generate product listings STRICTLY based on the product category given.
+CRITICAL RULES:
+- NEVER mix product categories. If the product is a saree, write ONLY about sarees. Never mention hair, shampoo, oil, skincare, or any unrelated category.
+- If product is clothing/fashion: focus on fabric, design, occasion, color, style.
+- If product is hair care: focus on ingredients, hair benefits, how to use.
+- If product is electronics: focus on specs, compatibility, warranty.
+- Always detect the product category from the user prompt and stay 100% within that category.
+- Return ONLY valid JSON. No markdown. No explanation outside JSON.`;
+
   // Build messages — use provided messages or build from productName
   let chatMessages;
   if (messages && Array.isArray(messages) && messages.length > 0) {
-    // Use provided messages (from AI listing tab)
+    // Use provided messages (from AI Research tab) — system prompt inject karo
     chatMessages = messages;
   } else {
     // Build from productName/keywords
@@ -52,8 +63,13 @@ Return ONLY JSON: {"title":"...","description":"..."}`;
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        model: "llama-3.1-8b-instant",
-        messages: chatMessages,
+        // ── CHANGE 2: Model upgrade — llama-3.1-8b se llama-3.3-70b ──
+        model: "llama-3.3-70b-versatile",
+        // ── CHANGE 1 continued: system prompt inject ──────────────────
+        messages: [
+          { role: "system", content: systemPrompt },
+          ...chatMessages
+        ],
         max_tokens: 2000,
         temperature: 0.7
       })
@@ -78,7 +94,6 @@ Return ONLY JSON: {"title":"...","description":"..."}`;
         description: parsed.description || text
       });
     } catch(parseErr) {
-      // Return as plain text if JSON parse fails
       return res.json({ success: true, title: productName || "Product", description: text });
     }
 
