@@ -24,16 +24,17 @@ module.exports = async (req, res) => {
   const attrStr = typeof attrs === "object" ? Object.entries(attrs).slice(0,8).map(([k,v])=>k+": "+v).join(", ") : (attrs||"");
 
   // ── System prompt ──────────────────────────────────────────────────────────
-  const systemPrompt = `You are a senior Indian e-commerce SEO expert writing Meesho product listings.
+  const systemPrompt = `You are a senior Indian e-commerce product listing writer for Meesho sellers.
 
-ABSOLUTE RULES — follow every single one:
-1. TITLE: MUST be exactly 145-150 characters. Count every character. If below 145, add more keywords. NEVER stop at 50-60 chars.
-2. DESCRIPTION: MUST be 450-500 words. No less. Write in English only — NO Hinglish, NO Hindi words.
-3. CATEGORY LOCK: Only write about the product category given. NEVER mix categories.
-4. NO BRAND NAMES anywhere in title or description.
-5. NO spam adjectives: graceful, designer, classy, sensational, trendy, premium, superior, alluring, wonderful, fabulous, voguish, selzer, elegant.
-6. Use ONLY real search keywords — product type, material, features, benefits, occasions, size/pack.
-7. Return ONLY raw JSON — no markdown, no explanation outside JSON.`;
+RULES — follow all without exception:
+1. TITLE: Exactly 145-150 characters. Start with main product type. Include material, feature, benefit, occasion, audience. Count characters precisely — must be 145-150. If too short, keep adding relevant keywords until you reach 145 chars minimum.
+2. DESCRIPTION: Exactly 450-500 words. English only — no Hindi, no Hinglish. Write in natural human tone. Do NOT write like an AI assistant. Avoid phrases: "this product offers", "it is designed to", "look no further", "perfect for all", "elevate your experience". Write the way a knowledgeable seller would describe their product.
+3. CATEGORY LOCK: Stay 100% within the product category. Never mix categories.
+4. BRAND NAMES: Never use any brand name in title or description.
+5. SPAM ADJECTIVES: Never use: graceful, designer, classy, sensational, trendy, premium, superior, alluring, wonderful, fabulous, voguish, elegant, exclusive, luxurious, magnificent.
+6. Use product attributes (color, fabric, size, capacity, shelf life, etc.) naturally within the description text.
+7. Never mention "Kiwtech" anywhere.
+8. Return ONLY raw JSON — no markdown, no explanation.`;
 
   let chatMessages;
   if (messages && Array.isArray(messages) && messages.length > 0) {
