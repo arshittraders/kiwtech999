@@ -6,12 +6,11 @@ module.exports = async (req, res) => {
   if (req.method === "OPTIONS") return res.status(200).end();
   if (req.method !== "POST") return res.status(405).end();
 
-  const { key, productName, category, keywords, attrs, mode, messages } = req.body || {};
+  const { key, productName, category, keywords, attrs, mode, messages, maxTokens } = req.body || {};
   if (!key) return res.json({ success: false, error: "License key required" });
 
-  // License validate — master key bypass
-  const MASTER_KEYS = ['KWT-MASTER-ADMIN-99999'];
-  if (!MASTER_KEYS.includes((key||'').toUpperCase().trim())) {
+  const MASTER_KEYS = ["KWT-MASTER-ADMIN-99999"];
+  if (!MASTER_KEYS.includes((key||"").toUpperCase().trim())) {
     const lic = await getLicense(key);
     if (!lic || !lic.is_active) return res.json({ success: false, error: "Invalid license" });
     if (lic.expiry && new Date(lic.expiry) < new Date()) return res.json({ success: false, error: "License expired" });
@@ -23,37 +22,41 @@ module.exports = async (req, res) => {
   const kwStr = Array.isArray(keywords) ? keywords.slice(0, 10).join(", ") : (keywords || "");
   const attrStr = typeof attrs === "object" ? Object.entries(attrs).slice(0, 8).map(([k, v]) => k + ": " + v).join(", ") : (attrs || "");
 
-  // ── CHANGE 1: System prompt — category lock karta hai ──────────────
   const systemPrompt = `You are an expert Indian e-commerce SEO specialist for Meesho sellers.
 Your job is to generate product listings STRICTLY based on the product category given.
 CRITICAL RULES:
 - NEVER mix product categories. If the product is a saree, write ONLY about sarees. Never mention hair, shampoo, oil, skincare, or any unrelated category.
-- If product is clothing/fashion: focus on fabric, design, occasion, color, style.
+- If product is clothing/fashion: focus on fabric, design, occasion, color, style, blouse piece, drape.
 - If product is hair care: focus on ingredients, hair benefits, how to use.
 - If product is electronics: focus on specs, compatibility, warranty.
-- Always detect the product category from the user prompt and stay 100% within that category.
+- Title MUST be 145-150 characters. Count carefully. If too short, add more keywords.
+- Description MUST be 450-500 words. Do not write less.
+- Always detect the product category and stay 100% within that category.
 - Return ONLY valid JSON. No markdown. No explanation outside JSON.`;
 
-  // Build messages — use provided messages or build from productName
   let chatMessages;
   if (messages && Array.isArray(messages) && messages.length > 0) {
-    // Use provided messages (from AI Research tab) — system prompt inject karo
     chatMessages = messages;
   } else {
-    // Build from productName/keywords
-    const prompt = `You are an expert Meesho product listing writer for Indian e-commerce.
-Product: "${productName}"
-Category: ${category || "General"}
-Top Keywords: ${kwStr}
-Attributes: ${attrStr}
+    const prompt = \`You are an expert Meesho product listing writer.
+Product: "\${productName}"
+Category: \${category || "General"}
+Keywords: \${kwStr}
+Attributes: \${attrStr}
 
-Create a UNIQUE, SEO-optimized Meesho listing:
-- Title: 140-150 chars. Title Case. NO special characters. Include product type + main keywords.
-- Description: 400-500 words. Natural English. NO special characters. Cover features, material, occasions, benefits.
+Create SEO-optimized listing:
+- Title: 145-150 chars. Title Case. NO special chars.
+- Description: 450-500 words. Hinglish. Features, material, occasions, benefits.
 
-Return ONLY JSON: {"title":"...","description":"..."}`;
+Return ONLY JSON: {"title":"...","description":"..."}\`;
     chatMessages = [{ role: "user", content: prompt }];
   }
+
+  // Detect if vision message (has image_url)
+  const hasImage = chatMessages.some(m =>
+    Array.isArray(m.content) && m.content.some(c => c.type === "image_url")
+  );
+  const model = hasImage ? "llama-3.2-11b-vision-preview" : "llama-3.3-70b-versatile";
 
   try {
     const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
@@ -63,14 +66,12 @@ Return ONLY JSON: {"title":"...","description":"..."}`;
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        // ── CHANGE 2: Model upgrade — llama-3.1-8b se llama-3.3-70b ──
-        model: "llama-3.3-70b-versatile",
-        // ── CHANGE 1 continued: system prompt inject ──────────────────
+        model,
         messages: [
           { role: "system", content: systemPrompt },
           ...chatMessages
         ],
-        max_tokens: 2000,
+        max_tokens: maxTokens || 3000,
         temperature: 0.7
       })
     });
@@ -78,20 +79,22 @@ Return ONLY JSON: {"title":"...","description":"..."}`;
     const data = await response.json();
     if (!data.choices?.[0]?.message?.content) {
       console.error("Groq response:", JSON.stringify(data));
-      return res.json({ success: false, error: "AI response empty" });
+      return res.json({ success: false, error: "AI response empty: " + JSON.stringify(data).slice(0,200) });
     }
 
     const text = data.choices[0].message.content;
 
-    // Try to parse JSON
     try {
-      const clean = text.replace(/```json|```/g, "").trim();
+      const clean = text.replace(/\`\`\`json|\`\`\`/g, "").trim();
       const jsonMatch = clean.match(/\{[\s\S]*\}/);
       const parsed = JSON.parse(jsonMatch ? jsonMatch[0] : clean);
       return res.json({
         success: true,
         title: parsed.title || productName || "Product",
-        description: parsed.description || text
+        description: parsed.description || text,
+        score: parsed.score || null,
+        scoreNote: parsed.scoreNote || null,
+        brandsRemoved: parsed.brandsRemoved || []
       });
     } catch(parseErr) {
       return res.json({ success: true, title: productName || "Product", description: text });
