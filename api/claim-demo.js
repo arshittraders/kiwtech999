@@ -1,7 +1,32 @@
-// api/claim-demo.js — Simple version: CF Worker se key banao + Resend se email
+// api/claim-demo.js
+// Login karke token lo, phir demo key create karo, phir email bhejo
 import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+const CF_WORKER = 'https://kiwtech-backend.kiwtech.workers.dev';
+const CF_PASSWORD = process.env.CF_ADMIN_PASSWORD; // Vercel env var
+
+async function getCFToken() {
+  const r = await fetch(CF_WORKER + '/api/admin/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ password: CF_PASSWORD })
+  });
+  const d = await r.json();
+  if (!d.success) throw new Error('CF login failed: ' + d.error);
+  return d.token;
+}
+
+async function createDemoKey(token, gmail) {
+  const r = await fetch(CF_WORKER + '/api/admin/create', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'X-Admin-Token': token },
+    body: JSON.stringify({ gmail, plan: 'demo', days: 1, note: 'auto-demo' })
+  });
+  const d = await r.json();
+  if (!d.success) throw new Error('Key create failed: ' + d.error);
+  return d.key;
+}
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -15,29 +40,11 @@ export default async function handler(req, res) {
     if (!email) return res.status(400).json({ success: false, error: 'Email required.' });
     const gmail = email.trim().toLowerCase();
     if (!gmail.endsWith('@gmail.com')) return res.status(400).json({ success: false, error: 'Sirf Gmail accept hoti hai.' });
+    if (!CF_PASSWORD) return res.status(500).json({ success: false, error: 'Server config missing. WhatsApp karo.' });
 
-    const cfToken = process.env.CF_ADMIN_TOKEN;
-    if (!cfToken) return res.status(500).json({ success: false, error: 'Server config missing.' });
+    const token = await getCFToken();
+    const key = await createDemoKey(token, gmail);
 
-    // Step 1: Check if already exists in CF KV (via list + search)
-    // Simple approach: Try to create — CF worker handles duplicate gmail check nahi karta
-    // So hum note mein gmail likhenge, aur create karenge
-
-    // Step 2: Create demo key in Cloudflare Worker
-    const cfRes = await fetch('https://kiwtech-backend.kiwtech.workers.dev/api/admin/create', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'X-Admin-Token': cfToken },
-      body: JSON.stringify({ gmail, plan: 'demo', days: 1, note: 'free-demo-auto' })
-    });
-
-    const cfData = await cfRes.json();
-    if (!cfData.success || !cfData.key) {
-      return res.status(500).json({ success: false, error: 'Key generate nahi ho payi. WhatsApp karo: +91 83770 65737' });
-    }
-
-    const key = cfData.key;
-
-    // Step 3: Send email via Resend
     await resend.emails.send({
       from: 'Kiwtech <noreply@kiwtech.in>',
       to: gmail,
@@ -61,9 +68,9 @@ export default async function handler(req, res) {
       </div>
       <div style="margin-bottom:18px;">
         <div style="font-size:13px;font-weight:700;color:#0d1424;margin-bottom:10px;">Kaise Use Karein:</div>
-        <div style="font-size:12px;color:#6b7280;margin-bottom:6px;">1. kiwtech.in/tool.html pe extension download karo</div>
+        <div style="font-size:12px;color:#6b7280;margin-bottom:6px;">1. kiwtech.in/tool.html pe extension download link hai</div>
         <div style="font-size:12px;color:#6b7280;margin-bottom:6px;">2. Chrome mein load karo, Gmail <strong>${gmail}</strong> + upar wali key dalo</div>
-        <div style="font-size:12px;color:#6b7280;">3. Meesho seller panel pe jaao aur AI listing generate karo!</div>
+        <div style="font-size:12px;color:#6b7280;">3. Meesho seller panel pe jaao aur AI listing banao!</div>
       </div>
       <div style="background:rgba(255,45,120,.07);border:1px solid rgba(255,45,120,.25);border-radius:8px;padding:10px;margin-bottom:18px;font-size:12px;color:#ff2d78;font-weight:600;">
         Key sirf usi device pe chalegi jisme pehli baar use karoge.
@@ -81,7 +88,7 @@ export default async function handler(req, res) {
     return res.status(200).json({ success: true });
 
   } catch (err) {
-    console.error('claim-demo error:', err);
+    console.error('claim-demo error:', err.message);
     return res.status(500).json({ success: false, error: 'Server error. WhatsApp karo: +91 83770 65737' });
   }
 }
