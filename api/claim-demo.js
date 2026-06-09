@@ -1,10 +1,9 @@
 // api/claim-demo.js
-// Login karke token lo, phir demo key create karo, phir email bhejo
 import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const CF_WORKER = 'https://kiwtech-backend.kiwtech.workers.dev';
-const CF_PASSWORD = process.env.CF_ADMIN_PASSWORD; // Vercel env var
+const CF_PASSWORD = process.env.CF_ADMIN_PASSWORD;
 
 async function getCFToken() {
   const r = await fetch(CF_WORKER + '/api/admin/login', {
@@ -68,15 +67,17 @@ export default async function handler(req, res) {
       </div>
       <div style="margin-bottom:18px;">
         <div style="font-size:13px;font-weight:700;color:#0d1424;margin-bottom:10px;">Kaise Use Karein:</div>
-        <div style="font-size:12px;color:#6b7280;margin-bottom:6px;">1. kiwtech.in/tool.html pe extension download link hai</div>
-        <div style="font-size:12px;color:#6b7280;margin-bottom:6px;">2. Chrome mein load karo, Gmail <strong>${gmail}</strong> + upar wali key dalo</div>
-        <div style="font-size:12px;color:#6b7280;">3. Meesho seller panel pe jaao aur AI listing banao!</div>
+        <div style="font-size:12px;color:#6b7280;margin-bottom:6px;">1. <a href="https://github.com/arshittraders/kiwtech999/releases/download/v1.0.3/kiwtech-v5-new.zip" style="color:#0066cc;font-weight:700;text-decoration:none;">Yahan click karke ZIP download karein ⬇️</a></div>
+        <div style="font-size:12px;color:#6b7280;margin-bottom:6px;">2. ZIP extract karo, Chrome mein <code style="background:#f0f0f0;padding:1px 4px;border-radius:3px;">chrome://extensions</code> kholo</div>
+        <div style="font-size:12px;color:#6b7280;margin-bottom:6px;">3. <b>Developer mode</b> ON karo → <b>Load unpacked</b> → extracted folder select karo</div>
+        <div style="font-size:12px;color:#6b7280;margin-bottom:6px;">4. Gmail <strong>${gmail}</strong> + upar wali key dalo → Activate</div>
+        <div style="font-size:12px;color:#6b7280;">5. Meesho seller panel pe jaao aur AI listing banao!</div>
       </div>
       <div style="background:rgba(255,45,120,.07);border:1px solid rgba(255,45,120,.25);border-radius:8px;padding:10px;margin-bottom:18px;font-size:12px;color:#ff2d78;font-weight:600;">
         Key sirf usi device pe chalegi jisme pehli baar use karoge.
       </div>
       <div style="text-align:center;">
-        <a href="https://kiwtech.in/tool.html#pricing" style="display:inline-block;padding:11px 24px;background:#0d1424;color:#fff;font-size:13px;font-weight:800;border-radius:9px;text-decoration:none;">Monthly Plan - Rs 999</a>
+        <a href="https://kiwtech.in/#pricing" style="display:inline-block;padding:11px 24px;background:#0d1424;color:#fff;font-size:13px;font-weight:800;border-radius:9px;text-decoration:none;">Monthly Plan - Rs 999</a>
       </div>
     </div>
   </div>
