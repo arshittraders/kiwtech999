@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Kiwtech Tools — Meesho Seller Chrome Extension</title>
+<meta name="description" content="Kiwtech Meesho Research Tool — AI listing, rank check, auto-fill. Free 1-day demo. Monthly plan Rs 999."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Space+Mono:wght@700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#f4f6ff;--white:#ffffff;--border:#e2e5f5;--text:#0d1424;--muted:#6b7280;
+  --ny:#fff200;--np:#ff2d78;--nb:#00d4ff;--ng:#39ff14;--no:#ff6b00;--nv:#a855f7;
+  --meesho:#f43397;--amazon:#ff9900;--flipkart:#2874f0;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 500px 380px at 8% 18%,rgba(255,242,0,.18) 0%,transparent 70%),
+    radial-gradient(ellipse 420px 340px at 88% 12%,rgba(0,212,255,.14) 0%,transparent 70%),
+    radial-gradient(ellipse 460px 360px at 50% 65%,rgba(255,45,120,.09) 0%,transparent 70%),
+    radial-gradient(ellipse 360px 300px at 3% 82%,rgba(57,255,20,.09) 0%,transparent 70%)
+}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:66px;background:rgba(255,255,255,.93);backdrop-filter:blur(20px);border-bottom:1.5px solid var(--border)}
+.nav-logo{font-size:22px;font-weight:900;color:var(--text);text-decoration:none;letter-spacing:-.5px}
+.nav-logo span{background:var(--ny);padding:2px 8px;border-radius:5px;color:#000}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:var(--muted);font-size:14px;font-weight:600;text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-back{padding:9px 22px;background:var(--text);color:#fff;font-size:13px;font-weight:800;border:none;border-radius:8px;cursor:pointer;text-decoration:none;transition:all .2s}
+.nav-back:hover{background:var(--np)}
+/* HERO */
+.hero{min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 20px 60px;position:relative;overflow:hidden}
+.hb{position:absolute;border-radius:24px;pointer-events:none;filter:blur(1px)}
+.hb1{width:220px;height:140px;background:var(--ny);top:15%;left:4%;transform:rotate(-7deg);opacity:.2}
+.hb2{width:180px;height:120px;background:var(--nb);top:20%;right:6%;transform:rotate(5deg);opacity:.18}
+.hero-inner{position:relative;z-index:1;max-width:780px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 18px;background:var(--ny);border-radius:100px;font-size:12px;font-weight:900;color:#000;letter-spacing:.5px;margin-bottom:24px}
+h1{font-size:clamp(38px,6vw,68px);font-weight:900;line-height:1.06;letter-spacing:-2px;color:var(--text);margin-bottom:18px}
+.hy{background:var(--ny);padding:1px 8px;border-radius:5px;display:inline;color:#000}
+.hp{background:var(--np);padding:1px 8px;border-radius:5px;display:inline;color:#fff}
+.hero-sub{font-size:clamp(14px,2vw,17px);color:var(--muted);font-weight:500;max-width:540px;margin:0 auto 32px;line-height:1.7}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-p{padding:15px 36px;background:var(--text);color:#fff;font-size:15px;font-weight:800;border:none;border-radius:10px;cursor:pointer;text-decoration:none;display:inline-block;transition:all .2s}
+.btn-p:hover{background:var(--np);transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,45,120,.3)}
+.btn-y{padding:15px 36px;background:var(--ny);color:#000;font-size:15px;font-weight:800;border:none;border-radius:10px;cursor:pointer;text-decoration:none;display:inline-block;transition:all .2s}
+.btn-y:hover{background:#ffe000;transform:translateY(-2px)}
+/* SECTION HELPERS */
+section{position:relative;z-index:1}
+.slabel{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;background:var(--ny);border-radius:100px;font-size:11px;font-weight:900;color:#000;letter-spacing:1px;text-transform:uppercase;margin-bottom:16px}
+h2{font-size:clamp(26px,4vw,42px);font-weight:900;line-height:1.1;margin-bottom:12px;letter-spacing:-1px;color:var(--text)}
+.ssub{font-size:16px;color:var(--muted);font-weight:500}
+.fu{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease}
+.fu.vis{opacity:1;transform:translateY(0)}
+/* FEATURES GRID */
+#features{padding:80px 20px;background:var(--white)}
+.fgrid{max-width:1100px;margin:48px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.fcard{background:var(--bg);border:2px solid var(--border);border-radius:18px;padding:26px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s}
+.fcard:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,.07)}
+.fcard::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px}
+.fcard:nth-child(1)::after{background:var(--ny)}
+.fcard:nth-child(2)::after{background:var(--np)}
+.fcard:nth-child(3)::after{background:var(--nb)}
+.fcard:nth-child(4)::after{background:var(--ng)}
+.fcard:nth-child(5)::after{background:var(--no)}
+.fcard:nth-child(6)::after{background:var(--nv)}
+.fnum{font-size:11px;font-weight:900;color:var(--muted);letter-spacing:2px;margin-bottom:10px}
+.ftitle{font-size:16px;font-weight:800;margin-bottom:8px;color:var(--text)}
+.fdesc{font-size:13px;color:var(--muted);line-height:1.65;font-weight:500}
+/* PRICING */
+#pricing{padding:80px 20px;background:var(--bg)}
+.pw{max-width:900px;margin:0 auto}
+.phead{text-align:center;margin-bottom:48px}
+.pcards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.pcard{background:var(--white);border:2px solid var(--border);border-radius:20px;padding:28px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s}
+.pcard:hover{transform:translateY(-5px);box-shadow:0 20px 40px rgba(0,0,0,.09)}
+.pcard::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+.pcard.demo::before{background:var(--nb)}
+.pcard.monthly::before{background:var(--np)}
+.pcard.lifetime::before{background:var(--ny)}
+.pcard.featured{border-color:var(--np)}
+.feat-rib{position:absolute;top:16px;right:16px;background:var(--ny);color:#000;font-size:10px;font-weight:900;padding:4px 12px;border-radius:100px}
+.plan-name{font-size:18px;font-weight:900;margin-bottom:6px;color:var(--text)}
+.plan-price{font-size:42px;font-weight:900;letter-spacing:-1px;line-height:1;margin-bottom:4px}
+.plan-price.blue{color:var(--nb)}
+.plan-price.pink{color:var(--np)}
+.plan-price.gold{color:#b8860b}
+.plan-sub{font-size:12px;color:var(--muted);margin-bottom:18px;font-weight:600}
+.plan-feats{list-style:none;margin-bottom:22px}
+.plan-feats li{padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;font-weight:500;display:flex;gap:8px}
+.plan-feats li:last-child{border-bottom:none}
+.plan-btn{width:100%;padding:13px;font-size:14px;font-weight:900;border:none;border-radius:10px;cursor:pointer;text-decoration:none;display:block;text-align:center;transition:all .2s}
+.plan-btn.blue{background:rgba(0,212,255,.15);color:#0092aa;border:2px solid var(--nb)}
+.plan-btn.blue:hover{background:var(--nb);color:#000}
+.plan-btn.pink{background:var(--np);color:#fff}
+.plan-btn.pink:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(255,45,120,.35)}
+.plan-btn.gold{background:var(--ny);color:#000}
+.plan-btn.gold:hover{background:#ffe000;transform:translateY(-1px)}
+/* DEMO FORM */
+#demo{padding:80px 20px;background:var(--white)}
+.di{max-width:520px;margin:0 auto;text-align:center}
+.dcard{background:var(--bg);border:2px solid var(--border);border-radius:20px;padding:44px 40px;margin-top:40px;position:relative;overflow:hidden}
+.dcard::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:var(--ny)}
+.dhlt{display:inline-block;background:var(--ny);padding:2px 10px;border-radius:6px;font-size:26px;font-weight:900;color:#000;margin-bottom:10px}
+.dsub{font-size:14px;color:var(--muted);margin-bottom:24px;line-height:1.6;font-weight:500}
+.dinput{width:100%;padding:14px 18px;background:var(--white);border:2px solid var(--border);border-radius:10px;color:var(--text);font-size:15px;font-family:'Plus Jakarta Sans',sans-serif;outline:none;transition:border-color .2s;margin-bottom:14px}
+.dinput:focus{border-color:var(--np)}
+.dbtn{width:100%;padding:15px;background:var(--text);color:#fff;font-size:14px;font-weight:900;border:none;border-radius:10px;cursor:pointer;transition:all .2s}
+.dbtn:hover{background:var(--np)}
+.dbtn:disabled{opacity:.5;cursor:not-allowed}
+.dnote{font-size:12px;color:var(--muted);margin-top:12px;font-weight:600}
+.dres{margin-top:16px;padding:14px;border-radius:10px;font-size:13px;font-weight:700;display:none}
+.dres.ok{background:rgba(57,255,20,.12);border:2px solid var(--ng);color:#1a8a00}
+.dres.err{background:rgba(255,45,120,.1);border:2px solid var(--np);color:var(--np)}
+/* HOW IT WORKS */
+#howitworks{padding:80px 20px;background:var(--bg)}
+.steps{max-width:800px;margin:48px auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.step{background:var(--white);border:2px solid var(--border);border-radius:16px;padding:22px;text-align:center;position:relative}
+.step-num{width:36px;height:36px;border-radius:50%;background:var(--text);color:#fff;font-size:14px;font-weight:900;display:flex;align-items:center;justify-content:center;margin:0 auto 12px}
+.step:nth-child(1) .step-num{background:var(--nb)}
+.step:nth-child(2) .step-num{background:var(--np)}
+.step:nth-child(3) .step-num{background:var(--ng);color:#000}
+.step:nth-child(4) .step-num{background:var(--ny);color:#000}
+.step-title{font-size:14px;font-weight:800;margin-bottom:6px}
+.step-desc{font-size:12px;color:var(--muted);font-weight:500;line-height:1.5}
+/* FOOTER */
+footer{background:var(--text);padding:40px 48px 24px}
+.ftop{display:flex;justify-content:space-between;gap:40px;margin-bottom:32px;flex-wrap:wrap}
+.flogo{font-size:22px;font-weight:900;color:#fff;margin-bottom:8px}
+.flogo span{background:var(--ny);padding:1px 8px;border-radius:5px;color:#000}
+.fdesc2{font-size:13px;color:rgba(255,255,255,.45);max-width:240px;line-height:1.6;font-weight:500}
+.fcol h4{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.35);margin-bottom:12px}
+.fcol ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+.fcol a{font-size:13px;color:rgba(255,255,255,.55);text-decoration:none;font-weight:500;transition:color .2s}
+.fcol a:hover{color:var(--ny)}
+.fbot{border-top:1px solid rgba(255,255,255,.1);padding-top:18px;display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,.3);flex-wrap:wrap;gap:8px;font-weight:600}
+@media(max-width:768px){
+  nav{padding:0 18px}
+  .nav-links{display:none}
+  .fgrid,.pcards,.steps{grid-template-columns:1fr}
+  .ftop{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">KIW<span>TECH</span></a>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#demo">Free Demo</a></li>
+    <li><a href="#howitworks">How it Works</a></li>
+  </ul>
+  <a href="/" class="nav-back">Account Management</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hb hb1"></div>
+  <div class="hb hb2"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">Chrome Extension for Meesho Sellers</div>
+    <h1>Meesho Pe <span class="hy">10x Faster</span><br/>Listings Banao</h1>
+    <p class="hero-sub">AI-powered Chrome extension jo directly Meesho seller panel pe kaam karta hai. Ek click mein perfect listing — title, description, keywords sab ready.</p>
+    <div class="hero-btns">
+      <a href="#demo" class="btn-y">Free Demo Try Karo</a>
+      <a href="#pricing" class="btn-p">Plans Dekho →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div style="max-width:1100px;margin:0 auto;padding:0 20px;text-align:center">
+    <div class="fu">
+      <div class="slabel">Features</div>
+      <h2>Extension Mein Kya Kya Hai?</h2>
+      <p class="ssub">Ek extension mein sab tools — alag alag apps ki zarurat nahi.</p>
+    </div>
+    <div class="fgrid fu">
+      <div class="fcard">
+        <div class="fnum">01</div>
+        <div class="ftitle">AI Listing Generator</div>
+        <div class="fdesc">Product name dalo — GPT-4o powered title (145-150 chars), description (450-500 words), bullet points sab ready. SEO-optimized, Meesho ke liye perfect.</div>
+      </div>
+      <div class="fcard">
+        <div class="fnum">02</div>
+        <div class="ftitle">Keyword Rank Checker</div>
+        <div class="fdesc">Apna product Meesho search mein kahan rank kar raha hai check karo. Competitor keywords dekho. Ranking improve karo step by step.</div>
+      </div>
+      <div class="fcard">
+        <div class="fnum">03</div>
+        <div class="ftitle">Smart Auto-Fill</div>
+        <div class="fdesc">Listing form automatically fill ho jaata hai — title, description, HSN code, GST rate sab ek click mein. Time 30 min se 2 min!</div>
+      </div>
+      <div class="fcard">
+        <div class="fnum">04</div>
+        <div class="ftitle">Competitor Research</div>
+        <div class="fdesc">Top selling products ka analysis karo. Unke keywords, pricing, listing structure dekho. Apni strategy improve karo instantly.</div>
+      </div>
+      <div class="fcard">
+        <div class="fnum">05</div>
+        <div class="ftitle">Visual Search</div>
+        <div class="fdesc">Product image se seedha similar products search karo Meesho pe. Trending products ka pata karo aur apni catalogue mein add karo.</div>
+      </div>
+      <div class="fcard">
+        <div class="fnum">06</div>
+        <div class="ftitle">Growth Tracker</div>
+        <div class="fdesc">Apni listing performance track karo. Views, clicks, orders — sab ek jagah. Daily progress dekho aur decisions lo data ke basis pe.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="howitworks">
+  <div style="max-width:900px;margin:0 auto;padding:0 20px;text-align:center">
+    <div class="fu">
+      <div class="slabel">How It Works</div>
+      <h2>Sirf 4 Steps</h2>
+      <p class="ssub">Install karo aur shuru karo — koi setup nahi, koi technical knowledge nahi.</p>
+    </div>
+    <div class="steps fu">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-title">Download Karo</div>
+        <div class="step-desc">ZIP file download karo aur Chrome mein load karo — 2 minute ka kaam</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-title">Key Activate Karo</div>
+        <div class="step-desc">Gmail aur license key dalo — seedha activate ho jayega</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-title">Meesho Kholo</div>
+        <div class="step-desc">Meesho seller panel pe jao — extension automatically kaam shuru kar dega</div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-title">Listings Banao</div>
+        <div class="step-desc">AI se listing generate karo — ek click mein perfect title aur description</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="pw">
+    <div class="phead fu">
+      <div class="slabel">Pricing</div>
+      <h2>Simple Pricing</h2>
+      <p class="ssub">Pehle free mein try karo, pasand aaye toh lo.</p>
+    </div>
+    <div class="pcards fu">
+      <!-- DEMO -->
+      <div class="pcard demo">
+        <div class="plan-name">Free Demo</div>
+        <div class="plan-price blue">FREE</div>
+        <div class="plan-sub">1 din ka full access</div>
+        <ul class="plan-feats">
+          <li>✅ Sab features unlock</li>
+          <li>✅ AI listing generator</li>
+          <li>✅ Rank checker</li>
+          <li>✅ Auto-fill</li>
+          <li>✅ Device-locked (ek device)</li>
+          <li>✅ Gmail se seedha milti hai</li>
+        </ul>
+        <a href="#demo" class="plan-btn blue">Free Demo Lo</a>
+      </div>
+      <!-- MONTHLY -->
+      <div class="pcard monthly featured">
+        <div class="feat-rib">Most Popular</div>
+        <div class="plan-name">Monthly Plan</div>
+        <div class="plan-price pink">999</div>
+        <div class="plan-sub">per month + 18% GST = Rs 1,179 total</div>
+        <ul class="plan-feats">
+          <li>🚀 Sab features unlimited</li>
+          <li>🚀 AI listing generator</li>
+          <li>🚀 Rank checker + competitor research</li>
+          <li>🚀 Smart auto-fill</li>
+          <li>🚀 Visual search</li>
+          <li>🚀 Growth tracker</li>
+          <li>🚀 WhatsApp support</li>
+        </ul>
+        <a href="https://wa.me/918377065737?text=Monthly+Tool+Plan+Chahiye" target="_blank" class="plan-btn pink">Buy Now - Rs 999</a>
+      </div>
+      <!-- LIFETIME -->
+      <div class="pcard lifetime">
+        <div class="plan-name">Lifetime Plan</div>
+        <div class="plan-price gold">4,999</div>
+        <div class="plan-sub">one time + 18% GST = Rs 5,899 total</div>
+        <ul class="plan-feats">
+          <li>⭐ Sab monthly features</li>
+          <li>⭐ Lifetime access</li>
+          <li>⭐ Sabhi future updates free</li>
+          <li>⭐ Priority support</li>
+          <li>⭐ Ek baar pay, hamesha use</li>
+          <li>⭐ Best value for serious sellers</li>
+        </ul>
+        <a href="https://wa.me/918377065737?text=Lifetime+Tool+Plan+Chahiye" target="_blank" class="plan-btn gold">Buy Lifetime - Rs 4,999</a>
+      </div>
+    </div>
+    <p style="text-align:center;font-size:12px;color:var(--muted);margin-top:18px;font-weight:600">* Payment ke baad WhatsApp pe key milegi · GST 18% extra · Device-locked license</p>
+  </div>
+</section>
+
+<!-- FREE DEMO -->
+<section id="demo">
+  <div class="di">
+    <div class="fu">
+      <div class="slabel">Free Demo</div>
+      <h2>Free 1-Day Key Pao</h2>
+      <p class="ssub">Sirf Gmail dalo — seedha email pe key aayegi. Koi OTP nahi, koi payment nahi.</p>
+    </div>
+    <div class="dcard fu">
+      <div class="dhlt">1 Din Free!</div>
+      <p class="dsub">Apni Gmail dalo — ek click mein 1 din ki free demo key tumhari email pe aayegi. Ek Gmail = Ek key only. Key device-locked hogi.</p>
+      <input class="dinput" type="email" id="demoEmail" placeholder="apki.gmail@gmail.com"/>
+      <button class="dbtn" onclick="claimDemo()" id="demoBtn">Free Key Lo</button>
+      <div class="dnote">Instant Delivery | Device-Locked | Ek Gmail = Ek Key</div>
+      <div class="dres" id="demoRes"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ftop">
+    <div>
+      <div class="flogo">KIW<span>TECH</span></div>
+      <div class="fdesc2">Meesho sellers ke liye AI-powered Chrome extension. 10x faster listings.</div>
+    </div>
+    <div class="fcol">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#demo">Free Demo</a></li>
+        <li><a href="/">Account Management</a></li>
+      </ul>
+    </div>
+    <div class="fcol">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="/privacy.html">Privacy Policy</a></li>
+        <li><a href="/refund.html">Refund Policy</a></li>
+        <li><a href="/terms.html">Terms of Service</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 style="font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.35);margin-bottom:12px">Support</h4>
+      <a href="https://wa.me/918377065737" target="_blank" style="display:inline-flex;align-items:center;gap:8px;padding:11px 20px;background:#25d366;color:#000;border:none;border-radius:10px;font-size:13px;font-weight:900;cursor:pointer;text-decoration:none;">WhatsApp Karo</a>
+    </div>
+  </div>
+  <div class="fbot">
+    <span>2026 Kiwtech (Arshit Traders) | kiwtech.in | All rights reserved</span>
+    <span>Made with love for Indian Sellers</span>
+  </div>
+</footer>
+
+<script>
+async function claimDemo() {
+  const email = document.getElementById('demoEmail').value.trim().toLowerCase();
+  const btn   = document.getElementById('demoBtn');
+  const res   = document.getElementById('demoRes');
+  if (!email || !email.includes('@') || !email.includes('.')) { showR('Valid Gmail address dalo.','err'); return; }
+  if (!email.endsWith('@gmail.com')) { showR('Sirf Gmail (@gmail.com) accept hoti hai.','err'); return; }
+  btn.disabled = true; btn.textContent = 'Processing...';
+  try {
+    const r = await fetch('https://kiwtech999.vercel.app/api/claim-demo', {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ email })
+    });
+    const d = await r.json();
+    if (d.success) showR('Key bhej di gayi! ' + email + ' check karo. (Spam folder bhi dekho)', 'ok');
+    else showR(d.error || 'Kuch gadbad hui, dobara try karo.', 'err');
+  } catch(e) { showR('Server error. WhatsApp karo: +91 83770 65737', 'err'); }
+  btn.disabled = false; btn.textContent = 'Free Key Lo';
+}
+function showR(msg, type) {
+  const el = document.getElementById('demoRes');
+  el.textContent = msg; el.className = 'dres ' + type; el.style.display = 'block';
+}
+document.getElementById('demoEmail').addEventListener('keydown', e => { if (e.key === 'Enter') claimDemo(); });
+const obs = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) x.target.classList.add('vis'); }), { threshold: .1 });
+document.querySelectorAll('.fu').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
