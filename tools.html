@@ -206,6 +206,7 @@ footer{background:var(--text);padding:40px 48px 24px}
   .ship-stat{border-right:none;border-bottom:1px solid rgba(255,255,255,.08)}
   .ship-stat:last-child{border-bottom:none}
   .ftop{flex-direction:column}
+  .tool-cards-grid{grid-template-columns:1fr !important}
 }
 </style>
 </head>
@@ -237,49 +238,24 @@ footer{background:var(--text);padding:40px 48px 24px}
   </div>
 </section>
 
-<!-- RESEARCH TOOL FEATURES -->
-<section id="features">
-  <div style="max-width:1100px;margin:0 auto;padding:0 20px;text-align:center">
-    <div class="fu">
-      <div class="slabel">Research Tool</div>
-      <h2>Extension Mein Kya Kya Hai?</h2>
-      <p class="ssub">Ek extension mein sab tools — alag alag apps ki zarurat nahi.</p>
-    </div>
-    <div class="fgrid fu">
-      <div class="fcard">
-        <div class="fnum">01</div>
-        <div class="ftitle">AI Listing Generator</div>
-        <div class="fdesc">Product name dalo — GPT-4o powered title (145-150 chars), description (450-500 words), bullet points sab ready. SEO-optimized, Meesho ke liye perfect.</div>
-      </div>
-      <div class="fcard">
-        <div class="fnum">02</div>
-        <div class="ftitle">Keyword Rank Checker</div>
-        <div class="fdesc">Apna product Meesho search mein kahan rank kar raha hai check karo. Competitor keywords dekho. Ranking improve karo step by step.</div>
-      </div>
-      <div class="fcard">
-        <div class="fnum">03</div>
-        <div class="ftitle">Smart Auto-Fill</div>
-        <div class="fdesc">Listing form automatically fill ho jaata hai — title, description, HSN code, GST rate sab ek click mein. Time 30 min se 2 min!</div>
-      </div>
-      <div class="fcard">
-        <div class="fnum">04</div>
-        <div class="ftitle">Competitor Research</div>
-        <div class="fdesc">Top selling products ka analysis karo. Unke keywords, pricing, listing structure dekho. Apni strategy improve karo instantly.</div>
-      </div>
-      <div class="fcard">
-        <div class="fnum">05</div>
-        <div class="ftitle">Visual Search</div>
-        <div class="fdesc">Product image se seedha similar products search karo Meesho pe. Trending products ka pata karo aur apni catalogue mein add karo.</div>
-      </div>
-      <div class="fcard">
-        <div class="fnum">06</div>
-        <div class="ftitle">Growth Tracker</div>
-        <div class="fdesc">Apni listing performance track karo. Views, clicks, orders — sab ek jagah. Daily progress dekho aur decisions lo data ke basis pe.</div>
-      </div>
-    </div>
+<!-- TWO TOOLS SELECTION CARDS -->
+<section style="padding:60px 20px;background:var(--white);position:relative;z-index:1;">
+  <div style="max-width:900px;margin:0 auto;text-align:center;margin-bottom:36px;">
+    <div class="slabel">Dono Tools</div>
+    <h2>Kaunsa Tool Chahiye?</h2>
+    <p class="ssub">Dono alag Chrome extensions hain — apni zarurat ke hisaab se download karo</p>
   </div>
-</section>
+  <div class="tool-cards-grid" style="max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:24px;">
 
-<!-- HOW IT WORKS -->
-<section id="howitworks">
-  <div style="max-width:900px;margin:0 auto;padding:
+    <!-- Card 1: All-in-One Research Tool -->
+    <div style="background:var(--bg);border:2.5px solid var(--border);border-radius:24px;padding:32px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;" onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 24px 48px rgba(0,0,0,.1)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+      <div style="position:absolute;top:0;left:0;right:0;height:5px;background:var(--np);"></div>
+      <div style="font-size:40px;margin-bottom:14px;">🧠</div>
+      <div style="font-size:20px;font-weight:900;color:var(--text);margin-bottom:8px;">All-in-One Research Tool</div>
+      <div style="display:inline-block;background:rgba(255,45,120,.1);color:var(--np);font-size:11px;font-weight:800;padding:3px 10px;border-radius:20px;margin-bottom:14px;">Monthly ₹999 / Lifetime ₹4,999</div>
+      <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:20px;">AI listing generator, rank checker, competitor research, auto-fill, visual search — Meesho seller ke liye complete toolkit.</p>
+      <ul style="list-style:none;margin-bottom:24px;text-align:left;">
+        <li style="font-size:13px;padding:7px 0;border-bottom:1px solid var(--border);display:flex;gap:8px;font-weight:500;">✅ AI Listing Generator (GPT-4o)</li>
+        <li style="font-size:13px;padding:7px 0;border-bottom:1px solid var(--border);display:flex;gap:8px;font-weight:500;">✅ Keyword Rank Checker</li>
+        <li style="font-size:13px;padding:7px 0;border-bottom:1px solid var(--border);display:flex;gap:8px;font-weight:500;">✅ Smart Auto-Fill Form</li>
+        <li style="font-size:13px;padding:7px
