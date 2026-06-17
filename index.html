@@ -711,6 +711,591 @@ function tfq(btn) {
 const obs = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) x.target.classList.add('vis'); }), { threshold: .1 });
 document.querySelectorAll('.fu').forEach(el => obs.observe(el));
 </script>
+<!-- ═══════════════════════════════════════════════
+     DISTRIBUTOR SECTION — Footer ke baad, </body> se pehle
+     kiwtech.in/index.html mein add karo
+═══════════════════════════════════════════════ -->
+
+<!-- DISTRIBUTOR SECTION -->
+<section id="distributor" style="padding:70px 20px;background:#f8f9ff;border-top:2px solid #e2e5f5;position:relative;z-index:1;">
+<div style="max-width:1000px;margin:0 auto;">
+
+  <!-- Header -->
+  <div style="text-align:center;margin-bottom:40px;">
+    <div style="display:inline-flex;align-items:center;gap:8px;padding:5px 16px;background:#fff200;border-radius:100px;font-size:11px;font-weight:900;color:#000;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;">🤝 Distributor Program</div>
+    <h2 style="font-size:clamp(24px,4vw,36px);font-weight:900;color:#0d1424;margin-bottom:10px;letter-spacing:-1px;">Kiwtech Tools Bikwao — 50% Kamao</h2>
+    <p style="font-size:15px;color:#6b7280;max-width:500px;margin:0 auto;">Approved distributor bano — teeno tools par 50% instant commission. ₹500 hote hi withdraw karo.</p>
+  </div>
+
+  <!-- 3 commission cards -->
+  <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-bottom:40px;">
+    <div style="flex:1;min-width:200px;max-width:260px;background:#fff;border:2px solid #e2e5f5;border-radius:16px;padding:20px;text-align:center;border-top:4px solid #6C47FF;">
+      <div style="font-size:28px;margin-bottom:8px;">🚀</div>
+      <div style="font-size:14px;font-weight:800;color:#0d1424;margin-bottom:4px;">Shipping Optimizer</div>
+      <div style="font-size:12px;color:#6b7280;margin-bottom:10px;">₹50 top-up se start</div>
+      <div style="font-size:24px;font-weight:900;color:#6C47FF;">₹25</div>
+      <div style="font-size:11px;color:#6b7280;">per ₹50 top-up</div>
+    </div>
+    <div style="flex:1;min-width:200px;max-width:260px;background:#fff;border:2px solid #e2e5f5;border-radius:16px;padding:20px;text-align:center;border-top:4px solid #ff2d78;">
+      <div style="font-size:28px;margin-bottom:8px;">🧠</div>
+      <div style="font-size:14px;font-weight:800;color:#0d1424;margin-bottom:4px;">Research Tool Basic</div>
+      <div style="font-size:12px;color:#6b7280;margin-bottom:10px;">₹699 one-time</div>
+      <div style="font-size:24px;font-weight:900;color:#ff2d78;">₹349</div>
+      <div style="font-size:11px;color:#6b7280;">per sale</div>
+    </div>
+    <div style="flex:1;min-width:200px;max-width:260px;background:#fff;border:2px solid #e2e5f5;border-radius:16px;padding:20px;text-align:center;border-top:4px solid #ff9900;">
+      <div style="font-size:28px;margin-bottom:8px;">⚡</div>
+      <div style="font-size:14px;font-weight:800;color:#0d1424;margin-bottom:4px;">Research Tool Advanced</div>
+      <div style="font-size:12px;color:#6b7280;margin-bottom:10px;">₹999/month</div>
+      <div style="font-size:24px;font-weight:900;color:#ff9900;">₹499</div>
+      <div style="font-size:11px;color:#6b7280;">per month per user</div>
+    </div>
+  </div>
+
+  <!-- TABS: Register | Dashboard | Admin -->
+  <div style="background:#fff;border:2px solid #e2e5f5;border-radius:20px;overflow:hidden;">
+
+    <!-- Tab buttons -->
+    <div style="display:flex;border-bottom:2px solid #e2e5f5;">
+      <button onclick="dTab('register',this)" id="dtab-register"
+        style="flex:1;padding:14px;font-size:13px;font-weight:700;border:none;background:#f4f6ff;color:#6C47FF;cursor:pointer;border-bottom:3px solid #6C47FF;">
+        📝 Distributor Apply
+      </button>
+      <button onclick="dTab('dashboard',this)" id="dtab-dashboard"
+        style="flex:1;padding:14px;font-size:13px;font-weight:700;border:none;background:#fff;color:#6b7280;cursor:pointer;border-bottom:3px solid transparent;">
+        💼 My Dashboard
+      </button>
+      <button onclick="dTab('admin',this)" id="dtab-admin"
+        style="flex:1;padding:14px;font-size:13px;font-weight:700;border:none;background:#fff;color:#6b7280;cursor:pointer;border-bottom:3px solid transparent;">
+        🔐 Admin
+      </button>
+    </div>
+
+    <!-- ── TAB 1: REGISTER ── -->
+    <div id="dpanel-register" style="padding:28px;">
+      <div style="max-width:460px;margin:0 auto;">
+        <h3 style="font-size:18px;font-weight:800;margin-bottom:6px;color:#0d1424;">Distributor Bano</h3>
+        <p style="font-size:13px;color:#6b7280;margin-bottom:20px;">Form bharo — approval milne par tumhara unique referral link activate ho jayega.</p>
+
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <input id="d-name" type="text" placeholder="Poora Naam *" style="padding:12px 14px;border:2px solid #e2e5f5;border-radius:10px;font-size:14px;font-family:inherit;outline:none;" onfocus="this.style.borderColor='#6C47FF'" onblur="this.style.borderColor='#e2e5f5'"/>
+          <input id="d-email" type="email" placeholder="Gmail / Email *" style="padding:12px 14px;border:2px solid #e2e5f5;border-radius:10px;font-size:14px;font-family:inherit;outline:none;" onfocus="this.style.borderColor='#6C47FF'" onblur="this.style.borderColor='#e2e5f5'"/>
+          <input id="d-phone" type="tel" placeholder="WhatsApp Number (10 digit) *" style="padding:12px 14px;border:2px solid #e2e5f5;border-radius:10px;font-size:14px;font-family:inherit;outline:none;" onfocus="this.style.borderColor='#6C47FF'" onblur="this.style.borderColor='#e2e5f5'"/>
+          <input id="d-city" type="text" placeholder="City / State" style="padding:12px 14px;border:2px solid #e2e5f5;border-radius:10px;font-size:14px;font-family:inherit;outline:none;" onfocus="this.style.borderColor='#6C47FF'" onblur="this.style.borderColor='#e2e5f5'"/>
+          <textarea id="d-why" placeholder="Tum yeh tools kaise promote karoge? (2-3 lines)" rows="3" style="padding:12px 14px;border:2px solid #e2e5f5;border-radius:10px;font-size:14px;font-family:inherit;outline:none;resize:none;" onfocus="this.style.borderColor='#6C47FF'" onblur="this.style.borderColor='#e2e5f5'"></textarea>
+          <input id="d-upi" type="text" placeholder="UPI ID (withdrawal ke liye)" style="padding:12px 14px;border:2px solid #e2e5f5;border-radius:10px;font-size:14px;font-family:inherit;outline:none;" onfocus="this.style.borderColor='#6C47FF'" onblur="this.style.borderColor='#e2e5f5'"/>
+
+          <button onclick="submitDistributor()" style="padding:14px;background:#0d1424;color:#fff;font-size:14px;font-weight:800;border:none;border-radius:10px;cursor:pointer;transition:all .2s;" onmouseover="this.style.background='#6C47FF'" onmouseout="this.style.background='#0d1424'">
+            Submit Application →
+          </button>
+          <div id="d-reg-msg" style="display:none;padding:12px;border-radius:8px;font-size:13px;font-weight:600;text-align:center;"></div>
+        </div>
+
+        <p style="font-size:11px;color:#9ca3af;text-align:center;margin-top:14px;">Approval 24-48 hours mein milti hai WhatsApp pe</p>
+      </div>
+    </div>
+
+    <!-- ── TAB 2: DASHBOARD ── -->
+    <div id="dpanel-dashboard" style="padding:28px;display:none;">
+      <!-- Login form -->
+      <div id="d-login-wrap" style="max-width:360px;margin:0 auto;text-align:center;">
+        <div style="font-size:32px;margin-bottom:10px;">💼</div>
+        <h3 style="font-size:17px;font-weight:800;margin-bottom:6px;">Dashboard Login</h3>
+        <p style="font-size:13px;color:#6b7280;margin-bottom:20px;">Apni registered email se login karo</p>
+        <input id="d-login-email" type="email" placeholder="Apni Email" style="width:100%;padding:12px 14px;border:2px solid #e2e5f5;border-radius:10px;font-size:14px;font-family:inherit;outline:none;margin-bottom:10px;box-sizing:border-box;" onfocus="this.style.borderColor='#6C47FF'" onblur="this.style.borderColor='#e2e5f5'"/>
+        <button onclick="loadDashboard()" style="width:100%;padding:13px;background:#6C47FF;color:#fff;font-size:14px;font-weight:800;border:none;border-radius:10px;cursor:pointer;">
+          View Dashboard →
+        </button>
+        <div id="d-login-msg" style="display:none;margin-top:10px;padding:10px;border-radius:8px;font-size:13px;font-weight:600;"></div>
+      </div>
+
+      <!-- Dashboard content (hidden until login) -->
+      <div id="d-dash-content" style="display:none;">
+        <!-- Stats row -->
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px;">
+          <div style="flex:1;min-width:120px;background:#f4f6ff;border:2px solid #e2e5f5;border-radius:12px;padding:16px;text-align:center;">
+            <div style="font-size:11px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;">Wallet Balance</div>
+            <div id="d-balance" style="font-size:26px;font-weight:900;color:#16a34a;">₹0</div>
+          </div>
+          <div style="flex:1;min-width:120px;background:#f4f6ff;border:2px solid #e2e5f5;border-radius:12px;padding:16px;text-align:center;">
+            <div style="font-size:11px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;">Total Earned</div>
+            <div id="d-total-earned" style="font-size:26px;font-weight:900;color:#6C47FF;">₹0</div>
+          </div>
+          <div style="flex:1;min-width:120px;background:#f4f6ff;border:2px solid #e2e5f5;border-radius:12px;padding:16px;text-align:center;">
+            <div style="font-size:11px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;">Total Sales</div>
+            <div id="d-total-sales" style="font-size:26px;font-weight:900;color:#ff2d78;">0</div>
+          </div>
+          <div style="flex:1;min-width:120px;background:#f4f6ff;border:2px solid #e2e5f5;border-radius:12px;padding:16px;text-align:center;">
+            <div style="font-size:11px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;">Withdrawn</div>
+            <div id="d-withdrawn" style="font-size:26px;font-weight:900;color:#6b7280;">₹0</div>
+          </div>
+        </div>
+
+        <!-- Referral link -->
+        <div style="background:#f0fdf4;border:2px solid #bbf7d0;border-radius:12px;padding:16px;margin-bottom:16px;">
+          <div style="font-size:12px;font-weight:700;color:#15803d;margin-bottom:8px;">🔗 Tumhara Referral Link</div>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <input id="d-ref-link" readonly style="flex:1;padding:10px 12px;background:#fff;border:1.5px solid #bbf7d0;border-radius:8px;font-size:12px;color:#0d1424;outline:none;" value="Loading..."/>
+            <button onclick="copyRef()" style="padding:10px 16px;background:#16a34a;color:#fff;font-size:12px;font-weight:700;border:none;border-radius:8px;cursor:pointer;white-space:nowrap;">Copy</button>
+          </div>
+          <div style="font-size:11px;color:#166534;margin-top:8px;">Yeh link share karo — jab koi isse kharide tum 50% pao</div>
+        </div>
+
+        <!-- Commission history -->
+        <div style="margin-bottom:16px;">
+          <div style="font-size:13px;font-weight:800;color:#0d1424;margin-bottom:10px;">📋 Commission History</div>
+          <div id="d-commissions" style="border:1.5px solid #e2e5f5;border-radius:10px;overflow:hidden;font-size:12px;">
+            <div style="padding:10px 14px;background:#f4f6ff;font-weight:700;display:grid;grid-template-columns:1fr 1fr 1fr 80px;gap:8px;color:#6b7280;">
+              <span>Date</span><span>Tool</span><span>Sale</span><span>Commission</span>
+            </div>
+            <div id="d-commission-rows" style="max-height:200px;overflow-y:auto;">
+              <div style="padding:20px;text-align:center;color:#9ca3af;">Loading...</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Withdrawal history -->
+        <div style="margin-bottom:16px;">
+          <div style="font-size:13px;font-weight:800;color:#0d1424;margin-bottom:10px;">💸 Withdrawal History</div>
+          <div id="d-withdrawals" style="border:1.5px solid #e2e5f5;border-radius:10px;overflow:hidden;font-size:12px;">
+            <div id="d-withdrawal-rows" style="max-height:150px;overflow-y:auto;">
+              <div style="padding:20px;text-align:center;color:#9ca3af;">Loading...</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Withdraw request -->
+        <div id="d-withdraw-section" style="background:#fff7ed;border:2px solid #fed7aa;border-radius:12px;padding:16px;display:none;">
+          <div style="font-size:13px;font-weight:800;color:#c2410c;margin-bottom:10px;">💰 Withdrawal Request</div>
+          <p style="font-size:12px;color:#9a3412;margin-bottom:12px;">WhatsApp pe request bhejo — hum 24 hours mein payment karenge</p>
+          <div style="display:flex;gap:8px;">
+            <button onclick="requestWithdrawal()" style="flex:1;padding:12px;background:#ea580c;color:#fff;font-size:13px;font-weight:800;border:none;border-radius:10px;cursor:pointer;">
+              📱 WhatsApp Pe Request Karo
+            </button>
+          </div>
+          <div id="d-withdraw-msg" style="display:none;margin-top:8px;padding:8px;border-radius:8px;font-size:12px;font-weight:600;"></div>
+        </div>
+
+        <div id="d-min-withdraw-note" style="text-align:center;font-size:11px;color:#9ca3af;margin-top:10px;"></div>
+
+        <!-- Status badge -->
+        <div id="d-status-bar" style="margin-top:14px;padding:10px 14px;border-radius:8px;font-size:12px;font-weight:700;text-align:center;"></div>
+      </div>
+    </div>
+
+    <!-- ── TAB 3: ADMIN ── -->
+    <div id="dpanel-admin" style="padding:28px;display:none;">
+      <!-- Admin login -->
+      <div id="a-login-wrap" style="max-width:320px;margin:0 auto;text-align:center;">
+        <div style="font-size:32px;margin-bottom:10px;">🔐</div>
+        <h3 style="font-size:17px;font-weight:800;margin-bottom:16px;">Admin Login</h3>
+        <input id="a-pass" type="password" placeholder="Admin Password" style="width:100%;padding:12px 14px;border:2px solid #e2e5f5;border-radius:10px;font-size:14px;font-family:inherit;outline:none;margin-bottom:10px;box-sizing:border-box;" onfocus="this.style.borderColor='#6C47FF'" onblur="this.style.borderColor='#e2e5f5'"/>
+        <button onclick="adminLogin()" style="width:100%;padding:13px;background:#0d1424;color:#fff;font-size:14px;font-weight:800;border:none;border-radius:10px;cursor:pointer;">Login →</button>
+        <div id="a-login-msg" style="display:none;margin-top:10px;padding:10px;border-radius:8px;font-size:13px;font-weight:600;"></div>
+      </div>
+
+      <!-- Admin content -->
+      <div id="a-content" style="display:none;">
+
+        <!-- Pending applications -->
+        <div style="margin-bottom:24px;">
+          <div style="font-size:14px;font-weight:800;color:#0d1424;margin-bottom:12px;">⏳ Pending Applications</div>
+          <div id="a-pending-list" style="display:flex;flex-direction:column;gap:10px;">
+            <div style="padding:16px;text-align:center;color:#9ca3af;font-size:13px;">Loading...</div>
+          </div>
+        </div>
+
+        <!-- Active distributors -->
+        <div style="margin-bottom:24px;">
+          <div style="font-size:14px;font-weight:800;color:#0d1424;margin-bottom:12px;">✅ Active Distributors</div>
+          <div id="a-active-list" style="display:flex;flex-direction:column;gap:8px;">
+            <div style="padding:16px;text-align:center;color:#9ca3af;font-size:13px;">Loading...</div>
+          </div>
+        </div>
+
+        <!-- Withdrawal requests -->
+        <div>
+          <div style="font-size:14px;font-weight:800;color:#0d1424;margin-bottom:12px;">💸 Withdrawal Requests</div>
+          <div id="a-withdrawal-list" style="display:flex;flex-direction:column;gap:10px;">
+            <div style="padding:16px;text-align:center;color:#9ca3af;font-size:13px;">Loading...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<script>
+// ═══════════════════════════════════════════════
+// DISTRIBUTOR SYSTEM — Config
+// ═══════════════════════════════════════════════
+const DIST_API = 'https://kiwtech999.vercel.app/api';
+const ADMIN_PASS_HASH = 'kiwtech@admin2026'; // Change this
+const MIN_WITHDRAW = 500;
+const COMMISSION_PCT = 50;
+
+// Tool commission map
+const TOOL_COMMISSION = {
+  shipping_topup: 25,   // 50% of ₹50
+  research_basic: 349,  // 50% of ₹699
+  research_advanced: 499 // 50% of ₹999
+};
+
+let currentDistEmail = null;
+let currentDistData  = null;
+let adminLoggedIn    = false;
+
+// ─── TABS ───────────────────────────────────────
+function dTab(tab, btn) {
+  ['register','dashboard','admin'].forEach(t => {
+    document.getElementById('dpanel-' + t).style.display = 'none';
+    document.getElementById('dtab-' + t).style.background = '#fff';
+    document.getElementById('dtab-' + t).style.color = '#6b7280';
+    document.getElementById('dtab-' + t).style.borderBottom = '3px solid transparent';
+  });
+  document.getElementById('dpanel-' + tab).style.display = 'block';
+  btn.style.background = '#f4f6ff';
+  btn.style.color = '#6C47FF';
+  btn.style.borderBottom = '3px solid #6C47FF';
+}
+
+// ─── REGISTER ───────────────────────────────────
+async function submitDistributor() {
+  const name  = document.getElementById('d-name').value.trim();
+  const email = document.getElementById('d-email').value.trim();
+  const phone = document.getElementById('d-phone').value.trim();
+  const city  = document.getElementById('d-city').value.trim();
+  const why   = document.getElementById('d-why').value.trim();
+  const upi   = document.getElementById('d-upi').value.trim();
+  const msg   = document.getElementById('d-reg-msg');
+
+  if (!name || !email || !phone) {
+    showMsg(msg, '❌ Naam, email aur phone zaroori hain', 'error');
+    return;
+  }
+  if (!email.includes('@')) { showMsg(msg, '❌ Valid email dalo', 'error'); return; }
+  if (phone.length < 10)    { showMsg(msg, '❌ 10-digit phone number dalo', 'error'); return; }
+
+  showMsg(msg, '⏳ Submitting...', 'info');
+
+  try {
+    const res = await fetch(DIST_API + '/distributor/apply', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, phone, city, why, upi })
+    });
+    const d = await res.json();
+    if (res.ok && d.success) {
+      showMsg(msg, '✅ Application submit ho gayi! 24-48 hours mein WhatsApp pe reply milega.', 'success');
+      ['d-name','d-email','d-phone','d-city','d-why','d-upi'].forEach(id => document.getElementById(id).value = '');
+    } else {
+      showMsg(msg, '❌ ' + (d.error || 'Kuch problem aayi — WhatsApp pe contact karo'), 'error');
+    }
+  } catch(e) {
+    showMsg(msg, '❌ Server se connect nahi hua — WhatsApp: 8377065737', 'error');
+  }
+}
+
+// ─── DASHBOARD ──────────────────────────────────
+async function loadDashboard() {
+  const email = document.getElementById('d-login-email').value.trim();
+  const msg   = document.getElementById('d-login-msg');
+  if (!email || !email.includes('@')) { showMsg(msg, '❌ Valid email dalo', 'error'); return; }
+
+  showMsg(msg, '⏳ Loading...', 'info');
+
+  try {
+    const res = await fetch(DIST_API + '/distributor/dashboard?email=' + encodeURIComponent(email));
+    const d = await res.json();
+
+    if (!res.ok || !d.distributor) {
+      showMsg(msg, '❌ ' + (d.error || 'Email registered nahi hai ya approved nahi hai'), 'error');
+      return;
+    }
+
+    currentDistEmail = email;
+    currentDistData  = d;
+
+    document.getElementById('d-login-wrap').style.display = 'none';
+    document.getElementById('d-dash-content').style.display = 'block';
+
+    // Fill stats
+    document.getElementById('d-balance').textContent = '₹' + (d.wallet_balance || 0);
+    document.getElementById('d-total-earned').textContent = '₹' + (d.total_earned || 0);
+    document.getElementById('d-total-sales').textContent = d.total_sales || 0;
+    document.getElementById('d-withdrawn').textContent = '₹' + (d.total_withdrawn || 0);
+
+    // Referral link
+    const refLink = 'https://kiwtech.in?ref=' + d.distributor.ref_code;
+    document.getElementById('d-ref-link').value = refLink;
+
+    // Status
+    const statusBar = document.getElementById('d-status-bar');
+    if (d.distributor.status === 'approved') {
+      statusBar.style.background = '#f0fdf4';
+      statusBar.style.color = '#15803d';
+      statusBar.style.border = '1.5px solid #bbf7d0';
+      statusBar.textContent = '✅ Status: Active Distributor';
+    } else if (d.distributor.status === 'pending') {
+      statusBar.style.background = '#fffbeb';
+      statusBar.style.color = '#b45309';
+      statusBar.style.border = '1.5px solid #fde68a';
+      statusBar.textContent = '⏳ Status: Approval Pending';
+    }
+
+    // Commission rows
+    const rows = document.getElementById('d-commission-rows');
+    if (d.commissions && d.commissions.length) {
+      rows.innerHTML = d.commissions.map(c => `
+        <div style="padding:10px 14px;border-bottom:1px solid #f4f6ff;display:grid;grid-template-columns:1fr 1fr 1fr 80px;gap:8px;align-items:center;">
+          <span style="color:#6b7280;">${new Date(c.created_at).toLocaleDateString('en-IN')}</span>
+          <span style="font-weight:600;">${c.tool_name}</span>
+          <span style="color:#6b7280;">₹${c.sale_amount}</span>
+          <span style="font-weight:800;color:#16a34a;">+₹${c.commission}</span>
+        </div>
+      `).join('');
+    } else {
+      rows.innerHTML = '<div style="padding:20px;text-align:center;color:#9ca3af;">Abhi tak koi sale nahi</div>';
+    }
+
+    // Withdrawal rows
+    const wrows = document.getElementById('d-withdrawal-rows');
+    if (d.withdrawals && d.withdrawals.length) {
+      wrows.innerHTML = d.withdrawals.map(w => `
+        <div style="padding:10px 14px;border-bottom:1px solid #f4f6ff;display:flex;justify-content:space-between;align-items:center;">
+          <div>
+            <div style="font-weight:700;">₹${w.amount}</div>
+            <div style="font-size:11px;color:#6b7280;">${new Date(w.requested_at).toLocaleDateString('en-IN')}</div>
+          </div>
+          <div>
+            ${w.status === 'paid' 
+              ? `<span style="background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;">✅ Paid</span>`
+              : w.status === 'pending'
+              ? `<span style="background:#fffbeb;color:#b45309;border:1px solid #fde68a;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;">⏳ Pending</span>`
+              : `<span style="background:#f4f6ff;color:#6b7280;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;">${w.status}</span>`
+            }
+            ${w.payment_proof ? `<a href="${w.payment_proof}" target="_blank" style="margin-left:6px;font-size:11px;color:#6C47FF;">Proof</a>` : ''}
+          </div>
+        </div>
+      `).join('');
+    } else {
+      wrows.innerHTML = '<div style="padding:16px;text-align:center;color:#9ca3af;">Koi withdrawal nahi abhi tak</div>';
+    }
+
+    // Withdraw section
+    const bal = d.wallet_balance || 0;
+    if (bal >= MIN_WITHDRAW) {
+      document.getElementById('d-withdraw-section').style.display = 'block';
+      document.getElementById('d-min-withdraw-note').textContent = '';
+    } else {
+      document.getElementById('d-min-withdraw-note').textContent =
+        '₹' + MIN_WITHDRAW + ' hone par withdraw kar sakte ho. Abhi: ₹' + bal + ' (₹' + (MIN_WITHDRAW - bal) + ' aur chahiye)';
+    }
+
+  } catch(e) {
+    showMsg(msg, '❌ Server se connect nahi hua', 'error');
+  }
+}
+
+function copyRef() {
+  const link = document.getElementById('d-ref-link').value;
+  navigator.clipboard.writeText(link).then(() => {
+    alert('Referral link copy ho gaya!');
+  }).catch(() => {
+    document.getElementById('d-ref-link').select();
+    document.execCommand('copy');
+  });
+}
+
+function requestWithdrawal() {
+  if (!currentDistData) return;
+  const bal = currentDistData.wallet_balance || 0;
+  const msg = document.getElementById('d-withdraw-msg');
+  const waMsg = encodeURIComponent(
+    'Hi Kiwtech! Mujhe withdrawal chahiye.\n' +
+    'Email: ' + currentDistEmail + '\n' +
+    'Balance: ₹' + bal + '\n' +
+    'UPI: ' + (currentDistData.distributor?.upi_id || 'Not set')
+  );
+  window.open('https://wa.me/918377065737?text=' + waMsg, '_blank');
+  showMsg(msg, '✅ WhatsApp khul gaya — message bhejo', 'success');
+}
+
+// ─── ADMIN ──────────────────────────────────────
+function adminLogin() {
+  const pass = document.getElementById('a-pass').value;
+  const msg  = document.getElementById('a-login-msg');
+  if (pass === ADMIN_PASS_HASH) {
+    adminLoggedIn = true;
+    document.getElementById('a-login-wrap').style.display = 'none';
+    document.getElementById('a-content').style.display = 'block';
+    loadAdminData();
+  } else {
+    showMsg(msg, '❌ Wrong password', 'error');
+  }
+}
+
+async function loadAdminData() {
+  try {
+    const res = await fetch(DIST_API + '/admin/distributors', {
+      headers: { 'x-admin-key': ADMIN_PASS_HASH }
+    });
+    const d = await res.json();
+
+    // Pending
+    const pending = (d.distributors || []).filter(x => x.status === 'pending');
+    const pendingEl = document.getElementById('a-pending-list');
+    if (pending.length) {
+      pendingEl.innerHTML = pending.map(p => `
+        <div style="background:#fff;border:1.5px solid #fde68a;border-radius:12px;padding:14px;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;">
+            <div>
+              <div style="font-weight:800;font-size:14px;">${p.name}</div>
+              <div style="font-size:12px;color:#6b7280;">${p.email} · ${p.phone}</div>
+              <div style="font-size:12px;color:#6b7280;">${p.city || ''}</div>
+              <div style="font-size:12px;color:#374151;margin-top:4px;font-style:italic;">"${p.why || ''}"</div>
+            </div>
+            <div style="display:flex;gap:6px;">
+              <button onclick="approveDistributor('${p.email}')" style="padding:8px 14px;background:#16a34a;color:#fff;font-size:12px;font-weight:700;border:none;border-radius:8px;cursor:pointer;">✅ Approve</button>
+              <button onclick="rejectDistributor('${p.email}')" style="padding:8px 14px;background:#dc2626;color:#fff;font-size:12px;font-weight:700;border:none;border-radius:8px;cursor:pointer;">❌ Reject</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    } else {
+      pendingEl.innerHTML = '<div style="padding:16px;text-align:center;color:#9ca3af;font-size:13px;">Koi pending application nahi</div>';
+    }
+
+    // Active
+    const active = (d.distributors || []).filter(x => x.status === 'approved');
+    const activeEl = document.getElementById('a-active-list');
+    if (active.length) {
+      activeEl.innerHTML = active.map(a => `
+        <div style="background:#fff;border:1.5px solid #bbf7d0;border-radius:10px;padding:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+          <div>
+            <span style="font-weight:700;font-size:13px;">${a.name}</span>
+            <span style="font-size:12px;color:#6b7280;margin-left:8px;">${a.email}</span>
+            <span style="font-size:11px;color:#16a34a;margin-left:8px;">Ref: ${a.ref_code}</span>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:13px;font-weight:800;color:#16a34a;">₹${a.wallet_balance || 0} balance</div>
+            <div style="font-size:11px;color:#6b7280;">${a.total_sales || 0} sales · ₹${a.total_earned || 0} earned</div>
+          </div>
+        </div>
+      `).join('');
+    } else {
+      activeEl.innerHTML = '<div style="padding:16px;text-align:center;color:#9ca3af;font-size:13px;">Koi active distributor nahi</div>';
+    }
+
+    // Withdrawal requests
+    const wRes = await fetch(DIST_API + '/admin/withdrawals', {
+      headers: { 'x-admin-key': ADMIN_PASS_HASH }
+    });
+    const wd = await wRes.json();
+    const wEl = document.getElementById('a-withdrawal-list');
+    const pendingW = (wd.withdrawals || []).filter(x => x.status === 'pending');
+    if (pendingW.length) {
+      wEl.innerHTML = pendingW.map(w => `
+        <div style="background:#fff;border:1.5px solid #fed7aa;border-radius:12px;padding:14px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+            <div>
+              <div style="font-weight:800;font-size:15px;">₹${w.amount}</div>
+              <div style="font-size:12px;color:#6b7280;">${w.distributor_email} · UPI: ${w.upi_id || 'Not set'}</div>
+              <div style="font-size:11px;color:#9ca3af;">${new Date(w.requested_at).toLocaleString('en-IN')}</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end;">
+              <input id="proof-${w.id}" type="text" placeholder="Payment proof URL (screenshot link)" style="padding:7px 10px;border:1.5px solid #e2e5f5;border-radius:8px;font-size:11px;width:220px;font-family:inherit;outline:none;"/>
+              <button onclick="markPaid('${w.id}')" style="padding:8px 14px;background:#16a34a;color:#fff;font-size:12px;font-weight:700;border:none;border-radius:8px;cursor:pointer;">✅ Mark as Paid</button>
+            </div>
+          </div>
+          <div id="w-msg-${w.id}" style="display:none;margin-top:8px;padding:8px;border-radius:6px;font-size:12px;font-weight:600;"></div>
+        </div>
+      `).join('');
+    } else {
+      wEl.innerHTML = '<div style="padding:16px;text-align:center;color:#9ca3af;font-size:13px;">Koi pending withdrawal request nahi</div>';
+    }
+
+  } catch(e) {
+    console.error('Admin load error:', e);
+  }
+}
+
+async function approveDistributor(email) {
+  try {
+    const res = await fetch(DIST_API + '/admin/approve', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-admin-key': ADMIN_PASS_HASH },
+      body: JSON.stringify({ email, action: 'approve' })
+    });
+    const d = await res.json();
+    if (d.success) { alert('✅ Approved! WhatsApp pe notify karo: ' + email); loadAdminData(); }
+    else alert('❌ Error: ' + d.error);
+  } catch(e) { alert('Server error'); }
+}
+
+async function rejectDistributor(email) {
+  if (!confirm('Reject karein ' + email + '?')) return;
+  try {
+    const res = await fetch(DIST_API + '/admin/approve', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-admin-key': ADMIN_PASS_HASH },
+      body: JSON.stringify({ email, action: 'reject' })
+    });
+    const d = await res.json();
+    if (d.success) { alert('Rejected.'); loadAdminData(); }
+  } catch(e) { alert('Server error'); }
+}
+
+async function markPaid(withdrawalId) {
+  const proof = document.getElementById('proof-' + withdrawalId).value.trim();
+  const msgEl = document.getElementById('w-msg-' + withdrawalId);
+  if (!proof) { showMsg(msgEl, '❌ Payment proof URL daalo pehle', 'error'); return; }
+
+  try {
+    const res = await fetch(DIST_API + '/admin/mark-paid', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-admin-key': ADMIN_PASS_HASH },
+      body: JSON.stringify({ withdrawal_id: withdrawalId, payment_proof: proof })
+    });
+    const d = await res.json();
+    if (d.success) { showMsg(msgEl, '✅ Marked as paid!', 'success'); setTimeout(loadAdminData, 1500); }
+    else showMsg(msgEl, '❌ ' + d.error, 'error');
+  } catch(e) { showMsg(msgEl, '❌ Server error', 'error'); }
+}
+
+// ─── UTILS ──────────────────────────────────────
+function showMsg(el, text, type) {
+  el.textContent = text;
+  el.style.display = 'block';
+  el.style.background = type === 'success' ? '#f0fdf4' : type === 'error' ? '#fef2f2' : '#f0f9ff';
+  el.style.color = type === 'success' ? '#15803d' : type === 'error' ? '#b91c1c' : '#0369a1';
+  el.style.border = '1.5px solid ' + (type === 'success' ? '#bbf7d0' : type === 'error' ? '#fecaca' : '#bae6fd');
+  el.style.borderRadius = '8px';
+  el.style.padding = '10px';
+}
+
+// ─── REF CODE IN PAYMENT ─────────────────────────
+// Agar URL mein ?ref= hai toh payment links mein attach karo
+(function() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const ref = urlParams.get('ref');
+  if (ref) {
+    localStorage.setItem('kiwtech_ref', ref);
+    console.log('[Kiwtech] Ref code saved:', ref);
+  }
+  // Existing payment links mein ref attach karo
+  const savedRef = ref || localStorage.getItem('kiwtech_ref');
+  if (savedRef && typeof PAYMENT_LINKS !== 'undefined') {
+    Object.keys(PAYMENT_LINKS).forEach(key => {
+      PAYMENT_LINKS[key] = PAYMENT_LINKS[key] + '?ref=' + savedRef;
+    });
+  }
+})();
+</script>
+<!-- ═══════════════════════════════════════════════ -->
+
 </body>
 
 </html>
