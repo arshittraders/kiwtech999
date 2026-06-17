@@ -136,3 +136,561 @@ h2{font-size:clamp(26px,4vw,42px);font-weight:900;line-height:1.1;margin-bottom:
 .ship-step{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:14px 20px;text-align:center;min-width:130px}
 .ship-step.active{background:rgba(108,71,255,.3);border-color:rgba(108,71,255,.6)}
 .ship-step-ico{font-size:22px;margin-bottom:6px}
+.ship-step-title{font-size:12px;font-weight:700;color:#fff}
+.ship-step-sub{font-size:10px;color:rgba(255,255,255,.5);margin-top:2px}
+.ship-arrow{display:flex;align-items:center;color:rgba(255,255,255,.3);font-size:20px}
+.ship-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+.ship-box{background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.1);border-radius:20px;padding:26px}
+.ship-box-title{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;margin-bottom:16px}
+.ship-feat{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px}
+.ship-feat:last-child{margin-bottom:0}
+.ship-feat-ico{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.ship-feat-title{font-size:13px;font-weight:700;color:#fff;margin-bottom:2px}
+.ship-feat-sub{font-size:11px;color:rgba(255,255,255,.5)}
+.ship-vs{background:rgba(255,242,0,.08);border:1.5px solid rgba(255,242,0,.25);border-radius:16px;padding:20px;margin-top:16px}
+.ship-vs-title{font-size:12px;font-weight:800;color:#fff200;margin-bottom:12px}
+.ship-vs-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:11px}
+.ship-vs-hdr{color:rgba(255,255,255,.5);font-weight:600;padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,.1)}
+.ship-vs-cell{color:rgba(255,255,255,.7);padding:4px 0}
+.ship-free{background:linear-gradient(135deg,rgba(57,255,20,.15),rgba(57,255,20,.05));border:2px solid rgba(57,255,20,.4);border-radius:16px;padding:18px 20px;margin-bottom:14px;text-align:center}
+.ship-free-val{font-size:28px;font-weight:900;color:#39ff14;margin-bottom:4px}
+.ship-free-sub{font-size:13px;color:rgba(255,255,255,.7)}
+.ship-plans{background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.1);border-radius:20px;padding:24px;margin-bottom:14px}
+.ship-plans-title{font-size:13px;font-weight:800;color:#fff;margin-bottom:14px}
+.ship-plan-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.ship-plan{background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.12);border-radius:12px;padding:13px;text-align:center;cursor:pointer;transition:border-color .2s}
+.ship-plan:hover{border-color:rgba(108,71,255,.8)}
+.ship-plan.pop{background:rgba(255,45,120,.1);border-color:rgba(255,45,120,.4);position:relative}
+.ship-plan.pop:hover{border-color:rgba(255,45,120,.8)}
+.ship-plan-badge{position:absolute;top:-8px;left:50%;transform:translateX(-50%);background:#ff2d78;color:#fff;font-size:9px;font-weight:900;padding:2px 8px;border-radius:10px;white-space:nowrap}
+.ship-plan-cr{font-size:22px;font-weight:900}
+.ship-plan-lbl{font-size:10px;color:rgba(255,255,255,.5);margin-bottom:3px}
+.ship-plan-pr{font-size:15px;font-weight:800;color:#fff}
+.ship-plan-per{font-size:10px;color:rgba(255,255,255,.4)}
+.ship-refund{font-size:11px;color:rgba(255,255,255,.4);text-align:center;margin-bottom:14px}
+.ship-pay-btn{display:block;text-align:center;padding:12px;font-size:13px;font-weight:800;border-radius:10px;text-decoration:none;transition:all .2s;margin-bottom:8px}
+.ship-pay-btn:last-child{margin-bottom:0}
+.ship-pay-btn.purple{background:#6C47FF;color:#fff}
+.ship-pay-btn.purple:hover{background:#5535DD;transform:translateY(-1px)}
+.ship-pay-btn.pink{background:#ff2d78;color:#fff}
+.ship-pay-btn.pink:hover{background:#e0266a;transform:translateY(-1px)}
+.ship-dl{background:linear-gradient(135deg,rgba(108,71,255,.2),rgba(108,71,255,.05));border:2px solid rgba(108,71,255,.5);border-radius:16px;padding:20px;text-align:center}
+.ship-dl-ico{font-size:28px;margin-bottom:8px}
+.ship-dl-title{font-size:15px;font-weight:800;color:#fff;margin-bottom:6px}
+.ship-dl-sub{font-size:12px;color:rgba(255,255,255,.5);margin-bottom:14px}
+.ship-dl-btn{display:inline-block;padding:13px 28px;background:#fff200;color:#000;font-size:14px;font-weight:900;border-radius:10px;text-decoration:none;transition:all .2s}
+.ship-dl-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,242,0,.3)}
+.ship-dl-note{font-size:11px;color:rgba(255,255,255,.3);margin-top:10px}
+.ship-stats{display:flex;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:16px;overflow:hidden;margin-top:44px;flex-wrap:wrap}
+.ship-stat{flex:1;min-width:130px;padding:20px;text-align:center;border-right:1px solid rgba(255,255,255,.08)}
+.ship-stat:last-child{border-right:none}
+.ship-stat-val{font-size:28px;font-weight:900;margin-bottom:4px}
+.ship-stat-lbl{font-size:11px;color:rgba(255,255,255,.5)}
+/* FOOTER */
+footer{background:var(--text);padding:40px 48px 24px}
+.ftop{display:flex;justify-content:space-between;gap:40px;margin-bottom:32px;flex-wrap:wrap}
+.flogo{font-size:22px;font-weight:900;color:#fff;margin-bottom:8px}
+.flogo span{background:var(--ny);padding:1px 8px;border-radius:5px;color:#000}
+.fdesc2{font-size:13px;color:rgba(255,255,255,.45);max-width:240px;line-height:1.6;font-weight:500}
+.fcol h4{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.35);margin-bottom:12px}
+.fcol ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+.fcol a{font-size:13px;color:rgba(255,255,255,.55);text-decoration:none;font-weight:500;transition:color .2s}
+.fcol a:hover{color:var(--ny)}
+.fbot{border-top:1px solid rgba(255,255,255,.1);padding-top:18px;display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,.3);flex-wrap:wrap;gap:8px;font-weight:600}
+@media(max-width:768px){
+  nav{padding:0 18px}
+  .nav-links{display:none}
+  .fgrid,.pcards,.steps{grid-template-columns:1fr}
+  .ship-grid{grid-template-columns:1fr}
+  .ship-stats{flex-direction:column}
+  .ship-stat{border-right:none;border-bottom:1px solid rgba(255,255,255,.08)}
+  .ship-stat:last-child{border-bottom:none}
+  .ftop{flex-direction:column}
+  .tool-cards-grid{grid-template-columns:1fr !important}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">KIW<span>TECH</span></a>
+  <ul class="nav-links">
+    <li><a href="#features">Research Tool</a></li>
+    <li><a href="#shipping">Shipping Optimizer</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#demo">Free Demo</a></li>
+  </ul>
+  <a href="/" class="nav-back">Account Management</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hb hb1"></div>
+  <div class="hb hb2"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">2 Powerful Tools for Meesho Sellers</div>
+    <h1>Meesho Pe <span class="hy">10x Faster</span><br/>Grow Karo</h1>
+    <p class="hero-sub">AI-powered Chrome extension + Shipping Optimizer — listings banao aur shipping cost kam karo. Dono ek saath.</p>
+    <div class="hero-btns">
+      <a href="#demo" class="btn-y">Free Demo Try Karo</a>
+      <a href="#shipping" class="btn-p">Shipping Optimizer →</a>
+    </div>
+  </div>
+</section>
+
+<!-- TWO TOOLS SELECTION CARDS -->
+<section style="padding:60px 20px;background:var(--white);position:relative;z-index:1;">
+  <div style="max-width:900px;margin:0 auto;text-align:center;margin-bottom:36px;">
+    <div class="slabel">Dono Tools</div>
+    <h2>Kaunsa Tool Chahiye?</h2>
+    <p class="ssub">Dono alag Chrome extensions hain — apni zarurat ke hisaab se download karo</p>
+  </div>
+  <div class="tool-cards-grid" style="max-width:900px;margin:0 auto;display:flex;flex-wrap:wrap;gap:20px;">
+
+    <!-- Card 1: All-in-One Research Tool -->
+    <div style="flex:1;min-width:280px;background:var(--bg);border:2.5px solid var(--border);border-radius:24px;padding:28px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;" onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 24px 48px rgba(0,0,0,.1)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+      <div style="position:absolute;top:0;left:0;right:0;height:5px;background:var(--np);"></div>
+      <div style="font-size:40px;margin-bottom:14px;">🧠</div>
+      <div style="font-size:20px;font-weight:900;color:var(--text);margin-bottom:8px;">All-in-One Research Tool</div>
+      <div style="display:inline-block;background:rgba(255,45,120,.1);color:var(--np);font-size:11px;font-weight:800;padding:3px 10px;border-radius:20px;margin-bottom:14px;">Monthly ₹999 / Lifetime ₹4,999</div>
+      <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:20px;">AI listing generator, rank checker, competitor research, auto-fill, visual search — Meesho seller ke liye complete toolkit.</p>
+      <ul style="list-style:none;margin-bottom:24px;text-align:left;">
+        <li style="font-size:13px;padding:7px 0;border-bottom:1px solid var(--border);display:flex;gap:8px;font-weight:500;">✅ AI Listing Generator (GPT-4o)</li>
+        <li style="font-size:13px;padding:7px 0;border-bottom:1px solid var(--border);display:flex;gap:8px;font-weight:500;">✅ Keyword Rank Checker</li>
+        <li style="font-size:13px;padding:7px 0;border-bottom:1px solid var(--border);display:flex;gap:8px;font-weight:500;">✅ Smart Auto-Fill Form</li>
+        <li style="font-size:13px;padding:7px 0;border-bottom:1px solid var(--border);display:flex;gap:8px;font-weight:500;">✅ Competitor Research</li>
+        <li style="font-size:13px;padding:7px 0;display:flex;gap:8px;font-weight:500;">✅ 1 Din Free Demo</li>
+      </ul>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <a href="#demo" style="flex:1;text-align:center;padding:12px;background:var(--np);color:#fff;font-size:13px;font-weight:800;border-radius:10px;text-decoration:none;transition:all .2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">Free Demo Lo</a>
+        <a href="#pricing" style="flex:1;text-align:center;padding:12px;background:var(--text);color:#fff;font-size:13px;font-weight:800;border-radius:10px;text-decoration:none;transition:all .2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">Plans Dekho →</a>
+      </div>
+    </div>
+
+    <!-- Card 2: Shipping Optimizer -->
+    <div style="flex:1;min-width:280px;background:linear-gradient(135deg,#0d1424,#1a1040);border:2.5px solid rgba(108,71,255,.5);border-radius:24px;padding:28px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;" onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 24px 48px rgba(108,71,255,.25)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+      <div style="position:absolute;top:0;left:0;right:0;height:5px;background:#6C47FF;"></div>
+      <div style="font-size:40px;margin-bottom:14px;">🚀</div>
+      <div style="font-size:20px;font-weight:900;color:#fff;margin-bottom:8px;">Shipping Optimizer</div>
+      <div style="display:inline-block;background:rgba(57,255,20,.15);color:#39ff14;font-size:11px;font-weight:800;padding:3px 10px;border-radius:20px;margin-bottom:14px;">10 FREE Credits on Install</div>
+      <p style="font-size:13px;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:20px;">Image variations se shipping cost ₹30-50 tak kam karo. Real Meesho API, PID-verified results, auto apply to panel.</p>
+      <ul style="list-style:none;margin-bottom:24px;text-align:left;">
+        <li style="font-size:13px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.1);display:flex;gap:8px;font-weight:500;color:rgba(255,255,255,.8);">✅ Shipping ₹30-50 tak kam</li>
+        <li style="font-size:13px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.1);display:flex;gap:8px;font-weight:500;color:rgba(255,255,255,.8);">✅ 200 Variations — fast scan</li>
+        <li style="font-size:13px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.1);display:flex;gap:8px;font-weight:500;color:rgba(255,255,255,.8);">✅ Auto Apply + Price Refresh</li>
+        <li style="font-size:13px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.1);display:flex;gap:8px;font-weight:500;color:rgba(255,255,255,.8);">✅ 4x Cheaper than Suppliers Den</li>
+        <li style="font-size:13px;padding:7px 0;display:flex;gap:8px;font-weight:500;color:#39ff14;">✅ 10 Credits FREE on Install</li>
+      </ul>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <a href="https://github.com/arshittraders/kiwtech999/releases/latest" target="_blank" style="flex:1;text-align:center;padding:12px;background:#fff200;color:#000;font-size:13px;font-weight:800;border-radius:10px;text-decoration:none;transition:all .2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">⬇ Download Free</a>
+        <a href="#shipping" style="flex:1;text-align:center;padding:12px;background:#6C47FF;color:#fff;font-size:13px;font-weight:800;border-radius:10px;text-decoration:none;transition:all .2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">Details Dekho →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- RESEARCH TOOL FEATURES -->
+<section id="features">
+  <div style="max-width:1100px;margin:0 auto;padding:0 20px;text-align:center">
+    <div class="fu">
+      <div class="slabel">Research Tool</div>
+      <h2>Extension Mein Kya Kya Hai?</h2>
+      <p class="ssub">Ek extension mein sab tools — alag alag apps ki zarurat nahi.</p>
+    </div>
+    <div class="fgrid fu">
+      <div class="fcard">
+        <div class="fnum">01</div>
+        <div class="ftitle">AI Listing Generator</div>
+        <div class="fdesc">Product name dalo — GPT-4o powered title (145-150 chars), description (450-500 words), bullet points sab ready. SEO-optimized, Meesho ke liye perfect.</div>
+      </div>
+      <div class="fcard">
+        <div class="fnum">02</div>
+        <div class="ftitle">Keyword Rank Checker</div>
+        <div class="fdesc">Apna product Meesho search mein kahan rank kar raha hai check karo. Competitor keywords dekho. Ranking improve karo step by step.</div>
+      </div>
+      <div class="fcard">
+        <div class="fnum">03</div>
+        <div class="ftitle">Smart Auto-Fill</div>
+        <div class="fdesc">Listing form automatically fill ho jaata hai — title, description, HSN code, GST rate sab ek click mein. Time 30 min se 2 min!</div>
+      </div>
+      <div class="fcard">
+        <div class="fnum">04</div>
+        <div class="ftitle">Competitor Research</div>
+        <div class="fdesc">Top selling products ka analysis karo. Unke keywords, pricing, listing structure dekho. Apni strategy improve karo instantly.</div>
+      </div>
+      <div class="fcard">
+        <div class="fnum">05</div>
+        <div class="ftitle">Visual Search</div>
+        <div class="fdesc">Product image se seedha similar products search karo Meesho pe. Trending products ka pata karo aur apni catalogue mein add karo.</div>
+      </div>
+      <div class="fcard">
+        <div class="fnum">06</div>
+        <div class="ftitle">Growth Tracker</div>
+        <div class="fdesc">Apni listing performance track karo. Views, clicks, orders — sab ek jagah. Daily progress dekho aur decisions lo data ke basis pe.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="howitworks">
+  <div style="max-width:900px;margin:0 auto;padding:0 20px;text-align:center">
+    <div class="fu">
+      <div class="slabel">How It Works</div>
+      <h2>Sirf 4 Steps</h2>
+      <p class="ssub">Install karo aur shuru karo — koi setup nahi, koi technical knowledge nahi.</p>
+    </div>
+    <div class="steps fu">
+      <div class="step"><div class="step-num">1</div><div class="step-title">Download Karo</div><div class="step-desc">ZIP file download karo aur Chrome mein load karo — 2 minute ka kaam</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-title">Key Activate Karo</div><div class="step-desc">Gmail aur license key dalo — seedha activate ho jayega</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-title">Meesho Kholo</div><div class="step-desc">Meesho seller panel pe jao — extension automatically kaam shuru kar dega</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-title">Listings Banao</div><div class="step-desc">AI se listing generate karo — ek click mein perfect title aur description</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING - RESEARCH TOOL -->
+<section id="pricing">
+  <div class="pw">
+    <div class="phead fu">
+      <div class="slabel">Research Tool Pricing</div>
+      <h2>Simple Pricing</h2>
+      <p class="ssub">Pehle free mein try karo, pasand aaye toh lo.</p>
+    </div>
+    <div class="pcards fu">
+      <div class="pcard demo">
+        <div class="plan-name">Free Demo</div>
+        <div class="plan-price blue">FREE</div>
+        <div class="plan-sub">1 din ka full access</div>
+        <ul class="plan-feats">
+          <li>✅ Sab features unlock</li>
+          <li>✅ AI listing generator</li>
+          <li>✅ Rank checker</li>
+          <li>✅ Auto-fill</li>
+          <li>✅ Device-locked (ek device)</li>
+          <li>✅ Gmail se seedha milti hai</li>
+        </ul>
+        <a href="#demo" class="plan-btn blue">Free Demo Lo</a>
+      </div>
+      <div class="pcard monthly featured">
+        <div class="feat-rib">Most Popular</div>
+        <div class="plan-name">Monthly Plan</div>
+        <div class="plan-price pink">999</div>
+        <div class="plan-sub">per month + 18% GST = Rs 1,179 total</div>
+        <ul class="plan-feats">
+          <li>🚀 Sab features unlimited</li>
+          <li>🚀 AI listing generator</li>
+          <li>🚀 Rank checker + competitor research</li>
+          <li>🚀 Smart auto-fill</li>
+          <li>🚀 Visual search</li>
+          <li>🚀 Growth tracker</li>
+          <li>🚀 WhatsApp support</li>
+        </ul>
+        <a href="https://wa.me/918377065737?text=Monthly+Tool+Plan+Chahiye" target="_blank" class="plan-btn pink">Buy Now - Rs 999</a>
+      </div>
+      <div class="pcard lifetime">
+        <div class="plan-name">Lifetime Plan</div>
+        <div class="plan-price gold">4,999</div>
+        <div class="plan-sub">one time + 18% GST = Rs 5,899 total</div>
+        <ul class="plan-feats">
+          <li>⭐ Sab monthly features</li>
+          <li>⭐ Lifetime access</li>
+          <li>⭐ Sabhi future updates free</li>
+          <li>⭐ Priority support</li>
+          <li>⭐ Ek baar pay, hamesha use</li>
+          <li>⭐ Best value for serious sellers</li>
+        </ul>
+        <a href="https://wa.me/918377065737?text=Lifetime+Tool+Plan+Chahiye" target="_blank" class="plan-btn gold">Buy Lifetime - Rs 4,999</a>
+      </div>
+    </div>
+    <p style="text-align:center;font-size:12px;color:var(--muted);margin-top:18px;font-weight:600">* Payment ke baad WhatsApp pe key milegi · GST 18% extra · Device-locked license</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SHIPPING OPTIMIZER SECTION
+═══════════════════════════════════════════════════════════ -->
+<section id="shipping">
+  <div class="ship-blob1"></div>
+  <div class="ship-blob2"></div>
+  <div class="ship-inner">
+
+    <!-- Header -->
+    <div style="text-align:center;margin-bottom:48px;" class="fu">
+      <div class="slabel" style="background:#6C47FF;color:#fff;">🚀 New Tool</div>
+      <h2 style="color:#fff;">Meesho <span style="background:#ff2d78;padding:2px 10px;border-radius:6px;">Shipping Optimizer</span></h2>
+      <p style="font-size:16px;color:rgba(255,255,255,.6);font-weight:500;max-width:560px;margin:16px auto 0;">
+        Image variations se sabse kam shipping cost pao. Real Meesho API, PID-verified results, auto apply.
+      </p>
+    </div>
+
+    <!-- Flow steps -->
+    <div class="ship-flow fu">
+      <div class="ship-step">
+        <div class="ship-step-ico">📷</div>
+        <div class="ship-step-title">Image Upload</div>
+        <div class="ship-step-sub">Ya auto-detect</div>
+      </div>
+      <div class="ship-arrow">→</div>
+      <div class="ship-step">
+        <div class="ship-step-ico">🔄</div>
+        <div class="ship-step-title">200 Variations</div>
+        <div class="ship-step-sub">Border/badge/noise</div>
+      </div>
+      <div class="ship-arrow">→</div>
+      <div class="ship-step">
+        <div class="ship-step-ico">🏷️</div>
+        <div class="ship-step-title">PID Match</div>
+        <div class="ship-step-sub">Real Meesho API</div>
+      </div>
+      <div class="ship-arrow">→</div>
+      <div class="ship-step active">
+        <div class="ship-step-ico">✅</div>
+        <div class="ship-step-title">Auto Apply</div>
+        <div class="ship-step-sub">Price update bhi</div>
+      </div>
+    </div>
+
+    <!-- Main grid -->
+    <div class="ship-grid fu">
+
+      <!-- LEFT: Features + vs -->
+      <div>
+        <div class="ship-box">
+          <div class="ship-box-title" style="color:#fff200;">✨ Kya karta hai</div>
+          <div class="ship-feat">
+            <div class="ship-feat-ico" style="background:rgba(57,255,20,.15);">📦</div>
+            <div>
+              <div class="ship-feat-title">Shipping ₹30-50 tak kam</div>
+              <div class="ship-feat-sub">PID-verified results — save karne pe bhi same price</div>
+            </div>
+          </div>
+          <div class="ship-feat">
+            <div class="ship-feat-ico" style="background:rgba(255,45,120,.15);">⚡</div>
+            <div>
+              <div class="ship-feat-title">10-15 parallel variations</div>
+              <div class="ship-feat-sub">200 attempts mein ~8-10 min — fast scan</div>
+            </div>
+          </div>
+          <div class="ship-feat">
+            <div class="ship-feat-ico" style="background:rgba(0,212,255,.15);">🎯</div>
+            <div>
+              <div class="ship-feat-title">Auto Apply to Panel</div>
+              <div class="ship-feat-sub">Best image + price refresh automatic</div>
+            </div>
+          </div>
+          <div class="ship-feat">
+            <div class="ship-feat-ico" style="background:rgba(168,85,247,.15);">🔍</div>
+            <div>
+              <div class="ship-feat-title">Category Search Built-in</div>
+              <div class="ship-feat-sub">Meesho ki saari categories searchable</div>
+            </div>
+          </div>
+          <div class="ship-feat">
+            <div class="ship-feat-ico" style="background:rgba(255,242,0,.15);">💰</div>
+            <div>
+              <div class="ship-feat-title">Savings % dikhata hai</div>
+              <div class="ship-feat-sub">Current vs Best — actual benefit clearly dikhta hai</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- vs Suppliers Den -->
+        <div class="ship-vs">
+          <div class="ship-vs-title">⚔️ Kiwtech vs Suppliers Den</div>
+          <div class="ship-vs-grid">
+            <div class="ship-vs-hdr">Feature</div>
+            <div class="ship-vs-hdr" style="text-align:center;">
+              <span style="color:#ff2d78;">SDen</span> / <span style="color:#39ff14;">Kiwtech</span>
+            </div>
+            <div class="ship-vs-cell">Same Meesho API</div><div style="text-align:center;padding:4px 0;">✅ / ✅</div>
+            <div class="ship-vs-cell">Cost per image</div><div style="text-align:center;padding:4px 0;"><span style="color:#ff6b6b;">₹4</span> / <span style="color:#39ff14;">₹1</span></div>
+            <div class="ship-vs-cell">Browser extension</div><div style="text-align:center;padding:4px 0;">❌ / ✅</div>
+            <div class="ship-vs-cell">Auto price update</div><div style="text-align:center;padding:4px 0;">❌ / ✅</div>
+            <div class="ship-vs-cell">Free credits</div><div style="text-align:center;padding:4px 0;"><span style="color:#ff6b6b;">0</span> / <span style="color:#39ff14;">10</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Pricing + Download -->
+      <div>
+        <!-- 10 free credits -->
+        <div class="ship-free">
+          <div class="ship-free-val">10 FREE Credits</div>
+          <div class="ship-free-sub">New install pe automatically milte hain — koi payment nahi!</div>
+        </div>
+
+        <!-- Plans -->
+        <div class="ship-plans">
+          <div class="ship-plans-title">💳 Credit Top-Up Plans</div>
+          <div class="ship-plan-grid">
+            <div class="ship-plan">
+              <div class="ship-plan-lbl">Credits</div>
+              <div class="ship-plan-cr" style="color:#6C47FF;">50</div>
+              <div class="ship-plan-pr">₹50</div>
+              <div class="ship-plan-per">₹1/image</div>
+            </div>
+            <div class="ship-plan">
+              <div class="ship-plan-lbl">Credits</div>
+              <div class="ship-plan-cr" style="color:#6C47FF;">150</div>
+              <div class="ship-plan-pr">₹120</div>
+              <div class="ship-plan-per">₹0.80/image</div>
+            </div>
+            <div class="ship-plan pop">
+              <div class="ship-plan-badge">POPULAR</div>
+              <div class="ship-plan-lbl">Credits</div>
+              <div class="ship-plan-cr" style="color:#ff2d78;">300</div>
+              <div class="ship-plan-pr">₹220</div>
+              <div class="ship-plan-per">₹0.73/image</div>
+            </div>
+            <div class="ship-plan" style="border-color:rgba(255,242,0,.3);">
+              <div class="ship-plan-lbl">Credits</div>
+              <div class="ship-plan-cr" style="color:#fff200;">700</div>
+              <div class="ship-plan-pr">₹490</div>
+              <div class="ship-plan-per">₹0.70/image</div>
+            </div>
+          </div>
+          <div class="ship-refund">💡 20% savings nahi aai → credit refund guaranteed</div>
+          <!-- Razorpay buttons — apne links daalo -->
+          <a href="https://rzp.io/l/kiwtech-ship-50" target="_blank" class="ship-pay-btn purple">⚡ Buy 50 Credits — ₹50</a>
+          <a href="https://rzp.io/l/kiwtech-ship-300" target="_blank" class="ship-pay-btn pink">🔥 Buy 300 Credits — ₹220 (Popular)</a>
+        </div>
+
+        <!-- Download -->
+        <div class="ship-dl">
+          <div class="ship-dl-ico">🚀</div>
+          <div class="ship-dl-title">Free Install + 10 Credits</div>
+          <div class="ship-dl-sub">Chrome Extension — supplier.meesho.com pe direct kaam karta hai</div>
+          <a href="https://github.com/arshittraders/kiwtech999/releases/latest" target="_blank" class="ship-dl-btn">⬇ Download Extension — FREE</a>
+          <div class="ship-dl-note">Chrome 88+ · Meesho Seller Account required</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats bar -->
+    <div class="ship-stats fu">
+      <div class="ship-stat">
+        <div class="ship-stat-val" style="color:#fff200;">₹1</div>
+        <div class="ship-stat-lbl">per image optimization</div>
+      </div>
+      <div class="ship-stat">
+        <div class="ship-stat-val" style="color:#ff2d78;">200</div>
+        <div class="ship-stat-lbl">max variations per run</div>
+      </div>
+      <div class="ship-stat">
+        <div class="ship-stat-val" style="color:#39ff14;">10</div>
+        <div class="ship-stat-lbl">free credits on install</div>
+      </div>
+      <div class="ship-stat">
+        <div class="ship-stat-val" style="color:#00d4ff;">4x</div>
+        <div class="ship-stat-lbl">cheaper than Suppliers Den</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- ═══════════════════════════════════════════════ SHIPPING END -->
+
+<!-- FREE DEMO -->
+<section id="demo">
+  <div class="di">
+    <div class="fu">
+      <div class="slabel">Free Demo</div>
+      <h2>Free 1-Day Key Pao</h2>
+      <p class="ssub">Sirf Gmail dalo — seedha email pe key aayegi. Koi OTP nahi, koi payment nahi.</p>
+    </div>
+    <div class="dcard fu">
+      <div class="dhlt">1 Din Free!</div>
+      <p class="dsub">Apni Gmail dalo — ek click mein 1 din ki free demo key tumhari email pe aayegi. Ek Gmail = Ek key only. Key device-locked hogi.</p>
+      <input class="dinput" type="email" id="demoEmail" placeholder="apki.gmail@gmail.com"/>
+      <button class="dbtn" onclick="claimDemo()" id="demoBtn">Free Key Lo</button>
+      <div class="dnote">Instant Delivery | Device-Locked | Ek Gmail = Ek Key</div>
+      <div class="dres" id="demoRes"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ftop">
+    <div>
+      <div class="flogo">KIW<span>TECH</span></div>
+      <div class="fdesc2">Meesho sellers ke liye AI-powered Chrome extension + Shipping Optimizer.</div>
+    </div>
+    <div class="fcol">
+      <h4>Tools</h4>
+      <ul>
+        <li><a href="#features">Research Tool</a></li>
+        <li><a href="#shipping">Shipping Optimizer</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#demo">Free Demo</a></li>
+      </ul>
+    </div>
+    <div class="fcol">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="/privacy.html">Privacy Policy</a></li>
+        <li><a href="/refund.html">Refund Policy</a></li>
+        <li><a href="/terms.html">Terms of Service</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 style="font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.35);margin-bottom:12px">Support</h4>
+      <a href="https://wa.me/918377065737" target="_blank" style="display:inline-flex;align-items:center;gap:8px;padding:11px 20px;background:#25d366;color:#fff;font-size:13px;font-weight:800;border-radius:10px;text-decoration:none;">
+        💬 WhatsApp Support
+      </a>
+    </div>
+  </div>
+  <div class="fbot">
+    <span>© 2026 Kiwtech · Arshit Traders, Noida · GSTIN: 07BUDPS8342F1ZF</span>
+    <span>Made for Meesho Sellers 🇮🇳</span>
+  </div>
+</footer>
+
+<script>
+// Scroll animations
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('vis'); });
+}, {threshold:.12});
+document.querySelectorAll('.fu').forEach(el => obs.observe(el));
+
+// Demo key claim
+async function claimDemo() {
+  const email = document.getElementById('demoEmail').value.trim();
+  const btn   = document.getElementById('demoBtn');
+  const res   = document.getElementById('demoRes');
+  if (!email || !email.includes('@')) {
+    res.textContent = '❌ Valid Gmail dalo';
+    res.className = 'dres err';
+    res.style.display = 'block';
+    return;
+  }
+  btn.disabled = true;
+  btn.textContent = 'Bhej rahe hain...';
+  res.style.display = 'none';
+  try {
+    const r = await fetch('https://kiwtech999.vercel.app/api/claim-demo', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({email})
+    });
+    const d = await r.json();
+    if (r.ok && d.success) {
+      res.textContent = '✅ Key bhej di! Gmail check karo (spam bhi dekho). Key: ' + (d.key || '');
+      res.className = 'dres ok';
+    } else {
+      res.textContent = '❌ ' + (d.error || 'Kuch gadbad hui — WhatsApp pe contact karo');
+      res.className = 'dres err';
+    }
+  } catch(e) {
+    res.textContent = '❌ Server se connect nahi hua — WhatsApp karo: 8377065737';
+    res.className = 'dres err';
+  }
+  res.style.display = 'block';
+  btn.disabled = false;
+  btn.textContent = 'Free Key Lo';
+}
+</script>
+</body>
+</html>
