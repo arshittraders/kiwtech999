@@ -27,9 +27,66 @@ module.exports = async (req, res) => {
   const payment = req.body.payload.payment.entity;
   const { plan, email, name, state } = payment.notes || {};
 
-  if (!email || !plan) {
-    console.error("Missing notes:", payment.notes);
-    return res.status(400).json({ error: "Missing payment notes" });
+  if (!email) {
+    console.error("Missing email in notes:", payment.notes);
+    return res.status(400).json({ error: "Missing email" });
+  }
+
+  // ── SHIPPING CREDITS PLAN ─────────────────────────────────
+  const CREDIT_PLANS = {
+    shipping_50:  { credits: 50,  paise: 5000  },
+    shipping_150: { credits: 150, paise: 12000 },
+    shipping_300: { credits: 300, paise: 22000 },
+    shipping_700: { credits: 700, paise: 49000 },
+  };
+
+  // Also detect by amount if plan note missing
+  const detectCreditPlan = (amount) => {
+    if (amount >= 45000 && amount <= 55000)  return CREDIT_PLANS.shipping_50;
+    if (amount >= 10000 && amount <= 13000)  return CREDIT_PLANS.shipping_150;
+    if (amount >= 20000 && amount <= 25000)  return CREDIT_PLANS.shipping_300;
+    if (amount >= 45000 && amount <= 52000)  return CREDIT_PLANS.shipping_700;
+    return null;
+  };
+
+  const creditPlan = CREDIT_PLANS[plan] || detectCreditPlan(payment.amount);
+
+  if (creditPlan) {
+    // Handle shipping credits top-up
+    try {
+      const { createClient } = require("@supabase/supabase-js");
+      const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
+
+      // Check existing balance
+      const { data: existing } = await supabase
+        .from("shipping_credits")
+        .select("credits")
+        .eq("email", email.toLowerCase())
+        .single();
+
+      const currentCredits = existing?.credits || 0;
+      const newCredits = currentCredits + creditPlan.credits;
+
+      if (existing) {
+        await supabase.from("shipping_credits")
+          .update({ credits: newCredits, updated_at: new Date().toISOString() })
+          .eq("email", email.toLowerCase());
+      } else {
+        await supabase.from("shipping_credits")
+          .insert({ email: email.toLowerCase(), credits: newCredits });
+      }
+
+      console.log("Shipping credits added:", creditPlan.credits, "for", email, "total:", newCredits);
+      return res.json({ ok: true, type: "shipping_credits", credits: newCredits });
+    } catch(e) {
+      console.error("Credits error:", e);
+      return res.status(500).json({ error: e.message });
+    }
+  }
+
+  if (!plan) {
+    console.error("Missing plan in notes:", payment.notes);
+    return res.status(400).json({ error: "Missing plan" });
   }
 
   // Plan config
