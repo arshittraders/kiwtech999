@@ -42,10 +42,11 @@ module.exports = async (req, res) => {
 
   // Also detect by amount if plan note missing
   const detectCreditPlan = (amount) => {
-    if (amount >= 45000 && amount <= 55000)  return CREDIT_PLANS.shipping_50;
-    if (amount >= 10000 && amount <= 13000)  return CREDIT_PLANS.shipping_150;
-    if (amount >= 20000 && amount <= 25000)  return CREDIT_PLANS.shipping_300;
-    if (amount >= 45000 && amount <= 52000)  return CREDIT_PLANS.shipping_700;
+    // amount is in paise (multiply by 100)
+    if (amount === 5000)  return CREDIT_PLANS.shipping_50;   // ₹50
+    if (amount === 12000) return CREDIT_PLANS.shipping_150;  // ₹120
+    if (amount === 22000) return CREDIT_PLANS.shipping_300;  // ₹220
+    if (amount === 49000) return CREDIT_PLANS.shipping_700;  // ₹490
     return null;
   };
 
