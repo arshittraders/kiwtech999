@@ -56,7 +56,10 @@ module.exports = async (req, res) => {
     // Handle shipping credits top-up
     try {
       const { createClient } = require("@supabase/supabase-js");
-      const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
+      // Shipping Optimizer uses separate Supabase project
+      const shipUrl = process.env.SHIPPING_SUPABASE_URL || process.env.SUPABASE_URL;
+      const shipKey = process.env.SHIPPING_SUPABASE_KEY || process.env.SUPABASE_SERVICE_KEY;
+      const supabase = createClient(shipUrl, shipKey);
 
       // Check existing balance
       const { data: existing } = await supabase
