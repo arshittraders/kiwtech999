@@ -1,0 +1,14 @@
+{
+  "version": "2.6",
+  "release_date": "2026-06-19",
+  "download_url": "https://github.com/arshittraders/kiwtech999/releases/download/shipping-v2.1/kiwtech-shipping-optimizer-v2.6.zip",
+  "changelog": [
+    "Google Auth — Gmail se login, credits hamesha safe",
+    "Coupon system — KIWTECH-500 se 500 credits",
+    "Bulk Image Variations — 100 images ZIP mein",
+    "Watermark hide — bottom number automatically blur",
+    "8-group shuffle — better variation strategy"
+  ],
+  "force_update": false,
+  "min_version": "2.0"
+}
