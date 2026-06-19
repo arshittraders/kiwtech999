@@ -1,4 +1,742 @@
-x;padding:20px;text-align:center;border-top:4px solid #ff2d78;">
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Kiwtech — India Ka #1 E-Commerce Growth Partner</title>
+<meta name="description" content="Meesho, Amazon, Flipkart account management. AI listings, SEO, images, ads. 50% productivity boost guaranteed."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Space+Mono:wght@700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#f4f6ff;
+  --white:#ffffff;
+  --border:#e2e5f5;
+  --text:#0d1424;
+  --muted:#6b7280;
+  --ny:#fff200;
+  --np:#ff2d78;
+  --nb:#00d4ff;
+  --ng:#39ff14;
+  --no:#ff6b00;
+  --nv:#a855f7;
+  --meesho:#f43397;
+  --amazon:#ff9900;
+  --flipkart:#2874f0;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+
+/* ── LIGHT NEON BLOBS ── */
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 500px 380px at 8% 18%,rgba(255,242,0,.18) 0%,transparent 70%),
+    radial-gradient(ellipse 420px 340px at 88% 12%,rgba(0,212,255,.14) 0%,transparent 70%),
+    radial-gradient(ellipse 460px 360px at 50% 65%,rgba(255,45,120,.09) 0%,transparent 70%),
+    radial-gradient(ellipse 360px 300px at 3% 82%,rgba(57,255,20,.09) 0%,transparent 70%),
+    radial-gradient(ellipse 400px 320px at 92% 88%,rgba(168,85,247,.09) 0%,transparent 70%)
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;height:66px;
+  background:rgba(255,255,255,.93);
+  backdrop-filter:blur(20px);
+  border-bottom:1.5px solid var(--border);
+}
+.nav-logo{font-size:22px;font-weight:900;color:var(--text);text-decoration:none;letter-spacing:-.5px}
+.nav-logo span{background:var(--ny);padding:2px 8px;border-radius:5px;color:#000}
+.nav-links{display:flex;gap:30px;list-style:none}
+.nav-links a{color:var(--muted);font-size:14px;font-weight:600;text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{padding:9px 22px;background:var(--text);color:#fff;font-size:13px;font-weight:800;border:none;border-radius:8px;cursor:pointer;text-decoration:none;transition:all .2s;letter-spacing:.2px}
+.nav-cta:hover{background:var(--np);transform:translateY(-1px)}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:130px 20px 80px;position:relative;overflow:hidden
+}
+.hb{position:absolute;border-radius:24px;pointer-events:none;filter:blur(1px)}
+.hb1{width:240px;height:150px;background:var(--ny);top:14%;left:3%;transform:rotate(-7deg);opacity:.2}
+.hb2{width:190px;height:130px;background:var(--nb);top:18%;right:5%;transform:rotate(5deg);opacity:.18}
+.hb3{width:150px;height:110px;background:var(--np);bottom:24%;left:7%;transform:rotate(11deg);opacity:.16}
+.hb4{width:170px;height:120px;background:var(--ng);bottom:18%;right:4%;transform:rotate(-5deg);opacity:.15}
+.hero-inner{position:relative;z-index:1;max-width:840px}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:7px 18px;background:var(--ny);border-radius:100px;
+  font-size:12px;font-weight:900;color:#000;letter-spacing:.5px;margin-bottom:28px
+}
+h1{
+  font-size:clamp(42px,7vw,80px);font-weight:900;line-height:1.04;
+  letter-spacing:-2px;color:var(--text);margin-bottom:22px
+}
+.hy{background:var(--ny);padding:1px 8px;border-radius:5px;display:inline;color:#000}
+.hp{background:var(--np);padding:1px 8px;border-radius:5px;display:inline;color:#fff}
+.hb-tag{background:var(--nb);padding:1px 8px;border-radius:5px;display:inline;color:#000}
+.hero-sub{font-size:clamp(15px,2vw,18px);color:var(--muted);font-weight:500;max-width:560px;margin:0 auto 36px;line-height:1.7}
+.plats{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:42px}
+.ptag{padding:7px 18px;border-radius:100px;font-size:13px;font-weight:700;border:2px solid}
+.ptag.m{border-color:var(--meesho);color:var(--meesho);background:rgba(244,51,151,.07)}
+.ptag.a{border-color:var(--amazon);color:var(--amazon);background:rgba(255,153,0,.07)}
+.ptag.f{border-color:var(--flipkart);color:var(--flipkart);background:rgba(40,116,240,.07)}
+.hbtns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn-p{padding:15px 38px;background:var(--text);color:#fff;font-size:15px;font-weight:800;border:none;border-radius:10px;cursor:pointer;text-decoration:none;display:inline-block;transition:all .2s}
+.btn-p:hover{background:var(--np);transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,45,120,.3)}
+.btn-o{padding:15px 38px;background:var(--white);color:var(--text);font-size:15px;font-weight:700;border:2px solid var(--border);border-radius:10px;cursor:pointer;text-decoration:none;display:inline-block;transition:all .2s}
+.btn-o:hover{border-color:var(--text)}
+
+/* ── STATS ── */
+.stats{background:var(--text);padding:28px 40px;display:flex;justify-content:center;gap:64px;flex-wrap:wrap;position:relative;z-index:1}
+.stat{text-align:center}
+.stat-n{font-size:34px;font-weight:900;line-height:1;color:var(--ny)}
+.stat-l{font-size:12px;color:rgba(255,255,255,.5);letter-spacing:1px;text-transform:uppercase;margin-top:4px;font-weight:700}
+
+/* ── SECTION HELPERS ── */
+section{position:relative;z-index:1}
+.slabel{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;background:var(--ny);border-radius:100px;font-size:11px;font-weight:900;color:#000;letter-spacing:1px;text-transform:uppercase;margin-bottom:16px}
+h2{font-size:clamp(28px,4vw,46px);font-weight:900;line-height:1.1;margin-bottom:12px;letter-spacing:-1px;color:var(--text)}
+.ssub{font-size:16px;color:var(--muted);font-weight:500}
+
+/* ── PRICING ── */
+#pricing{padding:100px 20px;background:var(--white)}
+.pw{max-width:1180px;margin:0 auto}
+.phead{text-align:center;margin-bottom:60px}
+
+.ctable-wrap{overflow-x:auto;border:2px solid var(--border);border-radius:20px;margin-bottom:36px;background:var(--white)}
+table.ct{width:100%;border-collapse:collapse;min-width:700px}
+.ct thead th{background:var(--bg)}
+.ct .th-f{padding:22px 24px 16px;font-size:12px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:1px;width:260px}
+.ct .ph{padding:20px 24px 16px;text-align:center;border-left:2px solid var(--border)}
+.ct .ph .pn{font-size:20px;font-weight:900;margin-bottom:6px}
+.ct .ph.basic .pn{color:var(--flipkart)}
+.ct .ph.adv .pn{color:var(--np)}
+.pbadge{display:inline-block;padding:3px 12px;border-radius:100px;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.5px}
+.ph.basic .pbadge{background:rgba(40,116,240,.1);color:var(--flipkart)}
+.ph.adv .pbadge{background:var(--ny);color:#000}
+.ct .pr-head td{background:var(--bg);border-top:2px solid var(--border);padding:9px 24px;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:1.5px}
+.ct .pr-head.pm td{color:var(--meesho)}
+.ct .pr-head.pa td{color:var(--amazon)}
+.ct .pr-head.pf td{color:var(--flipkart)}
+.ct .dr td{padding:12px 24px;border-top:1px solid var(--border);font-size:13px;vertical-align:middle}
+.ct .dr td:first-child{color:var(--muted);font-weight:600;padding-left:32px}
+.ct .dr td:not(:first-child){text-align:center;border-left:2px solid var(--border);font-family:'Space Mono',monospace;font-size:12px;font-weight:700}
+.vb{color:var(--flipkart)}.vp{color:var(--np)}
+.ck{font-size:18px}.ckb{color:var(--flipkart)}.ckp{color:var(--np)}.vno{color:#d1d5db;font-size:16px}
+.ct .prow td{padding:22px 24px;border-top:2px solid var(--border);background:var(--bg);text-align:center;border-left:2px solid var(--border)}
+.ct .prow td:first-child{text-align:left;border-left:none}
+.pbig{font-size:38px;font-weight:900;letter-spacing:-1px}
+.pbig.b{color:var(--flipkart)}.pbig.p{color:var(--np)}
+.pgst{font-size:12px;color:var(--muted);margin-top:4px;font-weight:600}
+.ptot{font-size:14px;font-weight:800;color:var(--text);margin-top:4px}
+
+.pcards{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:28px}
+.pcard{background:var(--white);border:2px solid var(--border);border-radius:20px;padding:30px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s}
+.pcard:hover{transform:translateY(-6px);box-shadow:0 24px 48px rgba(0,0,0,.09)}
+.pcard::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+.pcard:not(.feat)::before{background:var(--flipkart)}
+.pcard.feat{border-color:var(--np)}
+.pcard.feat::before{background:var(--np)}
+.feat-rib{position:absolute;top:18px;right:18px;background:var(--ny);color:#000;font-size:10px;font-weight:900;padding:4px 12px;border-radius:100px;letter-spacing:.5px}
+.pcard-title{font-size:22px;font-weight:900;margin-bottom:8px}
+.ppills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.pp{padding:4px 12px;border-radius:100px;font-size:11px;font-weight:700;border:1.5px solid}
+.pp.m{border-color:var(--meesho);color:var(--meesho);background:rgba(244,51,151,.06)}
+.pp.a{border-color:var(--amazon);color:var(--amazon);background:rgba(255,153,0,.06)}
+.pp.f{border-color:var(--flipkart);color:var(--flipkart);background:rgba(40,116,240,.06)}
+.cprice{font-size:48px;font-weight:900;letter-spacing:-2px;line-height:1;margin-bottom:4px}
+.cprice.b{color:var(--flipkart)}.cprice.p{color:var(--np)}
+.cpsub{font-size:13px;color:var(--muted);margin-bottom:18px;font-weight:600}
+.cfeats{list-style:none;margin-bottom:26px}
+.cfeats li{padding:9px 0;border-bottom:1px solid var(--border);font-size:13px;display:flex;gap:10px;align-items:flex-start;font-weight:500}
+.cfeats li:last-child{border-bottom:none}
+.cbtn{width:100%;padding:14px;font-size:14px;font-weight:900;border:none;border-radius:10px;cursor:pointer;text-decoration:none;display:block;text-align:center;transition:all .2s;letter-spacing:.2px}
+.cbtn.b{background:var(--flipkart);color:#fff}
+.cbtn.b:hover{background:#1a5fd8;transform:translateY(-1px)}
+.cbtn.p{background:var(--np);color:#fff}
+.cbtn.p:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(255,45,120,.35)}
+
+/* ── FEATURES ── */
+#features{padding:90px 20px;background:var(--bg)}
+.fgrid{max-width:1100px;margin:52px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.fcard{background:var(--white);border:2px solid var(--border);border-radius:18px;padding:26px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s}
+.fcard:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,.07)}
+.fcard::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px}
+.fcard:nth-child(1)::after{background:var(--ny)}
+.fcard:nth-child(2)::after{background:var(--np)}
+.fcard:nth-child(3)::after{background:var(--nb)}
+.fcard:nth-child(4)::after{background:var(--ng)}
+.fcard:nth-child(5)::after{background:var(--no)}
+.fcard:nth-child(6)::after{background:var(--nv)}
+.fnum{font-size:11px;font-weight:900;color:var(--muted);letter-spacing:2px;margin-bottom:10px}
+.ftitle{font-size:16px;font-weight:800;margin-bottom:8px;color:var(--text)}
+.fdesc{font-size:13px;color:var(--muted);line-height:1.65;font-weight:500}
+
+/* ── TOOLS ── */
+#tools{padding:90px 20px;background:var(--white)}
+.ti{max-width:900px;margin:0 auto;text-align:center}
+.tcard{
+  background:var(--bg);border:2px solid var(--border);
+  border-radius:20px;padding:38px;margin-top:40px;
+  display:flex;align-items:center;gap:30px;
+  transition:all .2s;position:relative;overflow:hidden;text-align:left
+}
+.tcard::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--ny),var(--np),var(--nb))}
+.tcard:hover{transform:translateY(-4px);box-shadow:0 20px 48px rgba(0,0,0,.08)}
+.tico{width:74px;height:74px;border-radius:18px;background:var(--ny);display:flex;align-items:center;justify-content:center;font-size:30px;flex-shrink:0}
+.tname{font-size:22px;font-weight:900;color:var(--text);margin-bottom:6px}
+.tdesc{font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:14px;font-weight:500}
+.tchips{display:flex;gap:8px;flex-wrap:wrap}
+.tc{padding:4px 12px;border-radius:6px;font-size:11px;font-weight:900;letter-spacing:.5px;text-transform:uppercase}
+.tc:nth-child(1){background:rgba(255,242,0,.35);color:#9a7200}
+.tc:nth-child(2){background:rgba(255,45,120,.12);color:var(--np)}
+.tc:nth-child(3){background:rgba(0,212,255,.12);color:#0092aa}
+.tc:nth-child(4){background:rgba(57,255,20,.15);color:#1a8a00}
+.tc:nth-child(5){background:rgba(168,85,247,.12);color:var(--nv)}
+.tbtn{padding:13px 28px;background:var(--text);color:#fff;font-size:13px;font-weight:900;border:none;border-radius:10px;cursor:pointer;text-decoration:none;white-space:nowrap;transition:all .2s;display:inline-block}
+.tbtn:hover{background:var(--np);transform:translateY(-1px)}
+
+/* ── CONTACT ── */
+#reviews{padding:90px 20px;background:var(--white)}
+.rgrid{max-width:1020px;margin:52px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.rcard{background:var(--bg);border:2px solid var(--border);border-radius:18px;padding:26px;transition:transform .2s}
+.rcard:hover{transform:translateY(-4px)}
+.rcard:nth-child(1){border-top:4px solid var(--ny)}
+.rcard:nth-child(2){border-top:4px solid var(--np)}
+.rcard:nth-child(3){border-top:4px solid var(--nb)}
+.rstars{font-size:15px;letter-spacing:2px;margin-bottom:12px;color:#f59e0b}
+.rtext{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px;font-weight:500}
+.rrv{display:flex;align-items:center;gap:12px}
+.rav{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0}
+.av1{background:var(--ny);color:#000}
+.av2{background:var(--np);color:#fff}
+.av3{background:var(--nb);color:#000}
+.rname{font-size:14px;font-weight:800;color:var(--text)}
+.rloc{font-size:11px;color:var(--muted);font-weight:600}
+
+/* ── PLATFORM TABS ── */
+.ptab{padding:10px 28px;font-size:13px;font-weight:800;border:none;background:transparent;color:var(--muted);cursor:pointer;border-radius:9px;transition:all .2s;font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:.2px}
+.ptab.active{background:var(--text);color:#fff}
+
+/* ── FAQ ── */
+#faq{padding:90px 20px;background:var(--bg)}
+.fqi{max-width:740px;margin:0 auto}
+.fqh{text-align:center;margin-bottom:48px}
+.fqitem{border-bottom:2px solid var(--border)}
+.fqbtn{width:100%;text-align:left;padding:20px 0;background:none;border:none;color:var(--text);font-size:16px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:'Plus Jakarta Sans',sans-serif;transition:color .2s}
+.fqbtn:hover{color:var(--np)}
+.fqarr{font-size:14px;color:var(--muted);transition:transform .25s;flex-shrink:0}
+.fqbtn.open .fqarr{transform:rotate(180deg)}
+.fqans{font-size:14px;color:var(--muted);line-height:1.7;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s;font-weight:500}
+.fqans.open{max-height:200px;padding-bottom:20px}
+
+/* ── CONTACT ── */
+#contact{padding:90px 20px;background:var(--white)}
+.coi{max-width:800px;margin:0 auto;text-align:center}
+.cogrid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:46px;text-align:left}
+.cocard{background:var(--bg);border:2px solid var(--border);border-radius:18px;padding:28px;transition:transform .2s}
+.cocard:hover{transform:translateY(-4px)}
+.cocard:nth-child(1){border-left:4px solid var(--ng)}
+.cocard:nth-child(2){border-left:4px solid var(--nb)}
+.colbl{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:8px}
+.cotitle{font-size:18px;font-weight:900;color:var(--text);margin-bottom:6px}
+.codesc{font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.6;font-weight:500}
+.colink{font-size:14px;font-weight:900;text-decoration:none;transition:opacity .2s}
+.colink:hover{opacity:.8}
+.cocard:nth-child(1) .colink{color:#1a8a00}
+.cocard:nth-child(2) .colink{color:#0092aa}
+
+/* ── FOOTER ── */
+footer{background:var(--text);padding:56px 48px 32px}
+.ftop{display:flex;justify-content:space-between;gap:40px;margin-bottom:48px;flex-wrap:wrap}
+.flogo{font-size:22px;font-weight:900;color:#fff;margin-bottom:10px}
+.flogo span{background:var(--ny);padding:1px 8px;border-radius:5px;color:#000}
+.fdesc{font-size:13px;color:rgba(255,255,255,.45);max-width:240px;line-height:1.6;font-weight:500}
+.fgstin{font-size:10px;font-family:'Space Mono',monospace;color:rgba(255,255,255,.25);margin-top:10px}
+.fcol h4{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.35);margin-bottom:14px}
+.fcol ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.fcol a{font-size:13px;color:rgba(255,255,255,.55);text-decoration:none;font-weight:500;transition:color .2s}
+.fcol a:hover{color:var(--ny)}
+.wabtn{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;background:#25d366;color:#000;border:none;border-radius:10px;font-size:13px;font-weight:900;cursor:pointer;text-decoration:none;transition:all .2s}
+.wabtn:hover{background:#20c55a;transform:translateY(-1px)}
+.fbot{border-top:1px solid rgba(255,255,255,.1);padding-top:22px;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:rgba(255,255,255,.3);flex-wrap:wrap;gap:10px;font-weight:600}
+
+/* ── ANIMATIONS ── */
+.fu{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease}
+.fu.vis{opacity:1;transform:translateY(0)}
+
+@media(max-width:768px){
+  nav{padding:0 18px}
+  .nav-links,.nav-cta{display:none}
+  .stats{gap:28px;padding:22px 16px}
+  .fgrid,.rgrid,.pcards,.cogrid{grid-template-columns:1fr}
+  .tcard{flex-direction:column;text-align:center}
+  .ftop{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">KIW<span>TECH</span></a>
+  <ul class="nav-links">
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#features">Services</a></li>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#pricing" class="nav-cta">Start Today →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hb hb1"></div>
+  <div class="hb hb2"></div>
+  <div class="hb hb3"></div>
+  <div class="hb hb4"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">🇮🇳 India Ka #1 E-Commerce Partner</div>
+    <h1>Apna Store <span class="hy">Grow</span><br/>Karo Bina<br/><span class="hp">Tension</span> Ke</h1>
+    <p class="hero-sub">Meesho, Amazon, Flipkart — hum sambhal lete hain. AI-powered listings, SEO, images, ads — sab kuch. Sirf results pe focus karo.</p>
+    <div class="plats">
+      <span class="ptag m">🛍️ Meesho</span>
+      <span class="ptag a">📦 Amazon</span>
+      <span class="ptag f">🔵 Flipkart</span>
+    </div>
+    <div class="hbtns">
+      <a href="#pricing" class="btn-p">Plans Dekho →</a>
+      <a href="https://wa.me/918377065737?text=Account+Management+Inquiry" target="_blank" class="btn-o">WhatsApp Karo</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="stat-n">500+</div><div class="stat-l">Active Sellers</div></div>
+  <div class="stat"><div class="stat-n">50%</div><div class="stat-l">Productivity Boost</div></div>
+  <div class="stat"><div class="stat-n">3</div><div class="stat-l">Platforms</div></div>
+  <div class="stat"><div class="stat-n">24h</div><div class="stat-l">Support</div></div>
+</div>
+
+<!-- PAYMENT MODAL -->
+<div id="payModal" style="display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.5);align-items:center;justify-content:center;">
+  <div style="background:#fff;border-radius:20px;padding:36px 32px;width:100%;max-width:440px;margin:20px;position:relative;">
+    <button onclick="closeModal()" style="position:absolute;top:16px;right:18px;background:none;border:none;font-size:22px;cursor:pointer;color:var(--muted);">×</button>
+    <div id="modalPlanName" style="font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:6px;"></div>
+    <div id="modalPlanPrice" style="font-size:36px;font-weight:900;letter-spacing:-1px;margin-bottom:4px;"></div>
+    <div id="modalPlanGst" style="font-size:12px;color:var(--muted);margin-bottom:20px;font-weight:600;"></div>
+    <div style="margin-bottom:10px;">
+      <input id="payName" placeholder="Aapka Naam *" style="width:100%;padding:12px 14px;border:2px solid var(--border);border-radius:10px;font-size:14px;font-family:'Plus Jakarta Sans',sans-serif;outline:none;margin-bottom:10px;" />
+      <input id="payEmail" placeholder="Gmail / Email *" type="email" style="width:100%;padding:12px 14px;border:2px solid var(--border);border-radius:10px;font-size:14px;font-family:'Plus Jakarta Sans',sans-serif;outline:none;margin-bottom:10px;" />
+      <input id="payPhone" placeholder="Mobile Number *" type="tel" maxlength="10" style="width:100%;padding:12px 14px;border:2px solid var(--border);border-radius:10px;font-size:14px;font-family:'Plus Jakarta Sans',sans-serif;outline:none;" />
+    </div>
+    <div id="payError" style="color:var(--np);font-size:12px;font-weight:700;margin:8px 0;display:none;"></div>
+    <button onclick="startPayment()" id="payBtn" style="width:100%;padding:14px;background:var(--text);color:#fff;font-size:15px;font-weight:900;border:none;border-radius:10px;cursor:pointer;margin-top:10px;transition:all .2s;">
+      Pay Now →
+    </button>
+    <div style="text-align:center;font-size:11px;color:var(--muted);margin-top:10px;font-weight:600;">🔒 Razorpay Secure Payment · GST Invoice Milegi</div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="pw">
+    <div class="phead fu">
+      <div class="slabel">💰 Pricing Plans</div>
+      <h2>Simple, Transparent Pricing</h2>
+      <p class="ssub">Platform aur zarurat ke hisaab se plan chuno. GST 18% extra.</p>
+    </div>
+
+    <!-- PLATFORM TABS -->
+    <div style="display:flex;justify-content:center;gap:0;margin-bottom:40px;background:var(--bg);border:2px solid var(--border);border-radius:12px;padding:4px;width:fit-content;margin:0 auto 40px;" class="fu">
+      <button class="ptab active" onclick="switchTab('meesho',this)">🛍️ Meesho</button>
+      <button class="ptab" onclick="switchTab('amzflip',this)">📦 Amazon / 🔵 Flipkart</button>
+    </div>
+
+    <!-- MEESHO PLANS -->
+    <div id="tab-meesho" class="tab-content fu">
+      <!-- COMPARE TABLE -->
+      <div class="ctable-wrap" style="margin-bottom:32px;">
+        <table class="ct">
+          <thead>
+            <tr>
+              <th class="th-f">Kya Milega</th>
+              <th class="ph basic"><div class="pn">Basic</div><div class="pbadge">₹2,500/mo</div></th>
+              <th class="ph adv"><div class="pn">Advanced</div><div class="pbadge" style="background:var(--ny);color:#000;">🔥 ₹3,500/mo</div></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="dr"><td>Monthly Price (+ GST 18%)</td><td class="vb">₹2,500</td><td class="vp">₹3,500</td></tr>
+            <tr class="dr"><td>Total with GST</td><td class="vb">₹2,950</td><td class="vp">₹4,130</td></tr>
+            <tr class="dr"><td>Monthly Listings</td><td>120–150 listings</td><td><strong>220–250 listings</strong></td></tr>
+            <tr class="dr"><td>Image Recreation</td><td>50 images</td><td><strong>80 images</strong></td></tr>
+            <tr class="dr"><td>SEO Keyword Optimization</td><td><span class="ck ckb">✓</span></td><td><span class="ck ckp">✓</span></td></tr>
+            <tr class="dr"><td>Listing Optimization</td><td><span class="ck ckb">✓</span></td><td><span class="ck ckp">✓</span></td></tr>
+            <tr class="dr"><td>Ads Management</td><td><span class="vno">—</span></td><td><span class="ck ckp">✓</span></td></tr>
+            <tr class="dr"><td>50% Productivity Boost</td><td><span class="ck ckb">✓</span></td><td><span class="ck ckp">✓</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- CARDS -->
+      <div class="pcards">
+        <div class="pcard">
+          <div class="pcard-title">Meesho Basic</div>
+          <div class="ppills"><span class="pp m">Meesho Only</span></div>
+          <div class="cprice b">₹2,500</div>
+          <div class="cpsub">per month · + ₹450 GST = <strong>₹2,950 total</strong></div>
+          <ul class="cfeats">
+            <li>✅ 120–150 listings / month</li>
+            <li>✅ 50 product image recreation</li>
+            <li>✅ SEO keyword optimization</li>
+            <li>✅ Listing title + description</li>
+            <li>✅ 50%+ productivity boost</li>
+            <li style="color:var(--muted)">✗ Ads management</li>
+          </ul>
+          <button class="cbtn b" onclick="openModal('Meesho Basic Plan','₹2,500','+ ₹450 GST = ₹2,950 total',250000,'meesho_basic')">Buy Now →</button>
+        </div>
+        <div class="pcard feat">
+          <div class="feat-rib">⭐ BEST VALUE</div>
+          <div class="pcard-title">Meesho Advanced</div>
+          <div class="ppills"><span class="pp m">Meesho Only</span></div>
+          <div class="cprice p">₹3,500</div>
+          <div class="cpsub">per month · + ₹630 GST = <strong>₹4,130 total</strong></div>
+          <ul class="cfeats">
+            <li>🚀 220–250 listings / month</li>
+            <li>🚀 80 product image recreation</li>
+            <li>🚀 Full SEO + keyword research</li>
+            <li>🚀 Advanced listing optimization</li>
+            <li>🚀 <strong>Ads management included</strong></li>
+            <li>🚀 50%+ productivity boost</li>
+          </ul>
+          <button class="cbtn p" onclick="openModal('Meesho Advanced Plan','₹3,500','+ ₹630 GST = ₹4,130 total',350000,'meesho_advanced')">Buy Now →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- AMAZON/FLIPKART PLANS -->
+    <div id="tab-amzflip" class="tab-content fu" style="display:none;">
+      <div class="ctable-wrap" style="margin-bottom:32px;">
+        <table class="ct">
+          <thead>
+            <tr>
+              <th class="th-f">Kya Milega</th>
+              <th class="ph basic"><div class="pn">Basic</div><div class="pbadge">₹3,500/mo</div></th>
+              <th class="ph adv"><div class="pn">Advanced</div><div class="pbadge" style="background:var(--ny);color:#000;">🔥 ₹5,000/mo</div></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="dr"><td>Monthly Price (+ GST 18%)</td><td class="vb">₹3,500</td><td class="vp">₹5,000</td></tr>
+            <tr class="dr"><td>Total with GST</td><td class="vb">₹4,130</td><td class="vp">₹5,900</td></tr>
+            <tr class="dr"><td>AI-Powered Listings</td><td><span class="ck ckb">✓</span></td><td><span class="ck ckp">✓</span></td></tr>
+            <tr class="dr"><td>SEO + Keyword Research</td><td><span class="ck ckb">✓</span></td><td><span class="ck ckp">✓</span></td></tr>
+            <tr class="dr"><td>Image Optimization</td><td><span class="ck ckb">✓</span></td><td><span class="ck ckp">✓</span></td></tr>
+            <tr class="dr"><td>Listing Optimization</td><td><span class="ck ckb">✓</span></td><td><span class="ck ckp">✓</span></td></tr>
+            <tr class="dr"><td>Ads Management</td><td><span class="vno">—</span></td><td><span class="ck ckp">✓</span></td></tr>
+            <tr class="dr"><td>50% Productivity Boost</td><td><span class="ck ckb">✓</span></td><td><span class="ck ckp">✓</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pcards">
+        <div class="pcard">
+          <div class="pcard-title">Amazon / Flipkart Basic</div>
+          <div class="ppills"><span class="pp a">Amazon</span><span class="pp f">Flipkart</span></div>
+          <div class="cprice b">₹3,500</div>
+          <div class="cpsub">per platform / month · + ₹630 GST = <strong>₹4,130 total</strong></div>
+          <ul class="cfeats">
+            <li>✅ AI-powered listings</li>
+            <li>✅ SEO + keyword research</li>
+            <li>✅ Image optimization</li>
+            <li>✅ Listing optimization</li>
+            <li>✅ 50%+ productivity boost</li>
+            <li style="color:var(--muted)">✗ Ads management</li>
+          </ul>
+          <button class="cbtn b" onclick="openModal('Amazon/Flipkart Basic Plan','₹3,500','+ ₹630 GST = ₹4,130 total (per platform)',350000,'amzflip_basic')">Buy Now →</button>
+        </div>
+        <div class="pcard feat">
+          <div class="feat-rib">⭐ BEST VALUE</div>
+          <div class="pcard-title">Amazon / Flipkart Advanced</div>
+          <div class="ppills"><span class="pp a">Amazon</span><span class="pp f">Flipkart</span></div>
+          <div class="cprice p">₹5,000</div>
+          <div class="cpsub">per platform / month · + ₹900 GST = <strong>₹5,900 total</strong></div>
+          <ul class="cfeats">
+            <li>🚀 AI-powered listings</li>
+            <li>🚀 Full SEO + keyword research</li>
+            <li>🚀 Advanced image optimization</li>
+            <li>🚀 Advanced listing optimization</li>
+            <li>🚀 <strong>Ads management included</strong></li>
+            <li>🚀 50%+ productivity boost</li>
+          </ul>
+          <button class="cbtn p" onclick="openModal('Amazon/Flipkart Advanced Plan','₹5,000','+ ₹900 GST = ₹5,900 total (per platform)',500000,'amzflip_advanced')">Buy Now →</button>
+        </div>
+      </div>
+    </div>
+
+    <p style="text-align:center;font-size:12px;color:var(--muted);margin-top:24px;font-weight:600">* Sabhi prices monthly hain · GST 18% extra · Per platform charge lagta hai · Razorpay secure payment</p>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div style="max-width:1100px;margin:0 auto;padding:0 20px">
+    <div class="fu">
+      <div class="slabel">🎯 What We Do</div>
+      <h2>Kya Kya Karenge Hum?</h2>
+      <p class="ssub">Har cheez professionally handle ki jaayegi — tum sirf orders sambhalo.</p>
+    </div>
+    <div class="fgrid fu">
+      <div class="fcard"><div class="fnum">01</div><div class="ftitle">AI Listing Generation</div><div class="fdesc">GPT-4o powered titles aur descriptions. SEO-optimized, platform-specific. Basic: 120–150/mo | Advanced: 220–250/mo</div></div>
+      <div class="fcard"><div class="fnum">02</div><div class="ftitle">Image Recreation</div><div class="fdesc">Dhundli ya kharab images ko professional product photos mein convert. Basic: 50 | Advanced: 80 images monthly.</div></div>
+      <div class="fcard"><div class="fnum">03</div><div class="ftitle">SEO + Keyword Research</div><div class="fdesc">Platform-specific trending keywords. Competitor analysis. Title, bullet points, description — sab optimize.</div></div>
+      <div class="fcard"><div class="fnum">04</div><div class="ftitle">Listing Optimization</div><div class="fdesc">Existing listings ki health check. Rank improve, CTR badhao, conversion rate optimize — dono plans mein.</div></div>
+      <div class="fcard"><div class="fnum">05</div><div class="ftitle">Ads Management</div><div class="fdesc">Meesho/Amazon/Flipkart ads setup aur optimize. ROAS maximize karo. Sirf Advanced plan mein available.</div></div>
+      <div class="fcard"><div class="fnum">06</div><div class="ftitle">50% Productivity Boost</div><div class="fdesc">Guaranteed productivity increase. Hum results pe kaam karte hain — tumhara time, energy aur paise teeno bachenge.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section id="tools">
+  <div class="ti">
+    <div class="fu">
+      <div class="slabel">🛠️ Chrome Extension</div>
+      <h2>Kiwtech Seller Tools</h2>
+      <p class="ssub">AI listing, rank check, auto-fill — directly Meesho pe.</p>
+    </div>
+    <div class="tcard fu">
+      <div class="tico">🚀</div>
+      <div style="flex:1">
+        <div class="tname">Kiwtech Meesho Research Tool</div>
+        <div class="tdesc">Chrome extension jo directly Meesho seller panel pe kaam karta hai. AI Listing Generator, Keyword Research, Rank Checker, Smart Auto-Fill, Growth Tracker — sab ek hi extension mein.</div>
+        <div class="tchips"><span class="tc">AI Listing</span><span class="tc">Rank Checker</span><span class="tc">Auto-Fill</span><span class="tc">Keywords</span><span class="tc">Growth Tracker</span></div>
+        <div style="margin-top:16px;padding:12px 16px;background:rgba(255,242,0,.3);border:2px solid var(--ny);border-radius:10px;font-size:13px;font-weight:700;color:#7a6000;display:inline-block;">
+          🎁 1-Day Free Demo available · Monthly plan ₹999 · <span style="color:var(--np)">Tools page pe jaake try karo!</span>
+        </div>
+      </div>
+      <a href="/tools.html" target="_blank" class="tbtn">Tools Dekho →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FREE DEMO REMOVED — demo ab tools page (kiwtech.in) pe hai -->
+
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div style="max-width:1020px;margin:0 auto;padding:0 20px">
+    <div class="fu" style="text-align:center">
+      <div class="slabel">⭐ Reviews</div>
+      <h2>Sellers Kya Kehte Hain</h2>
+    </div>
+    <div class="rgrid fu">
+      <div class="rcard"><div class="rstars">★★★★★</div><div class="rtext">"AI listing se mera listing time 30 min se 2 min ho gaya! Ab ek din mein 50 products list kar leta hoon."</div><div class="rrv"><div class="rav av1">R</div><div><div class="rname">Rahul Sharma</div><div class="rloc">Surat, Gujarat</div></div></div></div>
+      <div class="rcard"><div class="rstars">★★★★★</div><div class="rtext">"Rank checker bahut helpful hai. Keyword optimize kiya ab page 1 pe hai!"</div><div class="rrv"><div class="rav av2">P</div><div><div class="rname">Priya Mehta</div><div class="rloc">Jaipur, Rajasthan</div></div></div></div>
+      <div class="rcard"><div class="rstars">★★★★★</div><div class="rtext">"Auto-fill feature se bahut time bachta hai. GST, HSN sab auto fill — koi mistake nahi hoti."</div><div class="rrv"><div class="rav av3">A</div><div><div class="rname">Amit Kumar</div><div class="rloc">Delhi</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="fqi">
+    <div class="fqh fu">
+      <div class="slabel">❓ FAQ</div>
+      <h2>Koi Doubt?</h2>
+    </div>
+    <div class="fu">
+      <div class="fqitem"><button class="fqbtn" onclick="tfq(this)">Kaunsa plan mere liye sahi hai? <span class="fqarr">▼</span></button><div class="fqans">Agar tum sirf Meesho pe ho aur 150 se kam listing chahiye, Basic lo. Zyada listings, ads management, ya Amazon/Flipkart bhi handle karna hai to Advanced sahi rahega.</div></div>
+      <div class="fqitem"><button class="fqbtn" onclick="tfq(this)">GST invoice milegi? <span class="fqarr">▼</span></button><div class="fqans">Haan, Arshit Traders ke naam se proper GST invoice milegi. GSTIN: 07BUDPS8342F1ZF. ITC claim kar sakte ho.</div></div>
+      <div class="fqitem"><button class="fqbtn" onclick="tfq(this)">Chrome Extension ka demo kaise try karein? <span class="fqarr">▼</span></button><div class="fqans">kiwtech.in pe jaao aur "Tools Dekho" pe click karo. Wahan 1-day free demo key milti hai. Woh key sirf usi device pe chalegi jisme pehli baar use karoge.</div></div>
+      <div class="fqitem"><button class="fqbtn" onclick="tfq(this)">Account management mein kaam kab shuru hota hai? <span class="fqarr">▼</span></button><div class="fqans">Payment ke baad 24–48 ghante mein onboarding start hoti hai. WhatsApp pe message karo, sab details le lete hain.</div></div>
+      <div class="fqitem"><button class="fqbtn" onclick="tfq(this)">Chrome Extension alag hai ya service mein included? <span class="fqarr">▼</span></button><div class="fqans">Chrome Extension ek alag product hai — ₹999/month, tum khud use karte ho. Account Management Service humari managed service hai jisme hum tumhara kaam karte hain.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="coi">
+    <div class="fu">
+      <div class="slabel">📞 Contact</div>
+      <h2>Baat Karo Humse</h2>
+      <p class="ssub">Koi bhi sawaal ho, neeche contact karo.</p>
+    </div>
+    <div class="cogrid fu">
+      <div class="cocard">
+        <div class="colbl">WhatsApp</div>
+        <div class="cotitle">Direct Support</div>
+        <div class="codesc">24 ghante mein response milega. Koi bhi sawaal ya issue — turant help milegi.</div>
+        <a href="https://wa.me/918377065737" target="_blank" class="colink">+91 83770 65737 →</a>
+      </div>
+      <div class="cocard">
+        <div class="colbl">Email</div>
+        <div class="cotitle">Email Support</div>
+        <div class="codesc">Billing, GST invoices, ya koi bhi formal query ke liye email karo.</div>
+        <a href="mailto:support@kiwtech.in" class="colink">support@kiwtech.in →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ftop">
+    <div>
+      <div class="flogo">KIW<span>TECH</span></div>
+      <div class="fdesc">India ke e-commerce sellers ke liye AI-powered growth solutions. Meesho, Amazon, Flipkart.</div>
+      <div class="fgstin">GSTIN: 07BUDPS8342F1ZF | Arshit Traders, Noida | MSME Registered</div>
+    </div>
+    <div class="fcol">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#pricing">Account Management</a></li>
+        <li><a href="#tools">Chrome Extension</a></li>
+        <li><a href="/tools.html">Tool Demo</a></li>
+      </ul>
+    </div>
+    <div class="fcol">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="/privacy.html">Privacy Policy</a></li>
+        <li><a href="/refund.html">Refund Policy</a></li>
+        <li><a href="/terms.html">Terms of Service</a></li>
+        <li><a href="/shipping.html">Shipping &amp; Delivery</a></li>
+        <li><a href="/contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 style="font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.35);margin-bottom:14px">Support</h4>
+      <a href="https://wa.me/918377065737" target="_blank" class="wabtn">💬 WhatsApp Karo</a>
+    </div>
+  </div>
+  <div class="fbot">
+    <span>© 2026 Kiwtech (Arshit Traders) | kiwtech.in | All rights reserved</span>
+    <span>Made with ❤️ for Indian Sellers</span>
+  </div>
+</footer>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+// ══════════════════════════════════════════════
+// PAYMENT LINKS — Razorpay dashboard se copy karo
+// dashboard.razorpay.com → Payment Links → Create
+// ══════════════════════════════════════════════
+const PAYMENT_LINKS = {
+  meesho_basic:     'https://rzp.io/rzp/nmPmyls',
+  meesho_advanced:  'https://rzp.io/rzp/4czvzWBL',
+  amzflip_basic:    'https://rzp.io/rzp/o2z1VGd',
+  amzflip_advanced: 'https://rzp.io/rzp/wcyWm35i',
+};
+// ══════════════════════════════════════════════
+
+// ── PLATFORM TABS ──
+function switchTab(tab, btn) {
+  document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
+  document.querySelectorAll('.ptab').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tab).style.display = 'block';
+  btn.classList.add('active');
+}
+
+// ── PAYMENT MODAL ──
+let currentPlan = {};
+function openModal(planName, price, gst, amountPaise, planId) {
+  currentPlan = { planName, price, gst, amountPaise, planId };
+  document.getElementById('modalPlanName').textContent = planName;
+  document.getElementById('modalPlanPrice').textContent = price + ' / month';
+  document.getElementById('modalPlanGst').textContent = gst;
+  document.getElementById('payError').style.display = 'none';
+  document.getElementById('payError').textContent = '';
+  document.getElementById('payName').value = '';
+  document.getElementById('payEmail').value = '';
+  document.getElementById('payPhone').value = '';
+  document.getElementById('payBtn').textContent = 'Pay Now →';
+  document.getElementById('payBtn').disabled = false;
+  document.getElementById('payModal').style.display = 'flex';
+}
+function closeModal() {
+  document.getElementById('payModal').style.display = 'none';
+}
+document.getElementById('payModal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+function startPayment() {
+  const name  = document.getElementById('payName').value.trim();
+  const email = document.getElementById('payEmail').value.trim();
+  const phone = document.getElementById('payPhone').value.trim();
+  const btn   = document.getElementById('payBtn');
+
+  if (!name)  { showPayErr('Naam dalo'); return; }
+  if (!email || !email.includes('@')) { showPayErr('Valid email dalo'); return; }
+  if (!phone || phone.length < 10)    { showPayErr('10-digit mobile number dalo'); return; }
+
+  const link = PAYMENT_LINKS[currentPlan.planId];
+
+  // Payment link mein naam/email prefill karke redirect
+  const url = new URL(link);
+  url.searchParams.set('prefill[name]',    name);
+  url.searchParams.set('prefill[email]',   email);
+  url.searchParams.set('prefill[contact]', '+91' + phone);
+
+  btn.textContent = 'Redirecting...';
+  btn.disabled = true;
+
+  // New tab mein Razorpay payment link kholo
+  window.open(url.toString(), '_blank');
+
+  // Modal close karo
+  setTimeout(closeModal, 800);
+}
+
+function showPayErr(msg) {
+  const el = document.getElementById('payError');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+
+// ── FAQ TOGGLE ──
+function tfq(btn) {
+  const a = btn.nextElementSibling;
+  const isOpen = a.classList.contains('open');
+  document.querySelectorAll('.fqans').forEach(x => x.classList.remove('open'));
+  document.querySelectorAll('.fqbtn').forEach(x => x.classList.remove('open'));
+  if (!isOpen) { a.classList.add('open'); btn.classList.add('open'); }
+}
+
+// ── SCROLL ANIMATIONS ──
+const obs = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) x.target.classList.add('vis'); }), { threshold: .1 });
+document.querySelectorAll('.fu').forEach(el => obs.observe(el));
+</script>
+<!-- ═══════════════════════════════════════════════
+     DISTRIBUTOR SECTION — Footer ke baad, </body> se pehle
+     kiwtech.in/index.html mein add karo
+═══════════════════════════════════════════════ -->
+
+<!-- DISTRIBUTOR SECTION -->
+<section id="distributor" style="padding:70px 20px;background:#f8f9ff;border-top:2px solid #e2e5f5;position:relative;z-index:1;">
+<div style="max-width:1000px;margin:0 auto;">
+
+  <!-- Header -->
+  <div style="text-align:center;margin-bottom:40px;">
+    <div style="display:inline-flex;align-items:center;gap:8px;padding:5px 16px;background:#fff200;border-radius:100px;font-size:11px;font-weight:900;color:#000;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;">🤝 Distributor Program</div>
+    <h2 style="font-size:clamp(24px,4vw,36px);font-weight:900;color:#0d1424;margin-bottom:10px;letter-spacing:-1px;">Kiwtech Tools Bikwao — 50% Kamao</h2>
+    <p style="font-size:15px;color:#6b7280;max-width:500px;margin:0 auto;">Approved distributor bano — teeno tools par 50% instant commission. ₹500 hote hi withdraw karo.</p>
+  </div>
+
+  <!-- 3 commission cards -->
+  <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-bottom:40px;">
+    <div style="flex:1;min-width:200px;max-width:260px;background:#fff;border:2px solid #e2e5f5;border-radius:16px;padding:20px;text-align:center;border-top:4px solid #6C47FF;">
+      <div style="font-size:28px;margin-bottom:8px;">🚀</div>
+      <div style="font-size:14px;font-weight:800;color:#0d1424;margin-bottom:4px;">Shipping Optimizer</div>
+      <div style="font-size:12px;color:#6b7280;margin-bottom:10px;">₹50 top-up se start</div>
+      <div style="font-size:24px;font-weight:900;color:#6C47FF;">₹25</div>
+      <div style="font-size:11px;color:#6b7280;">per ₹50 top-up</div>
+    </div>
+    <div style="flex:1;min-width:200px;max-width:260px;background:#fff;border:2px solid #e2e5f5;border-radius:16px;padding:20px;text-align:center;border-top:4px solid #ff2d78;">
       <div style="font-size:28px;margin-bottom:8px;">🧠</div>
       <div style="font-size:14px;font-weight:800;color:#0d1424;margin-bottom:4px;">Research Tool Basic</div>
       <div style="font-size:12px;color:#6b7280;margin-bottom:10px;">₹699 one-time</div>
@@ -47,7 +785,7 @@ x;padding:20px;text-align:center;border-top:4px solid #ff2d78;">
           <textarea id="d-why" placeholder="Tum yeh tools kaise promote karoge? (2-3 lines)" rows="3" style="padding:12px 14px;border:2px solid #e2e5f5;border-radius:10px;font-size:14px;font-family:inherit;outline:none;resize:none;"></textarea>
           <input id="d-upi" type="text" placeholder="UPI ID (withdrawal ke liye)" style="padding:12px 14px;border:2px solid #e2e5f5;border-radius:10px;font-size:14px;font-family:inherit;outline:none;"/>
 
-          <button id="d-submit-btn" style="padding:14px;background:#0d1424;color:#fff;font-size:14px;font-weight:800;border:none;border-radius:10px;cursor:pointer;transition:all .2s;">
+          <button id="d-submit-btn" style="padding:14px;background:#0d1424;color:#fff;font-size:14px;font-weight:800;border:none;border-radius:10px;cursor:pointer;transition:all .2s;" onmouseover="this.style.background='#6C47FF'" onmouseout="this.style.background='#0d1424'">
             Submit Application →
           </button>
           <div id="d-reg-msg" style="display:none;padding:12px;border-radius:8px;font-size:13px;font-weight:600;text-align:center;"></div>
@@ -182,67 +920,6 @@ x;padding:20px;text-align:center;border-top:4px solid #ff2d78;">
             <div style="padding:16px;text-align:center;color:#9ca3af;font-size:13px;">Loading...</div>
           </div>
         </div>
-
-        <!-- LICENSE KEYS -->
-        <div style="margin-bottom:24px;border-top:2px solid #e2e5f5;padding-top:20px;">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
-            <div style="font-size:14px;font-weight:800;color:#0d1424;">🔑 License Keys</div>
-            <div style="display:flex;gap:8px;">
-              <select id="a-key-filter" style="padding:6px 10px;border:1.5px solid #e2e5f5;border-radius:8px;font-size:12px;font-family:inherit;">
-                <option value="all">Sab Keys</option>
-                <option value="expired">Sirf Expired</option>
-                <option value="never_used">Never Used</option>
-                <option value="active">Active</option>
-              </select>
-              <button id="a-load-keys-btn" style="padding:6px 14px;background:#6C47FF;color:#fff;font-size:12px;font-weight:700;border:none;border-radius:8px;cursor:pointer;">Load</button>
-            </div>
-          </div>
-          <div id="a-keys-stats" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;font-size:12px;"></div>
-          <div id="a-keys-list" style="border:1.5px solid #e2e5f5;border-radius:10px;overflow:hidden;">
-            <div style="padding:10px 14px;background:#f4f6ff;display:grid;grid-template-columns:2fr 1fr 1fr 60px 60px;gap:6px;font-size:11px;font-weight:700;color:#6b7280;text-transform:uppercase;">
-              <span>Key</span><span>Email</span><span>Expiry</span><span>Used</span><span>Del</span>
-            </div>
-            <div id="a-keys-rows" style="max-height:250px;overflow-y:auto;">
-              <div style="padding:16px;text-align:center;color:#9ca3af;font-size:13px;">Filter karo → Load dabao</div>
-            </div>
-          </div>
-          <div style="display:flex;gap:8px;margin-top:8px;">
-            <button id="a-del-selected-btn" style="display:none;padding:7px 14px;background:#dc2626;color:#fff;font-size:12px;font-weight:700;border:none;border-radius:8px;cursor:pointer;">🗑️ Delete Selected</button>
-            <button id="a-del-expired-btn" style="display:none;padding:7px 14px;background:#ea580c;color:#fff;font-size:12px;font-weight:700;border:none;border-radius:8px;cursor:pointer;">🗑️ All Expired Delete</button>
-            <span id="a-keys-count" style="font-size:11px;color:#6b7280;align-self:center;"></span>
-          </div>
-        </div>
-
-        <!-- SHIPPING CREDITS -->
-        <div style="border-top:2px solid #e2e5f5;padding-top:20px;">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
-            <div style="font-size:14px;font-weight:800;color:#0d1424;">🚀 Shipping Optimizer Users</div>
-            <button id="a-load-ship-btn" style="padding:6px 14px;background:#6C47FF;color:#fff;font-size:12px;font-weight:700;border:none;border-radius:8px;cursor:pointer;">Refresh</button>
-          </div>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;">
-            <div style="flex:1;min-width:90px;background:#f4f6ff;border:1.5px solid #e2e5f5;border-radius:10px;padding:10px;text-align:center;">
-              <div style="font-size:22px;font-weight:900;color:#6C47FF;" id="s-total-users">-</div>
-              <div style="font-size:10px;color:#6b7280;">Total Users</div>
-            </div>
-            <div style="flex:1;min-width:90px;background:#f4f6ff;border:1.5px solid #e2e5f5;border-radius:10px;padding:10px;text-align:center;">
-              <div style="font-size:22px;font-weight:900;color:#16a34a;" id="s-total-credits">-</div>
-              <div style="font-size:10px;color:#6b7280;">Total Credits</div>
-            </div>
-            <div style="flex:1;min-width:90px;background:#f4f6ff;border:1.5px solid #e2e5f5;border-radius:10px;padding:10px;text-align:center;">
-              <div style="font-size:22px;font-weight:900;color:#dc2626;" id="s-zero-users">-</div>
-              <div style="font-size:10px;color:#6b7280;">Zero Credits</div>
-            </div>
-          </div>
-          <div style="border:1.5px solid #e2e5f5;border-radius:10px;overflow:hidden;">
-            <div style="padding:10px 14px;background:#f4f6ff;display:grid;grid-template-columns:2fr 1fr 1fr 60px;gap:6px;font-size:11px;font-weight:700;color:#6b7280;text-transform:uppercase;">
-              <span>Email</span><span>Credits</span><span>Updated</span><span>Edit</span>
-            </div>
-            <div id="a-ship-rows" style="max-height:250px;overflow-y:auto;">
-              <div style="padding:16px;text-align:center;color:#9ca3af;font-size:13px;">Refresh dabao</div>
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
 
@@ -481,8 +1158,8 @@ async function loadAdminData() {
               <div style="font-size:12px;color:#374151;margin-top:4px;font-style:italic;">"${p.why || ''}"</div>
             </div>
             <div style="display:flex;gap:6px;">
-              <button data-email="${p.email}" data-act="approve" class="dist-action-btn" style="padding:8px 14px;background:#16a34a;color:#fff;font-size:12px;font-weight:700;border:none;border-radius:8px;cursor:pointer;">✅ Approve</button>
-              <button data-email="${p.email}" data-act="reject" class="dist-action-btn" style="padding:8px 14px;background:#dc2626;color:#fff;font-size:12px;font-weight:700;border:none;border-radius:8px;cursor:pointer;">❌ Reject</button>
+              <button class="dist-action-btn" data-email="${p.email}" data-act="approve" style="padding:8px 14px;background:#16a34a;color:#fff;font-size:12px;font-weight:700;border:none;border-radius:8px;cursor:pointer;">✅ Approve</button>
+              <button class="dist-action-btn" data-email="${p.email}" data-act="reject" style="padding:8px 14px;background:#dc2626;color:#fff;font-size:12px;font-weight:700;border:none;border-radius:8px;cursor:pointer;">❌ Reject</button>
             </div>
           </div>
         </div>
@@ -589,6 +1266,40 @@ async function markPaid(withdrawalId) {
 }
 
 // ─── UTILS ──────────────────────────────────────
+// Tab + button event listeners
+(function initDistributorListeners() {
+  function tryBind(id, fn) {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('click', fn);
+  }
+  function onReady(fn) {
+    if (document.readyState !== 'loading') fn();
+    else document.addEventListener('DOMContentLoaded', fn);
+  }
+  onReady(function() {
+    // Tabs
+    tryBind('dtab-register',  function(){ dTab('register',  this); });
+    tryBind('dtab-dashboard', function(){ dTab('dashboard', this); });
+    tryBind('dtab-admin',     function(){ dTab('admin',     this); });
+    // Forms
+    tryBind('d-submit-btn',    submitDistributor);
+    tryBind('d-load-dash-btn', loadDashboard);
+    tryBind('d-copy-ref-btn',  copyRef);
+    tryBind('d-withdraw-btn',  requestWithdrawal);
+    tryBind('a-login-btn',     adminLogin);
+    // Event delegation for dynamic buttons
+    document.addEventListener('click', function(e) {
+      var ab = e.target.closest('.dist-action-btn');
+      if (ab) {
+        if (ab.dataset.act === 'approve') approveDistributor(ab.dataset.email);
+        if (ab.dataset.act === 'reject')  rejectDistributor(ab.dataset.email);
+      }
+      var pb = e.target.closest('.mark-paid-btn');
+      if (pb) markPaid(pb.dataset.id);
+    });
+  });
+})();
+
 function showMsg(el, text, type) {
   el.textContent = text;
   el.style.display = 'block';
@@ -597,265 +1308,6 @@ function showMsg(el, text, type) {
   el.style.border = '1.5px solid ' + (type === 'success' ? '#bbf7d0' : type === 'error' ? '#fecaca' : '#bae6fd');
   el.style.borderRadius = '8px';
   el.style.padding = '10px';
-}
-
-// ─── LICENSE KEYS MANAGEMENT ─────────────────────────────────
-let allKeys = [];
-let selectedKeys = new Set();
-
-document.addEventListener('DOMContentLoaded', () => {
-  // Distributor tabs
-  const tabReg  = document.getElementById('dtab-register');
-  const tabDash = document.getElementById('dtab-dashboard');
-  const tabAdm  = document.getElementById('dtab-admin');
-  if (tabReg)  tabReg.addEventListener('click',  function(){ dTab('register', this); });
-  if (tabDash) tabDash.addEventListener('click', function(){ dTab('dashboard', this); });
-  if (tabAdm)  tabAdm.addEventListener('click',  function(){ dTab('admin', this); });
-
-  // Distributor form
-  const subBtn = document.getElementById('d-submit-btn');
-  if (subBtn) subBtn.addEventListener('click', submitDistributor);
-  const dashBtn = document.getElementById('d-load-dash-btn');
-  if (dashBtn) dashBtn.addEventListener('click', loadDashboard);
-  const copyBtn = document.getElementById('d-copy-ref-btn');
-  if (copyBtn) copyBtn.addEventListener('click', copyRef);
-  const wdBtn = document.getElementById('d-withdraw-btn');
-  if (wdBtn) wdBtn.addEventListener('click', requestWithdrawal);
-  const aLoginBtn = document.getElementById('a-login-btn');
-  if (aLoginBtn) aLoginBtn.addEventListener('click', adminLogin);
-
-  // Admin license keys
-  const loadKeysBtn = document.getElementById('a-load-keys-btn');
-  if (loadKeysBtn) loadKeysBtn.addEventListener('click', loadLicenseKeys);
-  const delSelBtn = document.getElementById('a-del-selected-btn');
-  if (delSelBtn) delSelBtn.addEventListener('click', deleteSelectedKeys);
-  const delExpBtn = document.getElementById('a-del-expired-btn');
-  if (delExpBtn) delExpBtn.addEventListener('click', deleteAllExpired);
-
-  // Admin shipping
-  const loadShipBtn = document.getElementById('a-load-ship-btn');
-  if (loadShipBtn) loadShipBtn.addEventListener('click', loadShippingData);
-
-  // Event delegation for dynamic approve/reject buttons
-  document.addEventListener('click', function(e) {
-    const btn = e.target.closest('.dist-action-btn');
-    if (btn) {
-      const email = btn.dataset.email;
-      const act   = btn.dataset.act;
-      if (act === 'approve') approveDistributor(email);
-      if (act === 'reject')  rejectDistributor(email);
-    }
-    // Dynamic key delete buttons
-    const delBtn = e.target.closest('.key-del-btn');
-    if (delBtn) deleteSingleKey(delBtn.dataset.key);
-    // Dynamic key checkboxes
-    const cb = e.target.closest('.key-cb');
-    if (cb) toggleKeySelect(cb);
-    // Dynamic edit credits buttons
-    const editBtn = e.target.closest('.edit-credits-btn');
-    if (editBtn) editUserCredits(editBtn.dataset.email, parseInt(editBtn.dataset.credits));
-    // Mark paid buttons
-    const paidBtn = e.target.closest('.mark-paid-btn');
-    if (paidBtn) markPaid(paidBtn.dataset.id);
-  });
-});
-
-async function loadLicenseKeys() {
-  const filter = document.getElementById('a-key-filter').value;
-  const rowsEl = document.getElementById('a-keys-rows');
-  const statsEl = document.getElementById('a-keys-stats');
-  const countEl = document.getElementById('a-keys-count');
-  rowsEl.innerHTML = '<div style="padding:16px;text-align:center;color:#9ca3af;">Loading...</div>';
-  selectedKeys.clear();
-
-  try {
-    const res = await fetch(DIST_API + '/admin/listkeys', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ pwd: ADMIN_PASS_HASH, action: 'listkeys' })
-    });
-    const d = await res.json();
-    if (!d.success) throw new Error(d.error);
-
-    allKeys = d.keys || [];
-    const now = new Date();
-
-    // Filter
-    let filtered = allKeys;
-    if (filter === 'expired') {
-      filtered = allKeys.filter(k => k.expiry && new Date(k.expiry) < now);
-    } else if (filter === 'never_used') {
-      filtered = allKeys.filter(k => !k.last_used_at && !k.activated_at);
-    } else if (filter === 'active') {
-      filtered = allKeys.filter(k => !k.expiry || new Date(k.expiry) >= now);
-    }
-
-    // Stats
-    const expired = allKeys.filter(k => k.expiry && new Date(k.expiry) < now).length;
-    const neverUsed = allKeys.filter(k => !k.last_used_at && !k.activated_at).length;
-    statsEl.innerHTML = `
-      <span style="background:#f4f6ff;border:1px solid #e2e5f5;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:700;">Total: ${allKeys.length}</span>
-      <span style="background:#fef2f2;border:1px solid #fecaca;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:700;color:#dc2626;">Expired: ${expired}</span>
-      <span style="background:#fffbeb;border:1px solid #fde68a;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:700;color:#b45309;">Never Used: ${neverUsed}</span>
-    `;
-
-    countEl.textContent = filtered.length + ' keys showing';
-    if (filter === 'expired' && expired > 0) document.getElementById('a-del-expired-btn').style.display = 'block';
-    document.getElementById('a-del-selected-btn').style.display = 'none';
-
-    if (!filtered.length) {
-      rowsEl.innerHTML = '<div style="padding:16px;text-align:center;color:#9ca3af;font-size:13px;">Koi key nahi mili</div>';
-      return;
-    }
-
-    rowsEl.innerHTML = filtered.map(k => {
-      const isExpired = k.expiry && new Date(k.expiry) < now;
-      const expText = k.expiry ? new Date(k.expiry).toLocaleDateString('en-IN') : 'Lifetime';
-      const usedText = k.last_used_at ? '✅' : '❌';
-      return `<div style="padding:10px 14px;border-bottom:1px solid #f4f6ff;display:grid;grid-template-columns:2fr 1fr 1fr 60px 60px;gap:6px;align-items:center;background:${isExpired ? '#fef2f2' : '#fff'};">
-        <div>
-          <div style="font-size:10px;font-family:monospace;color:#374151;font-weight:700;">${k.key || k.license_key || ''}</div>
-          <div style="font-size:10px;color:#6b7280;">${k.email || ''}</div>
-        </div>
-        <span style="font-size:10px;color:#6b7280;">${k.plan || ''}</span>
-        <span style="font-size:10px;color:${isExpired ? '#dc2626' : '#16a34a'};font-weight:700;">${expText}</span>
-        <span style="font-size:12px;text-align:center;">${usedText}</span>
-        <div style="display:flex;gap:4px;justify-content:center;">
-          <input type="checkbox" data-key="${k.key || k.license_key}" class="key-cb" style="cursor:pointer;"/>
-          <button class="key-del-btn" data-key="${k.key || k.license_key}" style="padding:2px 6px;background:#dc2626;color:#fff;border:none;border-radius:4px;font-size:10px;cursor:pointer;">🗑️</button>
-        </div>
-      </div>`;
-    }).join('');
-
-  } catch(e) {
-    rowsEl.innerHTML = '<div style="padding:16px;text-align:center;color:#dc2626;font-size:13px;">Error: ' + e.message + '</div>';
-  }
-}
-
-function toggleKeySelect(cb) {
-  if (cb.checked) selectedKeys.add(cb.dataset.key);
-  else selectedKeys.delete(cb.dataset.key);
-  document.getElementById('a-del-selected-btn').style.display = selectedKeys.size > 0 ? 'block' : 'none';
-}
-
-async function deleteSingleKey(key) {
-  if (!confirm('Delete key: ' + key + '?')) return;
-  try {
-    const res = await fetch(DIST_API + '/admin/deletekey', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ pwd: ADMIN_PASS_HASH, action: 'deletekey', key })
-    });
-    const d = await res.json();
-    if (d.success) { alert('✅ Key deleted!'); loadLicenseKeys(); }
-    else alert('❌ Error: ' + d.error);
-  } catch(e) { alert('Server error'); }
-}
-
-async function deleteSelectedKeys() {
-  if (!selectedKeys.size) return;
-  if (!confirm('Delete ' + selectedKeys.size + ' selected keys?')) return;
-  let done = 0;
-  for (const key of selectedKeys) {
-    try {
-      await fetch(DIST_API + '/admin/deletekey', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ pwd: ADMIN_PASS_HASH, action: 'deletekey', key })
-      });
-      done++;
-    } catch(e) {}
-  }
-  alert('✅ ' + done + ' keys deleted!');
-  loadLicenseKeys();
-}
-
-async function deleteAllExpired() {
-  const now = new Date();
-  const expired = allKeys.filter(k => k.expiry && new Date(k.expiry) < now);
-  if (!expired.length) { alert('Koi expired key nahi'); return; }
-  if (!confirm('Delete all ' + expired.length + ' expired keys?')) return;
-  let done = 0;
-  for (const k of expired) {
-    try {
-      await fetch(DIST_API + '/admin/deletekey', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ pwd: ADMIN_PASS_HASH, action: 'deletekey', key: k.key || k.license_key })
-      });
-      done++;
-    } catch(e) {}
-  }
-  alert('✅ ' + done + ' expired keys deleted!');
-  loadLicenseKeys();
-}
-
-// ─── SHIPPING CREDITS DATA ────────────────────────────────────
-const SHIP_SUPABASE_URL = 'https://vdnelinhgrjofsqsjhcn.supabase.co';
-const SHIP_ANON_KEY = 'sb_publishable_RqwmMwrHieVqG_ObMJc8PA_YgbuxVrv';
-
-async function loadShippingData() {
-  const rowsEl = document.getElementById('a-ship-rows');
-  rowsEl.innerHTML = '<div style="padding:16px;text-align:center;color:#9ca3af;">Loading...</div>';
-
-  try {
-    const res = await fetch(
-      SHIP_SUPABASE_URL + '/rest/v1/shipping_credits?select=*&order=updated_at.desc',
-      { headers: { apikey: SHIP_ANON_KEY, Authorization: 'Bearer ' + SHIP_ANON_KEY } }
-    );
-    const data = await res.json();
-
-    if (!data.length) {
-      rowsEl.innerHTML = '<div style="padding:16px;text-align:center;color:#9ca3af;">Koi user nahi abhi tak</div>';
-      return;
-    }
-
-    // Stats
-    const totalCredits = data.reduce((s, u) => s + (u.credits || 0), 0);
-    const zeroUsers = data.filter(u => (u.credits || 0) === 0).length;
-    document.getElementById('s-total-users').textContent = data.length;
-    document.getElementById('s-total-credits').textContent = totalCredits;
-    document.getElementById('s-zero-users').textContent = zeroUsers;
-
-    rowsEl.innerHTML = data.map(u => {
-      const updated = u.updated_at ? new Date(u.updated_at).toLocaleDateString('en-IN') : '-';
-      const credits = u.credits || 0;
-      const creditColor = credits === 0 ? '#dc2626' : credits < 5 ? '#ea580c' : '#16a34a';
-      return `<div style="padding:10px 14px;border-bottom:1px solid #f4f6ff;display:grid;grid-template-columns:2fr 1fr 1fr 60px;gap:6px;align-items:center;">
-        <span style="font-size:12px;color:#374151;font-weight:600;">${u.email}</span>
-        <span style="font-size:13px;font-weight:800;color:${creditColor};">${credits}</span>
-        <span style="font-size:11px;color:#6b7280;">${updated}</span>
-        <button style="padding:3px 8px;background:#6C47FF;color:#fff;border:none;border-radius:6px;font-size:10px;cursor:pointer;font-weight:700;">Edit</button>
-      </div>`;
-    }).join('');
-
-  } catch(e) {
-    rowsEl.innerHTML = '<div style="padding:16px;text-align:center;color:#dc2626;">Error: ' + e.message + '</div>';
-  }
-}
-
-async function editUserCredits(email, current) {
-  const newVal = prompt('Edit credits for ' + email + '
-Current: ' + current + '
-New value:', current);
-  if (newVal === null || isNaN(parseInt(newVal))) return;
-  try {
-    const res = await fetch(
-      SHIP_SUPABASE_URL + '/rest/v1/shipping_credits?email=eq.' + encodeURIComponent(email),
-      {
-        method: 'PATCH',
-        headers: {
-          apikey: SHIP_ANON_KEY,
-          Authorization: 'Bearer ' + SHIP_ANON_KEY,
-          'Content-Type': 'application/json',
-          Prefer: 'return=minimal'
-        },
-        body: JSON.stringify({ credits: parseInt(newVal), updated_at: new Date().toISOString() })
-      }
-    );
-    if (res.ok) { alert('✅ Credits updated!'); loadShippingData(); }
-    else alert('❌ Update failed');
-  } catch(e) { alert('Error: ' + e.message); }
 }
 
 // ─── REF CODE IN PAYMENT ─────────────────────────
