@@ -757,15 +757,15 @@ document.querySelectorAll('.fu').forEach(el => obs.observe(el));
 
     <!-- Tab buttons -->
     <div style="display:flex;border-bottom:2px solid #e2e5f5;">
-      <button onclick="dTab('register',this)" id="dtab-register"
+      <button id="dtab-register"
         style="flex:1;padding:14px;font-size:13px;font-weight:700;border:none;background:#f4f6ff;color:#6C47FF;cursor:pointer;border-bottom:3px solid #6C47FF;">
         📝 Distributor Apply
       </button>
-      <button onclick="dTab('dashboard',this)" id="dtab-dashboard"
+      <button id="dtab-dashboard"
         style="flex:1;padding:14px;font-size:13px;font-weight:700;border:none;background:#fff;color:#6b7280;cursor:pointer;border-bottom:3px solid transparent;">
         💼 My Dashboard
       </button>
-      <button onclick="dTab('admin',this)" id="dtab-admin"
+      <button id="dtab-admin"
         style="flex:1;padding:14px;font-size:13px;font-weight:700;border:none;background:#fff;color:#6b7280;cursor:pointer;border-bottom:3px solid transparent;">
         🔐 Admin
       </button>
@@ -785,7 +785,7 @@ document.querySelectorAll('.fu').forEach(el => obs.observe(el));
           <textarea id="d-why" placeholder="Tum yeh tools kaise promote karoge? (2-3 lines)" rows="3" style="padding:12px 14px;border:2px solid #e2e5f5;border-radius:10px;font-size:14px;font-family:inherit;outline:none;resize:none;" onfocus="this.style.borderColor='#6C47FF'" onblur="this.style.borderColor='#e2e5f5'"></textarea>
           <input id="d-upi" type="text" placeholder="UPI ID (withdrawal ke liye)" style="padding:12px 14px;border:2px solid #e2e5f5;border-radius:10px;font-size:14px;font-family:inherit;outline:none;" onfocus="this.style.borderColor='#6C47FF'" onblur="this.style.borderColor='#e2e5f5'"/>
 
-          <button onclick="submitDistributor()" style="padding:14px;background:#0d1424;color:#fff;font-size:14px;font-weight:800;border:none;border-radius:10px;cursor:pointer;transition:all .2s;" onmouseover="this.style.background='#6C47FF'" onmouseout="this.style.background='#0d1424'">
+          <button id="d-submit-btn" style="padding:14px;background:#0d1424;color:#fff;font-size:14px;font-weight:800;border:none;border-radius:10px;cursor:pointer;transition:all .2s;" onmouseover="this.style.background='#6C47FF'" onmouseout="this.style.background='#0d1424'">
             Submit Application →
           </button>
           <div id="d-reg-msg" style="display:none;padding:12px;border-radius:8px;font-size:13px;font-weight:600;text-align:center;"></div>
@@ -803,7 +803,7 @@ document.querySelectorAll('.fu').forEach(el => obs.observe(el));
         <h3 style="font-size:17px;font-weight:800;margin-bottom:6px;">Dashboard Login</h3>
         <p style="font-size:13px;color:#6b7280;margin-bottom:20px;">Apni registered email se login karo</p>
         <input id="d-login-email" type="email" placeholder="Apni Email" style="width:100%;padding:12px 14px;border:2px solid #e2e5f5;border-radius:10px;font-size:14px;font-family:inherit;outline:none;margin-bottom:10px;box-sizing:border-box;" onfocus="this.style.borderColor='#6C47FF'" onblur="this.style.borderColor='#e2e5f5'"/>
-        <button onclick="loadDashboard()" style="width:100%;padding:13px;background:#6C47FF;color:#fff;font-size:14px;font-weight:800;border:none;border-radius:10px;cursor:pointer;">
+        <button id="d-load-dash-btn" style="width:100%;padding:13px;background:#6C47FF;color:#fff;font-size:14px;font-weight:800;border:none;border-radius:10px;cursor:pointer;">
           View Dashboard →
         </button>
         <div id="d-login-msg" style="display:none;margin-top:10px;padding:10px;border-radius:8px;font-size:13px;font-weight:600;"></div>
@@ -836,7 +836,7 @@ document.querySelectorAll('.fu').forEach(el => obs.observe(el));
           <div style="font-size:12px;font-weight:700;color:#15803d;margin-bottom:8px;">🔗 Tumhara Referral Link</div>
           <div style="display:flex;gap:8px;align-items:center;">
             <input id="d-ref-link" readonly style="flex:1;padding:10px 12px;background:#fff;border:1.5px solid #bbf7d0;border-radius:8px;font-size:12px;color:#0d1424;outline:none;" value="Loading..."/>
-            <button onclick="copyRef()" style="padding:10px 16px;background:#16a34a;color:#fff;font-size:12px;font-weight:700;border:none;border-radius:8px;cursor:pointer;white-space:nowrap;">Copy</button>
+            <button id="d-copy-ref-btn" style="padding:10px 16px;background:#16a34a;color:#fff;font-size:12px;font-weight:700;border:none;border-radius:8px;cursor:pointer;white-space:nowrap;">Copy</button>
           </div>
           <div style="font-size:11px;color:#166534;margin-top:8px;">Yeh link share karo — jab koi isse kharide tum 50% pao</div>
         </div>
@@ -869,7 +869,7 @@ document.querySelectorAll('.fu').forEach(el => obs.observe(el));
           <div style="font-size:13px;font-weight:800;color:#c2410c;margin-bottom:10px;">💰 Withdrawal Request</div>
           <p style="font-size:12px;color:#9a3412;margin-bottom:12px;">WhatsApp pe request bhejo — hum 24 hours mein payment karenge</p>
           <div style="display:flex;gap:8px;">
-            <button onclick="requestWithdrawal()" style="flex:1;padding:12px;background:#ea580c;color:#fff;font-size:13px;font-weight:800;border:none;border-radius:10px;cursor:pointer;">
+            <button id="d-withdraw-btn" style="flex:1;padding:12px;background:#ea580c;color:#fff;font-size:13px;font-weight:800;border:none;border-radius:10px;cursor:pointer;">
               📱 WhatsApp Pe Request Karo
             </button>
           </div>
@@ -890,7 +890,7 @@ document.querySelectorAll('.fu').forEach(el => obs.observe(el));
         <div style="font-size:32px;margin-bottom:10px;">🔐</div>
         <h3 style="font-size:17px;font-weight:800;margin-bottom:16px;">Admin Login</h3>
         <input id="a-pass" type="password" placeholder="Admin Password" style="width:100%;padding:12px 14px;border:2px solid #e2e5f5;border-radius:10px;font-size:14px;font-family:inherit;outline:none;margin-bottom:10px;box-sizing:border-box;" onfocus="this.style.borderColor='#6C47FF'" onblur="this.style.borderColor='#e2e5f5'"/>
-        <button onclick="adminLogin()" style="width:100%;padding:13px;background:#0d1424;color:#fff;font-size:14px;font-weight:800;border:none;border-radius:10px;cursor:pointer;">Login →</button>
+        <button id="a-login-btn" style="width:100%;padding:13px;background:#0d1424;color:#fff;font-size:14px;font-weight:800;border:none;border-radius:10px;cursor:pointer;">Login →</button>
         <div id="a-login-msg" style="display:none;margin-top:10px;padding:10px;border-radius:8px;font-size:13px;font-weight:600;"></div>
       </div>
 
@@ -1219,8 +1219,8 @@ async function loadAdminData() {
               <div style="font-size:12px;color:#374151;margin-top:4px;font-style:italic;">"${p.why || ''}"</div>
             </div>
             <div style="display:flex;gap:6px;">
-              <button onclick="approveDistributor('${p.email}')" style="padding:8px 14px;background:#16a34a;color:#fff;font-size:12px;font-weight:700;border:none;border-radius:8px;cursor:pointer;">✅ Approve</button>
-              <button onclick="rejectDistributor('${p.email}')" style="padding:8px 14px;background:#dc2626;color:#fff;font-size:12px;font-weight:700;border:none;border-radius:8px;cursor:pointer;">❌ Reject</button>
+              <button data-email="${p.email}" data-act="approve" class="dist-action-btn" style="padding:8px 14px;background:#16a34a;color:#fff;font-size:12px;font-weight:700;border:none;border-radius:8px;cursor:pointer;">✅ Approve</button>
+              <button data-email="${p.email}" data-act="reject" class="dist-action-btn" style="padding:8px 14px;background:#dc2626;color:#fff;font-size:12px;font-weight:700;border:none;border-radius:8px;cursor:pointer;">❌ Reject</button>
             </div>
           </div>
         </div>
@@ -1268,7 +1268,7 @@ async function loadAdminData() {
             </div>
             <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end;">
               <input id="proof-${w.id}" type="text" placeholder="Payment proof URL (screenshot link)" style="padding:7px 10px;border:1.5px solid #e2e5f5;border-radius:8px;font-size:11px;width:220px;font-family:inherit;outline:none;"/>
-              <button onclick="markPaid('${w.id}')" style="padding:8px 14px;background:#16a34a;color:#fff;font-size:12px;font-weight:700;border:none;border-radius:8px;cursor:pointer;">✅ Mark as Paid</button>
+              <button class="mark-paid-btn" data-id="${w.id}" style="padding:8px 14px;background:#16a34a;color:#fff;font-size:12px;font-weight:700;border:none;border-radius:8px;cursor:pointer;">✅ Mark as Paid</button>
             </div>
           </div>
           <div id="w-msg-${w.id}" style="display:none;margin-top:8px;padding:8px;border-radius:6px;font-size:12px;font-weight:600;"></div>
@@ -1342,14 +1342,60 @@ let allKeys = [];
 let selectedKeys = new Set();
 
 document.addEventListener('DOMContentLoaded', () => {
-  const loadBtn = document.getElementById('a-load-keys-btn');
-  if (loadBtn) loadBtn.addEventListener('click', loadLicenseKeys);
+  // Distributor tabs
+  const tabReg  = document.getElementById('dtab-register');
+  const tabDash = document.getElementById('dtab-dashboard');
+  const tabAdm  = document.getElementById('dtab-admin');
+  if (tabReg)  tabReg.addEventListener('click',  function(){ dTab('register', this); });
+  if (tabDash) tabDash.addEventListener('click', function(){ dTab('dashboard', this); });
+  if (tabAdm)  tabAdm.addEventListener('click',  function(){ dTab('admin', this); });
+
+  // Distributor form
+  const subBtn = document.getElementById('d-submit-btn');
+  if (subBtn) subBtn.addEventListener('click', submitDistributor);
+  const dashBtn = document.getElementById('d-load-dash-btn');
+  if (dashBtn) dashBtn.addEventListener('click', loadDashboard);
+  const copyBtn = document.getElementById('d-copy-ref-btn');
+  if (copyBtn) copyBtn.addEventListener('click', copyRef);
+  const wdBtn = document.getElementById('d-withdraw-btn');
+  if (wdBtn) wdBtn.addEventListener('click', requestWithdrawal);
+  const aLoginBtn = document.getElementById('a-login-btn');
+  if (aLoginBtn) aLoginBtn.addEventListener('click', adminLogin);
+
+  // Admin license keys
+  const loadKeysBtn = document.getElementById('a-load-keys-btn');
+  if (loadKeysBtn) loadKeysBtn.addEventListener('click', loadLicenseKeys);
   const delSelBtn = document.getElementById('a-del-selected-btn');
   if (delSelBtn) delSelBtn.addEventListener('click', deleteSelectedKeys);
   const delExpBtn = document.getElementById('a-del-expired-btn');
   if (delExpBtn) delExpBtn.addEventListener('click', deleteAllExpired);
+
+  // Admin shipping
   const loadShipBtn = document.getElementById('a-load-ship-btn');
   if (loadShipBtn) loadShipBtn.addEventListener('click', loadShippingData);
+
+  // Event delegation for dynamic approve/reject buttons
+  document.addEventListener('click', function(e) {
+    const btn = e.target.closest('.dist-action-btn');
+    if (btn) {
+      const email = btn.dataset.email;
+      const act   = btn.dataset.act;
+      if (act === 'approve') approveDistributor(email);
+      if (act === 'reject')  rejectDistributor(email);
+    }
+    // Dynamic key delete buttons
+    const delBtn = e.target.closest('.key-del-btn');
+    if (delBtn) deleteSingleKey(delBtn.dataset.key);
+    // Dynamic key checkboxes
+    const cb = e.target.closest('.key-cb');
+    if (cb) toggleKeySelect(cb);
+    // Dynamic edit credits buttons
+    const editBtn = e.target.closest('.edit-credits-btn');
+    if (editBtn) editUserCredits(editBtn.dataset.email, parseInt(editBtn.dataset.credits));
+    // Mark paid buttons
+    const paidBtn = e.target.closest('.mark-paid-btn');
+    if (paidBtn) markPaid(paidBtn.dataset.id);
+  });
 });
 
 async function loadLicenseKeys() {
@@ -1413,8 +1459,8 @@ async function loadLicenseKeys() {
         <span style="font-size:10px;color:${isExpired ? '#dc2626' : '#16a34a'};font-weight:700;">${expText}</span>
         <span style="font-size:12px;text-align:center;">${usedText}</span>
         <div style="display:flex;gap:4px;justify-content:center;">
-          <input type="checkbox" data-key="${k.key || k.license_key}" onchange="toggleKeySelect(this)" style="cursor:pointer;"/>
-          <button onclick="deleteSingleKey('${k.key || k.license_key}')" style="padding:2px 6px;background:#dc2626;color:#fff;border:none;border-radius:4px;font-size:10px;cursor:pointer;">🗑️</button>
+          <input type="checkbox" data-key="${k.key || k.license_key}" class="key-cb" style="cursor:pointer;"/>
+          <button class="key-del-btn" data-key="${k.key || k.license_key}" style="padding:2px 6px;background:#dc2626;color:#fff;border:none;border-radius:4px;font-size:10px;cursor:pointer;">🗑️</button>
         </div>
       </div>`;
     }).join('');
