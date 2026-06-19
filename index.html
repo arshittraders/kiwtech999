@@ -920,6 +920,67 @@ document.querySelectorAll('.fu').forEach(el => obs.observe(el));
             <div style="padding:16px;text-align:center;color:#9ca3af;font-size:13px;">Loading...</div>
           </div>
         </div>
+
+        <!-- LICENSE KEYS -->
+        <div style="margin-bottom:24px;border-top:2px solid #e2e5f5;padding-top:20px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+            <div style="font-size:14px;font-weight:800;color:#0d1424;">🔑 License Keys</div>
+            <div style="display:flex;gap:8px;">
+              <select id="a-key-filter" style="padding:6px 10px;border:1.5px solid #e2e5f5;border-radius:8px;font-size:12px;font-family:inherit;">
+                <option value="all">Sab Keys</option>
+                <option value="expired">Sirf Expired</option>
+                <option value="never_used">Never Used</option>
+                <option value="active">Active</option>
+              </select>
+              <button id="a-load-keys-btn" style="padding:6px 14px;background:#6C47FF;color:#fff;font-size:12px;font-weight:700;border:none;border-radius:8px;cursor:pointer;">Load</button>
+            </div>
+          </div>
+          <div id="a-keys-stats" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;font-size:12px;"></div>
+          <div id="a-keys-list" style="border:1.5px solid #e2e5f5;border-radius:10px;overflow:hidden;">
+            <div style="padding:10px 14px;background:#f4f6ff;display:grid;grid-template-columns:2fr 1fr 1fr 60px 60px;gap:6px;font-size:11px;font-weight:700;color:#6b7280;text-transform:uppercase;">
+              <span>Key</span><span>Email</span><span>Expiry</span><span>Used</span><span>Del</span>
+            </div>
+            <div id="a-keys-rows" style="max-height:250px;overflow-y:auto;">
+              <div style="padding:16px;text-align:center;color:#9ca3af;font-size:13px;">Filter karo → Load dabao</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:8px;margin-top:8px;">
+            <button id="a-del-selected-btn" style="display:none;padding:7px 14px;background:#dc2626;color:#fff;font-size:12px;font-weight:700;border:none;border-radius:8px;cursor:pointer;">🗑️ Delete Selected</button>
+            <button id="a-del-expired-btn" style="display:none;padding:7px 14px;background:#ea580c;color:#fff;font-size:12px;font-weight:700;border:none;border-radius:8px;cursor:pointer;">🗑️ All Expired Delete</button>
+            <span id="a-keys-count" style="font-size:11px;color:#6b7280;align-self:center;"></span>
+          </div>
+        </div>
+
+        <!-- SHIPPING CREDITS -->
+        <div style="border-top:2px solid #e2e5f5;padding-top:20px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+            <div style="font-size:14px;font-weight:800;color:#0d1424;">🚀 Shipping Optimizer Users</div>
+            <button id="a-load-ship-btn" style="padding:6px 14px;background:#6C47FF;color:#fff;font-size:12px;font-weight:700;border:none;border-radius:8px;cursor:pointer;">Refresh</button>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;">
+            <div style="flex:1;min-width:90px;background:#f4f6ff;border:1.5px solid #e2e5f5;border-radius:10px;padding:10px;text-align:center;">
+              <div style="font-size:22px;font-weight:900;color:#6C47FF;" id="s-total-users">-</div>
+              <div style="font-size:10px;color:#6b7280;">Total Users</div>
+            </div>
+            <div style="flex:1;min-width:90px;background:#f4f6ff;border:1.5px solid #e2e5f5;border-radius:10px;padding:10px;text-align:center;">
+              <div style="font-size:22px;font-weight:900;color:#16a34a;" id="s-total-credits">-</div>
+              <div style="font-size:10px;color:#6b7280;">Total Credits</div>
+            </div>
+            <div style="flex:1;min-width:90px;background:#f4f6ff;border:1.5px solid #e2e5f5;border-radius:10px;padding:10px;text-align:center;">
+              <div style="font-size:22px;font-weight:900;color:#dc2626;" id="s-zero-users">-</div>
+              <div style="font-size:10px;color:#6b7280;">Zero Credits</div>
+            </div>
+          </div>
+          <div style="border:1.5px solid #e2e5f5;border-radius:10px;overflow:hidden;">
+            <div style="padding:10px 14px;background:#f4f6ff;display:grid;grid-template-columns:2fr 1fr 1fr 60px;gap:6px;font-size:11px;font-weight:700;color:#6b7280;text-transform:uppercase;">
+              <span>Email</span><span>Credits</span><span>Updated</span><span>Edit</span>
+            </div>
+            <div id="a-ship-rows" style="max-height:250px;overflow-y:auto;">
+              <div style="padding:16px;text-align:center;color:#9ca3af;font-size:13px;">Refresh dabao</div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -1274,6 +1335,219 @@ function showMsg(el, text, type) {
   el.style.border = '1.5px solid ' + (type === 'success' ? '#bbf7d0' : type === 'error' ? '#fecaca' : '#bae6fd');
   el.style.borderRadius = '8px';
   el.style.padding = '10px';
+}
+
+// ─── LICENSE KEYS MANAGEMENT ─────────────────────────────────
+let allKeys = [];
+let selectedKeys = new Set();
+
+document.addEventListener('DOMContentLoaded', () => {
+  const loadBtn = document.getElementById('a-load-keys-btn');
+  if (loadBtn) loadBtn.addEventListener('click', loadLicenseKeys);
+  const delSelBtn = document.getElementById('a-del-selected-btn');
+  if (delSelBtn) delSelBtn.addEventListener('click', deleteSelectedKeys);
+  const delExpBtn = document.getElementById('a-del-expired-btn');
+  if (delExpBtn) delExpBtn.addEventListener('click', deleteAllExpired);
+  const loadShipBtn = document.getElementById('a-load-ship-btn');
+  if (loadShipBtn) loadShipBtn.addEventListener('click', loadShippingData);
+});
+
+async function loadLicenseKeys() {
+  const filter = document.getElementById('a-key-filter').value;
+  const rowsEl = document.getElementById('a-keys-rows');
+  const statsEl = document.getElementById('a-keys-stats');
+  const countEl = document.getElementById('a-keys-count');
+  rowsEl.innerHTML = '<div style="padding:16px;text-align:center;color:#9ca3af;">Loading...</div>';
+  selectedKeys.clear();
+
+  try {
+    const res = await fetch(DIST_API + '/admin/listkeys', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ pwd: ADMIN_PASS_HASH, action: 'listkeys' })
+    });
+    const d = await res.json();
+    if (!d.success) throw new Error(d.error);
+
+    allKeys = d.keys || [];
+    const now = new Date();
+
+    // Filter
+    let filtered = allKeys;
+    if (filter === 'expired') {
+      filtered = allKeys.filter(k => k.expiry && new Date(k.expiry) < now);
+    } else if (filter === 'never_used') {
+      filtered = allKeys.filter(k => !k.last_used_at && !k.activated_at);
+    } else if (filter === 'active') {
+      filtered = allKeys.filter(k => !k.expiry || new Date(k.expiry) >= now);
+    }
+
+    // Stats
+    const expired = allKeys.filter(k => k.expiry && new Date(k.expiry) < now).length;
+    const neverUsed = allKeys.filter(k => !k.last_used_at && !k.activated_at).length;
+    statsEl.innerHTML = `
+      <span style="background:#f4f6ff;border:1px solid #e2e5f5;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:700;">Total: ${allKeys.length}</span>
+      <span style="background:#fef2f2;border:1px solid #fecaca;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:700;color:#dc2626;">Expired: ${expired}</span>
+      <span style="background:#fffbeb;border:1px solid #fde68a;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:700;color:#b45309;">Never Used: ${neverUsed}</span>
+    `;
+
+    countEl.textContent = filtered.length + ' keys showing';
+    if (filter === 'expired' && expired > 0) document.getElementById('a-del-expired-btn').style.display = 'block';
+    document.getElementById('a-del-selected-btn').style.display = 'none';
+
+    if (!filtered.length) {
+      rowsEl.innerHTML = '<div style="padding:16px;text-align:center;color:#9ca3af;font-size:13px;">Koi key nahi mili</div>';
+      return;
+    }
+
+    rowsEl.innerHTML = filtered.map(k => {
+      const isExpired = k.expiry && new Date(k.expiry) < now;
+      const expText = k.expiry ? new Date(k.expiry).toLocaleDateString('en-IN') : 'Lifetime';
+      const usedText = k.last_used_at ? '✅' : '❌';
+      return `<div style="padding:10px 14px;border-bottom:1px solid #f4f6ff;display:grid;grid-template-columns:2fr 1fr 1fr 60px 60px;gap:6px;align-items:center;background:${isExpired ? '#fef2f2' : '#fff'};">
+        <div>
+          <div style="font-size:10px;font-family:monospace;color:#374151;font-weight:700;">${k.key || k.license_key || ''}</div>
+          <div style="font-size:10px;color:#6b7280;">${k.email || ''}</div>
+        </div>
+        <span style="font-size:10px;color:#6b7280;">${k.plan || ''}</span>
+        <span style="font-size:10px;color:${isExpired ? '#dc2626' : '#16a34a'};font-weight:700;">${expText}</span>
+        <span style="font-size:12px;text-align:center;">${usedText}</span>
+        <div style="display:flex;gap:4px;justify-content:center;">
+          <input type="checkbox" data-key="${k.key || k.license_key}" onchange="toggleKeySelect(this)" style="cursor:pointer;"/>
+          <button onclick="deleteSingleKey('${k.key || k.license_key}')" style="padding:2px 6px;background:#dc2626;color:#fff;border:none;border-radius:4px;font-size:10px;cursor:pointer;">🗑️</button>
+        </div>
+      </div>`;
+    }).join('');
+
+  } catch(e) {
+    rowsEl.innerHTML = '<div style="padding:16px;text-align:center;color:#dc2626;font-size:13px;">Error: ' + e.message + '</div>';
+  }
+}
+
+function toggleKeySelect(cb) {
+  if (cb.checked) selectedKeys.add(cb.dataset.key);
+  else selectedKeys.delete(cb.dataset.key);
+  document.getElementById('a-del-selected-btn').style.display = selectedKeys.size > 0 ? 'block' : 'none';
+}
+
+async function deleteSingleKey(key) {
+  if (!confirm('Delete key: ' + key + '?')) return;
+  try {
+    const res = await fetch(DIST_API + '/admin/deletekey', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ pwd: ADMIN_PASS_HASH, action: 'deletekey', key })
+    });
+    const d = await res.json();
+    if (d.success) { alert('✅ Key deleted!'); loadLicenseKeys(); }
+    else alert('❌ Error: ' + d.error);
+  } catch(e) { alert('Server error'); }
+}
+
+async function deleteSelectedKeys() {
+  if (!selectedKeys.size) return;
+  if (!confirm('Delete ' + selectedKeys.size + ' selected keys?')) return;
+  let done = 0;
+  for (const key of selectedKeys) {
+    try {
+      await fetch(DIST_API + '/admin/deletekey', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ pwd: ADMIN_PASS_HASH, action: 'deletekey', key })
+      });
+      done++;
+    } catch(e) {}
+  }
+  alert('✅ ' + done + ' keys deleted!');
+  loadLicenseKeys();
+}
+
+async function deleteAllExpired() {
+  const now = new Date();
+  const expired = allKeys.filter(k => k.expiry && new Date(k.expiry) < now);
+  if (!expired.length) { alert('Koi expired key nahi'); return; }
+  if (!confirm('Delete all ' + expired.length + ' expired keys?')) return;
+  let done = 0;
+  for (const k of expired) {
+    try {
+      await fetch(DIST_API + '/admin/deletekey', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ pwd: ADMIN_PASS_HASH, action: 'deletekey', key: k.key || k.license_key })
+      });
+      done++;
+    } catch(e) {}
+  }
+  alert('✅ ' + done + ' expired keys deleted!');
+  loadLicenseKeys();
+}
+
+// ─── SHIPPING CREDITS DATA ────────────────────────────────────
+const SHIP_SUPABASE_URL = 'https://vdnelinhgrjofsqsjhcn.supabase.co';
+const SHIP_ANON_KEY = 'sb_publishable_RqwmMwrHieVqG_ObMJc8PA_YgbuxVrv';
+
+async function loadShippingData() {
+  const rowsEl = document.getElementById('a-ship-rows');
+  rowsEl.innerHTML = '<div style="padding:16px;text-align:center;color:#9ca3af;">Loading...</div>';
+
+  try {
+    const res = await fetch(
+      SHIP_SUPABASE_URL + '/rest/v1/shipping_credits?select=*&order=updated_at.desc',
+      { headers: { apikey: SHIP_ANON_KEY, Authorization: 'Bearer ' + SHIP_ANON_KEY } }
+    );
+    const data = await res.json();
+
+    if (!data.length) {
+      rowsEl.innerHTML = '<div style="padding:16px;text-align:center;color:#9ca3af;">Koi user nahi abhi tak</div>';
+      return;
+    }
+
+    // Stats
+    const totalCredits = data.reduce((s, u) => s + (u.credits || 0), 0);
+    const zeroUsers = data.filter(u => (u.credits || 0) === 0).length;
+    document.getElementById('s-total-users').textContent = data.length;
+    document.getElementById('s-total-credits').textContent = totalCredits;
+    document.getElementById('s-zero-users').textContent = zeroUsers;
+
+    rowsEl.innerHTML = data.map(u => {
+      const updated = u.updated_at ? new Date(u.updated_at).toLocaleDateString('en-IN') : '-';
+      const credits = u.credits || 0;
+      const creditColor = credits === 0 ? '#dc2626' : credits < 5 ? '#ea580c' : '#16a34a';
+      return `<div style="padding:10px 14px;border-bottom:1px solid #f4f6ff;display:grid;grid-template-columns:2fr 1fr 1fr 60px;gap:6px;align-items:center;">
+        <span style="font-size:12px;color:#374151;font-weight:600;">${u.email}</span>
+        <span style="font-size:13px;font-weight:800;color:${creditColor};">${credits}</span>
+        <span style="font-size:11px;color:#6b7280;">${updated}</span>
+        <button onclick="editUserCredits('${u.email}', ${credits})" style="padding:3px 8px;background:#6C47FF;color:#fff;border:none;border-radius:6px;font-size:10px;cursor:pointer;font-weight:700;">Edit</button>
+      </div>`;
+    }).join('');
+
+  } catch(e) {
+    rowsEl.innerHTML = '<div style="padding:16px;text-align:center;color:#dc2626;">Error: ' + e.message + '</div>';
+  }
+}
+
+async function editUserCredits(email, current) {
+  const newVal = prompt('Edit credits for ' + email + '
+Current: ' + current + '
+New value:', current);
+  if (newVal === null || isNaN(parseInt(newVal))) return;
+  try {
+    const res = await fetch(
+      SHIP_SUPABASE_URL + '/rest/v1/shipping_credits?email=eq.' + encodeURIComponent(email),
+      {
+        method: 'PATCH',
+        headers: {
+          apikey: SHIP_ANON_KEY,
+          Authorization: 'Bearer ' + SHIP_ANON_KEY,
+          'Content-Type': 'application/json',
+          Prefer: 'return=minimal'
+        },
+        body: JSON.stringify({ credits: parseInt(newVal), updated_at: new Date().toISOString() })
+      }
+    );
+    if (res.ok) { alert('✅ Credits updated!'); loadShippingData(); }
+    else alert('❌ Update failed');
+  } catch(e) { alert('Error: ' + e.message); }
 }
 
 // ─── REF CODE IN PAYMENT ─────────────────────────
