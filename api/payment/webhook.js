@@ -25,10 +25,21 @@ module.exports = async (req, res) => {
   if (event !== "payment.captured") return res.json({ ok: true, skipped: event });
 
   const payment = req.body.payload.payment.entity;
-  const { plan, email, name, state } = payment.notes || {};
+  const { plan, email: notesEmail, name, state } = payment.notes || {};
 
-  if (!email) {
-    console.error("Missing email in notes:", payment.notes);
+  // ✅ FIX: Email multiple sources se try karo
+  // 1. notes.email (extension se set hota hai)
+  // 2. payment.email (Razorpay Payment Link prefill se)
+  // 3. customer contact
+  const email = (
+    notesEmail ||
+    payment.email ||
+    payment.contact ||
+    ""
+  ).toLowerCase().trim();
+
+  if (!email || !email.includes("@")) {
+    console.error("Missing email — notes:", payment.notes, "payment.email:", payment.email);
     return res.status(400).json({ error: "Missing email" });
   }
 
@@ -40,32 +51,27 @@ module.exports = async (req, res) => {
     shipping_700: { credits: 700, paise: 49000 },
   };
 
-  // Also detect by amount if plan note missing
   const detectCreditPlan = (amount) => {
-    // amount is in paise (multiply by 100)
-    if (amount === 5000)  return CREDIT_PLANS.shipping_50;   // ₹50
-    if (amount === 12000) return CREDIT_PLANS.shipping_150;  // ₹120
-    if (amount === 22000) return CREDIT_PLANS.shipping_300;  // ₹220
-    if (amount === 49000) return CREDIT_PLANS.shipping_700;  // ₹490
+    if (amount === 5000)  return CREDIT_PLANS.shipping_50;
+    if (amount === 12000) return CREDIT_PLANS.shipping_150;
+    if (amount === 22000) return CREDIT_PLANS.shipping_300;
+    if (amount === 49000) return CREDIT_PLANS.shipping_700;
     return null;
   };
 
   const creditPlan = CREDIT_PLANS[plan] || detectCreditPlan(payment.amount);
 
   if (creditPlan) {
-    // Handle shipping credits top-up
     try {
       const { createClient } = require("@supabase/supabase-js");
-      // Shipping Optimizer uses separate Supabase project
       const shipUrl = process.env.SHIPPING_SUPABASE_URL || process.env.SUPABASE_URL;
       const shipKey = process.env.SHIPPING_SUPABASE_KEY || process.env.SUPABASE_SERVICE_KEY;
       const supabase = createClient(shipUrl, shipKey);
 
-      // Check existing balance
       const { data: existing } = await supabase
         .from("shipping_credits")
         .select("credits")
-        .eq("email", email.toLowerCase())
+        .eq("email", email)
         .single();
 
       const currentCredits = existing?.credits || 0;
@@ -74,10 +80,10 @@ module.exports = async (req, res) => {
       if (existing) {
         await supabase.from("shipping_credits")
           .update({ credits: newCredits, updated_at: new Date().toISOString() })
-          .eq("email", email.toLowerCase());
+          .eq("email", email);
       } else {
         await supabase.from("shipping_credits")
-          .insert({ email: email.toLowerCase(), credits: newCredits });
+          .insert({ email, credits: newCredits });
       }
 
       console.log("Shipping credits added:", creditPlan.credits, "for", email, "total:", newCredits);
@@ -97,7 +103,7 @@ module.exports = async (req, res) => {
   let resolvedPlan = plan;
   let planCfg = PLANS[plan];
   if (!planCfg) {
-    resolvedPlan = payment.amount >= 100000 ? 'monthly' : 'demo';
+    resolvedPlan = payment.amount >= 100000 ? "monthly" : "demo";
     planCfg = PLANS[resolvedPlan];
   }
 
@@ -112,7 +118,6 @@ module.exports = async (req, res) => {
     const days = planCfg.days;
     const expiry = new Date(Date.now() + days * 86400000).toISOString().slice(0, 10);
 
-    // Same email pe purani key deactivate karo (upgrade logic)
     try {
       const oldLic = await getLicenseByEmail(email);
       if (oldLic && oldLic.key) {
