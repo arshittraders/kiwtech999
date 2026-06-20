@@ -1,13 +1,13 @@
 {
-  "version": "2.6",
-  "release_date": "2026-06-19",
-  "download_url": "https://github.com/arshittraders/kiwtech999/releases/download/shipping-v2.1/kiwtech-shipping-optimizer-v2.6.zip",
+  "version": "2.7",
+  "release_date": "2026-06-20",
+  "download_url": "https://github.com/arshittraders/kiwtech999/releases/download/v2.7/kiwtech-shipping-optimizer1-v2.7.zip",
   "changelog": [
-    "Google Auth — Gmail se login, credits hamesha safe",
-    "Coupon system — KIWTECH-500 se 500 credits",
-    "Bulk Image Variations — 100 images ZIP mein",
-    "Watermark hide — bottom number automatically blur",
-    "8-group shuffle — better variation strategy"
+    "OTP login fix \u2014 ab 6-digit code aata hai Magic Link nahi",
+    "Email OTP via noreply@kiwtech.in (Resend SMTP)",
+    "Google Auth \u2014 Gmail se login desktop pe",
+    "Coupon system \u2014 KIWTECH-500 se 500 credits",
+    "Bulk Image Variations \u2014 100 images ZIP mein"
   ],
   "force_update": false,
   "min_version": "2.0"
