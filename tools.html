@@ -208,6 +208,39 @@ footer{background:var(--text);padding:40px 48px 24px}
   .ftop{flex-direction:column}
   .tool-cards-grid{grid-template-columns:1fr !important}
 }
+
+/* VIDEO SECTIONS */
+.vid-section{padding:70px 20px;position:relative;z-index:1;}
+.vid-section.light{background:var(--white);}
+.vid-section.dark{background:linear-gradient(135deg,#0d1424 0%,#1a1040 100%);}
+.vid-inner{max-width:960px;margin:0 auto;}
+.vid-header{text-align:center;margin-bottom:36px;}
+.vid-tag{display:inline-block;padding:5px 16px;border-radius:100px;font-size:11px;font-weight:900;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;}
+.vid-tag.pink{background:rgba(255,45,120,.12);color:var(--np);}
+.vid-tag.purple{background:rgba(108,71,255,.2);color:#a78bfa;}
+.vid-title{font-size:clamp(22px,4vw,34px);font-weight:900;margin-bottom:10px;letter-spacing:-0.5px;}
+.vid-section.dark .vid-title{color:#fff;}
+.vid-sub{font-size:15px;color:var(--muted);font-weight:500;}
+.vid-section.dark .vid-sub{color:rgba(255,255,255,.55);}
+.vid-frame{position:relative;width:100%;padding-bottom:56.25%;border-radius:20px;overflow:hidden;border:3px solid var(--border);box-shadow:0 20px 60px rgba(0,0,0,.12);}
+.vid-section.dark .vid-frame{border-color:rgba(108,71,255,.4);box-shadow:0 20px 60px rgba(108,71,255,.2);}
+.vid-frame iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}
+.vid-placeholder{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,#f4f6ff,#e8eaf6);cursor:pointer;}
+.vid-section.dark .vid-placeholder{background:linear-gradient(135deg,#1a1040,#0d1424);}
+.vid-play{width:72px;height:72px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:14px;transition:transform .2s;}
+.vid-placeholder:hover .vid-play{transform:scale(1.1);}
+.vid-placeholder-txt{font-size:15px;font-weight:800;margin-bottom:6px;}
+.vid-section.dark .vid-placeholder-txt{color:#fff;}
+.vid-placeholder-sub{font-size:12px;color:var(--muted);}
+.vid-section.dark .vid-placeholder-sub{color:rgba(255,255,255,.4);}
+.vid-points{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px;}
+.vid-point{padding:16px;border-radius:14px;text-align:center;}
+.vid-section.light .vid-point{background:var(--bg);border:1.5px solid var(--border);}
+.vid-section.dark .vid-point{background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.1);}
+.vid-point-ico{font-size:22px;margin-bottom:8px;}
+.vid-point-txt{font-size:12px;font-weight:700;}
+.vid-section.dark .vid-point-txt{color:rgba(255,255,255,.8);}
+@media(max-width:768px){.vid-points{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -291,6 +324,29 @@ footer{background:var(--text);padding:40px 48px 24px}
 </section>
 
 <!-- RESEARCH TOOL FEATURES -->
+
+<!-- VIDEO: RESEARCH TOOL -->
+<section class="vid-section light" id="research-video">
+  <div class="vid-inner">
+    <div class="vid-header">
+      <div class="vid-tag pink">🧠 Research Tool — Demo Video</div>
+      <div class="vid-title">Dekho Kaise Kaam Karta Hai</div>
+      <div class="vid-sub">AI listing, rank check, auto-fill — sab kuch ek video mein</div>
+    </div>
+    <div class="vid-frame" id="research-vid-frame">
+      <div class="vid-placeholder" id="research-placeholder" onclick="loadResearchVideo()">
+        <div class="vid-play" style="background:var(--np);">▶</div>
+        <div class="vid-placeholder-txt">Research Tool Tutorial Dekho</div>
+        <div class="vid-placeholder-sub">YouTube pe jaake samajho ya yahan play karo</div>
+      </div>
+    </div>
+    <div class="vid-points">
+      <div class="vid-point"><div class="vid-point-ico">🧠</div><div class="vid-point-txt">AI se listing banao — 2 min mein</div></div>
+      <div class="vid-point"><div class="vid-point-ico">📊</div><div class="vid-point-txt">Keyword rank check karo</div></div>
+      <div class="vid-point"><div class="vid-point-ico">⚡</div><div class="vid-point-txt">Auto-fill se form fill karo</div></div>
+    </div>
+  </div>
+</section>
 <section id="features">
   <div style="max-width:1100px;margin:0 auto;padding:0 20px;text-align:center">
     <div class="fu">
@@ -411,6 +467,29 @@ footer{background:var(--text);padding:40px 48px 24px}
 <!-- ═══════════════════════════════════════════════════════════
      SHIPPING OPTIMIZER SECTION
 ═══════════════════════════════════════════════════════════ -->
+
+<!-- VIDEO: SHIPPING OPTIMIZER -->
+<section class="vid-section dark" id="shipping-video">
+  <div class="vid-inner">
+    <div class="vid-header">
+      <div class="vid-tag purple">🚀 Shipping Optimizer — Demo Video</div>
+      <div class="vid-title" style="color:#fff;">Shipping Kam Kaise Hoti Hai?</div>
+      <div class="vid-sub">Real results — ₹80 → ₹30 shipping live dekho</div>
+    </div>
+    <div class="vid-frame" id="shipping-vid-frame">
+      <div class="vid-placeholder" id="shipping-placeholder" onclick="loadShippingVideo()">
+        <div class="vid-play" style="background:#6C47FF;">▶</div>
+        <div class="vid-placeholder-txt" style="color:#fff;">Shipping Optimizer Tutorial Dekho</div>
+        <div class="vid-placeholder-sub">Step-by-step guide — install se results tak</div>
+      </div>
+    </div>
+    <div class="vid-points">
+      <div class="vid-point"><div class="vid-point-ico">📸</div><div class="vid-point-txt" style="color:rgba(255,255,255,.8);">Image upload karo</div></div>
+      <div class="vid-point"><div class="vid-point-ico">🔄</div><div class="vid-point-txt" style="color:rgba(255,255,255,.8);">200 variations scan</div></div>
+      <div class="vid-point"><div class="vid-point-ico">💰</div><div class="vid-point-txt" style="color:#39ff14;">Best shipping auto-apply</div></div>
+    </div>
+  </div>
+</section>
 <section id="shipping">
   <div class="ship-blob1"></div>
   <div class="ship-blob2"></div>
@@ -690,6 +769,31 @@ async function claimDemo() {
   res.style.display = 'block';
   btn.disabled = false;
   btn.textContent = 'Free Key Lo';
+}
+</script>
+
+<script>
+// Research Tool Video — YouTube ID yahan daalein
+var RESEARCH_YT_ID = ""; // e.g. "dQw4w9WgXcQ"
+// Shipping Optimizer Video — YouTube ID yahan daalein
+var SHIPPING_YT_ID = ""; // e.g. "dQw4w9WgXcQ"
+
+function loadResearchVideo() {
+  if (!RESEARCH_YT_ID) {
+    alert("Video coming soon! WhatsApp karo: 8377065737");
+    return;
+  }
+  var frame = document.getElementById("research-vid-frame");
+  frame.innerHTML = "<iframe src='https://www.youtube.com/embed/" + RESEARCH_YT_ID + "?autoplay=1&rel=0' allow='autoplay; encrypted-media' allowfullscreen></iframe>";
+}
+
+function loadShippingVideo() {
+  if (!SHIPPING_YT_ID) {
+    alert("Video coming soon! WhatsApp karo: 8377065737");
+    return;
+  }
+  var frame = document.getElementById("shipping-vid-frame");
+  frame.innerHTML = "<iframe src='https://www.youtube.com/embed/" + SHIPPING_YT_ID + "?autoplay=1&rel=0' allow='autoplay; encrypted-media' allowfullscreen></iframe>";
 }
 </script>
 </body>
