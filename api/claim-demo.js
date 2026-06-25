@@ -5,7 +5,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 const CF_WORKER = 'https://kiwtech-backend.kiwtech.workers.dev';
 const CF_PASSWORD = process.env.CF_ADMIN_PASSWORD;
 
-const RESEARCH_TOOL_ZIP = 'https://github.com/arshittraders/kiwtech999/releases/download/v1.0.3/kiwtech-v5-new.zip';
+const RESEARCH_TOOL_ZIP = 'https://github.com/arshittraders/kiwtech999/releases/download/v1.0.3/kiwtech-research-tool-v5-final.zip';
 
 async function getCFToken() {
   const r = await fetch(CF_WORKER + '/api/admin/login', {
