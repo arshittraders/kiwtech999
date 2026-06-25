@@ -1,13 +1,13 @@
 {
   "version": "2.7",
-  "release_date": "2026-06-20",
-  "download_url": "https://github.com/arshittraders/kiwtech999/releases/download/v2.7/kiwtech-shipping-optimizer-v2.7.3.zip",
+  "release_date": "2026-06-25",
+  "download_url": "https://github.com/arshittraders/kiwtech999/releases/download/v2.7/kiwtech-shipping-optimizer-v2.7.1.zip",
   "changelog": [
-    "OTP login fix \u2014 ab 6-digit code aata hai Magic Link nahi",
-    "Email OTP via noreply@kiwtech.in (Resend SMTP)",
-    "CORS fix \u2014 extension sab URLs access kar sakti hai",
-    "Payment webhook fix \u2014 credits auto add hote hain",
-    "CSP fix \u2014 Copy PID button kaam karta hai"
+    "OTP login fix \u2014 6-digit code via noreply@kiwtech.in",
+    "Unlimited Monthly plan \u2014 Rs 299/month",
+    "CORS + CSP fix",
+    "Payment webhook fix \u2014 credits auto add",
+    "Pricing updated \u2014 50/120/220/299 unlimited"
   ],
   "force_update": false,
   "min_version": "2.0"
