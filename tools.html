@@ -355,12 +355,16 @@ footer{background:var(--text);padding:40px 48px 24px}
             <li style="font-size:13px;padding:7px 0;font-weight:500;color:#39ff14;">✅ Unlimited Monthly — ₹299</li>
           </ul>
 
-          <a href="https://github.com/arshittraders/kiwtech999/releases/download/v2.7/kiwtech-shipping-optimizer-v2.7.1.zip"
-            target="_blank"
-            style="display:block;text-align:center;padding:14px;background:#fff200;color:#000;font-size:15px;font-weight:900;border-radius:12px;text-decoration:none;margin-bottom:12px;">
-            ⬇️ Download FREE — Install Karo
-          </a>
-          <div style="font-size:11px;color:rgba(255,255,255,.4);text-align:center;margin-bottom:16px;">10 free credits milenge install pe</div>
+          <div style="background:rgba(255,255,255,.05);border:2px solid rgba(108,71,255,.4);border-radius:14px;padding:18px;margin-bottom:16px;">
+            <div style="font-size:13px;font-weight:800;color:#fff;margin-bottom:12px;">🚀 Free Mein Try Karo — 10 Credits</div>
+            <input type="email" id="ship-email-card" placeholder="apki@gmail.com"
+              style="width:100%;padding:11px 14px;border:2px solid rgba(108,71,255,.4);border-radius:10px;font-size:14px;font-family:inherit;outline:none;box-sizing:border-box;margin-bottom:10px;background:rgba(255,255,255,.05);color:#fff;"/>
+            <button id="ship-claim-btn" onclick="claimShippingCard()"
+              style="width:100%;padding:12px;background:#6C47FF;color:#fff;font-size:14px;font-weight:900;border:none;border-radius:10px;cursor:pointer;">
+              📧 10 Free Credits + ZIP Email Pe Lo
+            </button>
+            <div id="ship-card-msg" style="font-size:12px;margin-top:8px;display:none;"></div>
+          </div>
 
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
             <a href="https://rzp.io/rzp/gU2nuEQC" target="_blank"
@@ -440,6 +444,52 @@ async function claimDemoCard() {
 // YouTube embed
 var RESEARCH_YT_ID = '';  // Apna YouTube video ID yahan daalein
 var SHIPPING_YT_ID = '';  // Apna YouTube video ID yahan daalein
+
+async function claimShippingCard() {
+  const emailEl = document.getElementById('ship-email-card');
+  const msgEl = document.getElementById('ship-card-msg');
+  const btn = document.getElementById('ship-claim-btn');
+  const email = emailEl.value.trim().toLowerCase();
+
+  if (!email || !email.includes('@')) {
+    msgEl.textContent = '❌ Valid email daalo';
+    msgEl.style.color = '#dc2626';
+    msgEl.style.display = 'block';
+    return;
+  }
+
+  btn.textContent = '⏳ Bhej raha hoon...';
+  btn.disabled = true;
+  msgEl.style.display = 'none';
+
+  try {
+    const r = await fetch('https://kiwtech999.vercel.app/api/claim-shipping', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email })
+    });
+    const d = await r.json();
+    if (d.success) {
+      msgEl.innerHTML = d.isNew
+        ? '✅ 10 free credits + ZIP bhej di! Gmail check karo (spam bhi)'
+        : '✅ ZIP bhej di! Tumhare ' + d.credits + ' credits hain — Gmail check karo';
+      msgEl.style.color = '#39ff14';
+      msgEl.style.display = 'block';
+      emailEl.value = '';
+    } else {
+      msgEl.textContent = '❌ ' + (d.error || 'Error — dobara try karo');
+      msgEl.style.color = '#dc2626';
+      msgEl.style.display = 'block';
+    }
+  } catch(e) {
+    msgEl.textContent = '❌ Network error — dobara try karo';
+    msgEl.style.color = '#dc2626';
+    msgEl.style.display = 'block';
+  }
+
+  btn.textContent = '📧 10 Free Credits + ZIP Email Pe Lo';
+  btn.disabled = false;
+}
 
 function loadYT(el, idVar) {
   var id = idVar === 'RESEARCH_YT_ID' ? RESEARCH_YT_ID : SHIPPING_YT_ID;
