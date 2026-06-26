@@ -4,7 +4,7 @@ import { Resend } from 'resend';
 const resend = new Resend(process.env.RESEND_API_KEY);
 const SUPABASE_URL = process.env.SHIPPING_SUPABASE_URL;
 const SUPABASE_KEY = process.env.SHIPPING_SUPABASE_KEY;
-const SHIPPING_ZIP = 'https://github.com/arshittraders/kiwtech999/releases/download/v2.7/kiwtech-shipping-optimizer-v2.7.1.zip';
+const SHIPPING_ZIP = 'https://github.com/arshittraders/kiwtech999/releases/download/v2.7/kiwtech-shipping-optimizer-v2.7.2.zip';
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
