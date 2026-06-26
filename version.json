@@ -1,13 +1,13 @@
 {
   "version": "2.7",
-  "release_date": "2026-06-25",
-  "download_url": "https://github.com/arshittraders/kiwtech999/releases/download/v2.7/kiwtech-shipping-optimizer-v2.7.1.zip",
+  "release_date": "2026-06-26",
+  "download_url": "https://github.com/arshittraders/kiwtech999/releases/download/v2.7/kiwtech-shipping-optimizer-v2.7.2.zip",
   "changelog": [
-    "OTP login fix \u2014 6-digit code via noreply@kiwtech.in",
+    "OTP login fix \u2014 seedha 6-digit code aata hai",
+    "Device fingerprint lock \u2014 max 2 devices per account",
     "Unlimited Monthly plan \u2014 Rs 299/month",
     "CORS + CSP fix",
-    "Payment webhook fix \u2014 credits auto add",
-    "Pricing updated \u2014 50/120/220/299 unlimited"
+    "Payment webhook fix \u2014 credits auto add"
   ],
   "force_update": false,
   "min_version": "2.0"
