@@ -45,15 +45,17 @@ module.exports = async (req, res) => {
 
   // ── SHIPPING CREDITS PLAN ─────────────────────────────────
   const CREDIT_PLANS = {
-    shipping_50:  { credits: 50,  paise: 5000  },
-    shipping_150: { credits: 150, paise: 12000 },
-    shipping_300: { credits: 300, paise: 22000 },
-    shipping_700: { credits: 700, paise: 49000 },
+    shipping_50:        { credits: 50,   paise: 5000  },
+    shipping_150:       { credits: 150,  paise: 12000 },
+    shipping_300:       { credits: 300,  paise: 22000 },
+    shipping_unlimited: { credits: 9999, paise: 29900 },
   };
 
   const detectCreditPlan = (amount) => {
     if (amount === 5000)  return CREDIT_PLANS.shipping_50;
     if (amount === 12000) return CREDIT_PLANS.shipping_150;
+    if (amount === 22000) return CREDIT_PLANS.shipping_300;
+    if (amount === 29900) return CREDIT_PLANS.shipping_unlimited;
     if (amount === 22000) return CREDIT_PLANS.shipping_300;
     if (amount === 49000) return CREDIT_PLANS.shipping_700;
     return null;
