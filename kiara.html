@@ -159,6 +159,16 @@
   <div class="header-logo">KIW<span style="background:#0d1424;color:#fff200;padding:1px 3px;border-radius:2px;">TECH</span></div>
 </div>
 
+<div id="lang-selector" style="display:flex;position:fixed;top:72px;left:0;right:0;bottom:0;z-index:999;background:rgba(13,20,36,0.97);flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:20px;">
+  <div style="text-align:center;margin-bottom:8px;">
+    <div style="font-size:36px;margin-bottom:8px;">👩‍💼</div>
+    <div style="font-size:18px;font-weight:900;color:#fff;">Welcome to Kiwtech</div>
+    <div style="font-size:13px;color:rgba(255,255,255,0.55);margin-top:5px;">Apni bhasha chunein / Choose your language</div>
+  </div>
+  <button onclick="selectLang('Hinglish')" style="width:230px;padding:14px;background:linear-gradient(135deg,#6C47FF,#5535e0);color:#fff;border:none;border-radius:14px;font-size:16px;font-weight:800;cursor:pointer;">🇮🇳 Hinglish (Hindi+English)</button>
+  <button onclick="selectLang('English')" style="width:230px;padding:14px;background:#fff;color:#0d1424;border:none;border-radius:14px;font-size:16px;font-weight:800;cursor:pointer;">🇬🇧 English</button>
+  <button onclick="selectLang('Gujarati')" style="width:230px;padding:14px;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border:none;border-radius:14px;font-size:16px;font-weight:800;cursor:pointer;">🏵️ ગુજરાતી</button>
+</div>
 <div class="messages" id="msgs"></div>
 <div class="quick-replies" id="qr-area"></div>
 
@@ -372,6 +382,10 @@ function selectLang(lang) {
     setQR(qrs[lang] || qrs['Hindi']);
   }, 300);
 }
+
+// Disable input until lang selected
+document.getElementById('inp').disabled = true;
+document.getElementById('send-btn').disabled = true;
 
 // Welcome - show language selector
 setTimeout(() => {
