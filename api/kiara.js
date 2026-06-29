@@ -19,7 +19,7 @@ KIWTECH KI SERVICES:
    - 200 image variations scan karke best result apply karta hai
    - 10 free credits install pe milte hain — bilkul free start
    - PRICE: 50 credits=Rs 50 | 150 credits=Rs 120 | 300 credits=Rs 220 | Unlimited Monthly=Rs 299
-   - DOWNLOAD LINK (free install): https://github.com/arshittraders/kiwtech999/releases/download/v2.7/kiwtech-shipping-optimizer-v2.7.2.zip
+   - DOWNLOAD LINK (free install): https://kiwtech.in/download-shipping
    - PURCHASE LINKS: 50cr=https://rzp.io/rzp/gU2nuEQC | 150cr=https://rzp.io/rzp/Ec5hRggu | 300cr=https://rzp.io/rzp/nc8MtyNi | Unlimited=https://rzp.io/rzp/dlYuwTe5
 
 3. Account Management Services
