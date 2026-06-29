@@ -330,19 +330,14 @@ async function callAI(userMsg) {
   history.push({ role: 'user', content: userMsg });
 
   try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
+    const res = await fetch('https://kiwtech999.vercel.app/api/kiara', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-6',
-        max_tokens: 300,
-        system: SYSTEM_PROMPT,
-        messages: history
-      })
+      body: JSON.stringify({ messages: history })
     });
 
     const data = await res.json();
-    const reply = data.content?.[0]?.text || 'Ek second... dobara try karo!';
+    const reply = data.reply || 'Ek second... dobara try karo!';
     history.push({ role: 'assistant', content: reply });
     return reply;
 
