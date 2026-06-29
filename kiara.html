@@ -258,7 +258,7 @@ async function sendMsg() {
     const res = await fetch(API_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ messages: history })
+      body: JSON.stringify({ messages: history, lang: selectedLang })
     });
     const data = await res.json();
     let reply = data.reply || 'Ek second... dobara try karein.';
@@ -345,11 +345,40 @@ async function sendDemo(email, toolName, btn) {
   }
 }
 
-// Welcome
+// Language state
+let selectedLang = '';
+
+function selectLang(lang) {
+  selectedLang = lang;
+  document.getElementById('lang-selector').style.display = 'none';
+  document.getElementById('inp').disabled = false;
+  document.getElementById('send-btn').disabled = false;
+  history.push({ role: 'user', content: '[Selected language: ' + lang + ']' });
+
+  const msgs = {
+    'Hindi': 'Namaste! 😊 Main Kiara hoon, Kiwtech ki Sales Executive.<br><br>Aap kaunsa platform use karte hain?',
+    'English': 'Hello! 😊 I am Kiara, Sales Executive at Kiwtech.<br><br>Which platform do you sell on?',
+    'Hinglish': 'Hi! 😊 Main Kiara hoon, Kiwtech se.<br><br>Aap kaunsa platform use karte hain?',
+    'Gujarati': 'નમસ્તે! 😊 હું Kiara છું, Kiwtech Sales Executive.<br><br>તમે ક્યો platform વાપરો છો?'
+  };
+  const qrs = {
+    'Hindi': ['Meesho seller hoon', 'Amazon pe hoon', 'Flipkart pe hoon'],
+    'English': ['I sell on Meesho', 'I sell on Amazon', 'I sell on Flipkart'],
+    'Hinglish': ['Meesho pe hoon', 'Amazon pe hoon', 'Flipkart pe hoon'],
+    'Gujarati': ['Meesho par vechun chhu', 'Amazon par vechun chhu', 'Flipkart par vechun chhu']
+  };
+  setTimeout(() => {
+    addMsg(msgs[lang] || msgs['Hindi'], 'ai');
+    setQR(qrs[lang] || qrs['Hindi']);
+  }, 300);
+}
+
+// Welcome - show language selector
 setTimeout(() => {
-  addMsg('Namaste! 👋 Main Kiara hun Kiwtech se.<br><br>Kaunsa platform use karte ho — Meesho, Amazon ya Flipkart?', 'ai');
-  setQR(['Meesho seller hun', 'Amazon pe hun', 'Flipkart pe hun', 'Sab pe hun']);
-}, 600);
+  document.getElementById('inp').disabled = true;
+  document.getElementById('send-btn').disabled = true;
+  document.getElementById('lang-selector').style.display = 'flex';
+}, 400);
 </script>
 </body>
 </html>
