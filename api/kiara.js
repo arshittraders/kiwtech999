@@ -83,7 +83,8 @@ export default async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  const { messages } = req.body || {};
+  const { messages, lang } = req.body || {};
+  const langNote = lang ? 'IMPORTANT: Sirf ' + lang + ' mein reply karo — koi aur bhasha bilkul nahi.' : '';
   if (!messages?.length) return res.status(400).json({ error: 'Messages required' });
 
   try {
@@ -98,7 +99,7 @@ export default async function handler(req, res) {
         max_tokens: 200,
         temperature: 0.75,
         messages: [
-          { role: 'system', content: SYSTEM_PROMPT },
+          { role: 'system', content: SYSTEM_PROMPT + (langNote ? '\n\n' + langNote : '') },
           ...messages.slice(-12)
         ]
       })
