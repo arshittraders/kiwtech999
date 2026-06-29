@@ -261,35 +261,35 @@ async function sendMsg() {
       body: JSON.stringify({ messages: history })
     });
     const data = await res.json();
-    let reply = data.reply || 'Ek second... dobara try karo!';
+    let reply = data.reply || 'Ek second... dobara try karein.';
 
     removeTyping();
 
-    // Check for WhatsApp escalation tag
-    if (reply.includes('WHATSAPP_ESCALATE:')) {
+    if (reply.startsWith('CONFIRM_EMAIL:')) {
+      const parts = reply.replace('CONFIRM_EMAIL:', '').split(':');
+      const emailToSend = parts[0].trim();
+      const toolName = (parts[1] || 'tool').trim();
+      history.push({ role: 'assistant', content: `${emailToSend} pe ${toolName} demo confirm karein` });
+      const confirmHTML = `<div style="background:#f0f4ff;border:2px solid #6C47FF;border-radius:12px;padding:14px;margin-top:8px;">
+        <div style="font-size:13px;font-weight:700;color:#0d1424;margin-bottom:6px;">📧 Confirm Karein</div>
+        <div style="font-size:13px;color:#374151;margin-bottom:10px;"><b>${emailToSend}</b> pe <b>${toolName}</b> bhejun?</div>
+        <div style="display:flex;gap:8px;">
+          <button onclick="sendDemo('${emailToSend}','${toolName}',this)" style="flex:1;padding:9px;background:#6C47FF;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;">✅ Haan, Bhejo</button>
+          <button onclick="document.getElementById('inp').value='Email change karni hai';sendMsg()" style="flex:1;padding:9px;background:#fff;color:#6b7280;border:1.5px solid #e2e5f5;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;">✏️ Change</button>
+        </div></div>`;
+      addMsg(`<b>${emailToSend}</b> pe <b>${toolName}</b> ka demo bhejun?`, 'ai', confirmHTML);
+      setQR([]);
+
+    } else if (reply.includes('WHATSAPP_ESCALATE:')) {
       const query = reply.replace('WHATSAPP_ESCALATE:', '').trim() || lastUserQuery;
-      
-      // Send query to owner's WhatsApp automatically via notif
-      const ownerMsg = encodeURIComponent(`🔔 Kiara Chatbot Lead:\n\nQuery: ${query}\n\nTime: ${new Date().toLocaleString('en-IN')}`);
-      
-      addMsg('Aapki query thodi complex hai — main aapko directly expert se connect karti hun! 😊', 'ai', makeWACard(query));
-      
-      // Auto-ping owner (silent)
-      fetch(`https://wa.me/${WA_NUMBER}?text=${ownerMsg}`, { mode: 'no-cors' }).catch(() => {});
-      
+      addMsg('Aapki query ke liye main aapko directly expert se connect karti hoon!', 'ai', makeWACard(query));
       setQR(['WhatsApp pe baat karo', 'Aur kuch poochna hai?']);
+
     } else {
       history.push({ role: 'assistant', content: reply });
-
-      // Check if payment link is in reply
-      const hasPayLink = reply.includes('rzp.io');
-      const extraHTML = hasPayLink ? '' : '';
-
-      addMsg(reply, 'ai', extraHTML);
-
-      // Smart QR based on stage
+      addMsg(reply, 'ai');
       if (msgCount === 1) {
-        setQR(['Meesho seller hun', 'Amazon pe hun', 'Shipping problem hai', 'Listing mein time lagta hai']);
+        setQR(['Meesho seller hoon', 'Amazon pe hoon', 'Flipkart pe hoon', 'Sab pe hoon']);
       } else if (msgCount <= 3) {
         setQR(['Kitna cost aayega?', 'Free trial hai?', 'Kaise kaam karta hai?', 'Results kya milenge?']);
       } else if (msgCount <= 6) {
@@ -300,9 +300,8 @@ async function sendMsg() {
     }
   } catch(e) {
     removeTyping();
-    addMsg('Thodi technical dikkat hai! Seedha WhatsApp karo 😊', 'ai', makeWACard(lastUserQuery));
+    addMsg('Thodi technical dikkat aa gayi. Seedha WhatsApp karein 😊', 'ai', makeWACard(lastUserQuery));
   }
-
   isTyping = false;
   document.getElementById('send-btn').disabled = false;
 }
@@ -317,6 +316,34 @@ document.getElementById('inp').addEventListener('input', function() {
   this.style.height = 'auto';
   this.style.height = Math.min(this.scrollHeight, 90) + 'px';
 });
+
+
+async function sendDemo(email, toolName, btn) {
+  btn.textContent = '⏳ Bhej rahi hoon...';
+  btn.disabled = true;
+  try {
+    const apiEndpoint = toolName.toLowerCase().includes('shipping')
+      ? 'https://kiwtech999.vercel.app/api/claim-shipping'
+      : 'https://kiwtech999.vercel.app/api/claim-demo';
+    const r = await fetch(apiEndpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email })
+    });
+    const d = await r.json();
+    if (d.success) {
+      btn.closest('div').parentElement.innerHTML = '<div style="background:#f0fdf4;border:2px solid #86efac;border-radius:12px;padding:12px;margin-top:8px;font-size:13px;color:#166534;font-weight:700;">✅ Demo bhej diya! Gmail check karein (spam bhi)</div>';
+      addMsg('Demo bhej diya hai! Install karke try karein aur koi bhi help chahiye toh batayein. 😊', 'ai');
+      setQR(['Kaise install karein?', 'Buy karna hai', 'Aur kuch poochna hai?']);
+    } else {
+      btn.textContent = '✅ Haan, Bhejo'; btn.disabled = false;
+      addMsg('Email mein thodi dikkat aayi. Dobara try karein.', 'ai');
+    }
+  } catch(e) {
+    btn.textContent = '✅ Haan, Bhejo'; btn.disabled = false;
+    addMsg('Network issue. Dobara try karein.', 'ai');
+  }
+}
 
 // Welcome
 setTimeout(() => {
