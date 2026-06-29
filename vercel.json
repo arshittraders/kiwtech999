@@ -9,6 +9,20 @@
     {
       "src": "/kiara",
       "dest": "/kiara.html"
+    },
+    {
+      "src": "/download-shipping",
+      "headers": {
+        "Location": "https://github.com/arshittraders/kiwtech999/releases/download/v2.7/kiwtech-shipping-optimizer-v2.7.2.zip"
+      },
+      "status": 302
+    },
+    {
+      "src": "/download-research",
+      "headers": {
+        "Location": "https://github.com/arshittraders/kiwtech999/releases/download/v1.0.3/kiwtech-research-tool-v5-final.zip"
+      },
+      "status": 302
     }
   ],
   "headers": [
