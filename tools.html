@@ -972,5 +972,22 @@ function loadShippingVideo() {
   frame.innerHTML = "<iframe src='https://www.youtube.com/embed/" + SHIPPING_YT_ID + "?autoplay=1&rel=0' allow='autoplay; encrypted-media' allowfullscreen></iframe>";
 }
 </script>
+
+<!-- Kiara Chat Bubble -->
+<div id="kiara-bubble" onclick="toggleKiara()" style="position:fixed;bottom:24px;right:20px;z-index:9999;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#6C47FF,#ff2d78);display:flex;align-items:center;justify-content:center;font-size:26px;cursor:pointer;box-shadow:0 4px 20px rgba(108,71,255,0.5);animation:pulse-chat 2s infinite;">💬</div>
+<div id="kiara-frame" style="position:fixed;bottom:94px;right:20px;z-index:9998;width:370px;height:600px;border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.25);display:none;border:2px solid rgba(108,71,255,0.3);">
+  <iframe src="/kiara" style="width:100%;height:100%;border:none;"></iframe>
+</div>
+<div id="kiara-notif" style="position:fixed;bottom:90px;right:20px;z-index:9997;background:#fff;border:2px solid #6C47FF;border-radius:14px;padding:10px 14px;font-size:13px;font-weight:700;color:#0d1424;box-shadow:0 4px 20px rgba(0,0,0,0.1);max-width:220px;display:flex;align-items:center;gap:8px;">
+  <span>👩‍💼</span><span>Koi sawaal? Main Kiara hoon, poochho! 😊</span>
+  <button onclick="document.getElementById('kiara-notif').style.display='none'" style="background:none;border:none;cursor:pointer;color:#6b7280;font-size:16px;">×</button>
+</div>
+<style>@keyframes pulse-chat{0%,100%{box-shadow:0 4px 20px rgba(108,71,255,0.5)}50%{box-shadow:0 4px 30px rgba(108,71,255,0.8),0 0 0 8px rgba(108,71,255,0.15)}}@media(max-width:420px){#kiara-frame{width:calc(100vw - 24px);right:12px;bottom:80px;}}</style>
+<script>
+let kiaraOpen=false;
+function toggleKiara(){kiaraOpen=!kiaraOpen;document.getElementById('kiara-frame').style.display=kiaraOpen?'block':'none';document.getElementById('kiara-bubble').textContent=kiaraOpen?'✕':'💬';document.getElementById('kiara-notif').style.display='none';}
+setTimeout(()=>{if(!kiaraOpen)document.getElementById('kiara-notif').style.display='flex';},3000);
+setTimeout(()=>{document.getElementById('kiara-notif').style.display='none';},11000);
+</script>
 </body>
 </html>
