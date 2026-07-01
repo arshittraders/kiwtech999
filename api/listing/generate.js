@@ -119,9 +119,31 @@ Return ONLY JSON: {"title":"...","description":"..."}`;
     }
 
     // ── Parse JSON ────────────────────────────────────────────────────────
-    const clean = text.replace(/```json|```/g, "").trim();
+    let clean = text.replace(/```json|```/g, "").trim();
+    // Remove smart quotes and special chars that break JSON
+    clean = clean
+      .replace(/[‘’]/g, "'")   // smart single quotes
+      .replace(/[“”]/g, '"')   // smart double quotes
+      .replace(/[–—]/g, "-")   // em/en dashes
+      .replace(/[ ]/g, " ");         // non-breaking space
     const jsonMatch = clean.match(/\{[\s\S]*\}/);
-    const parsed = JSON.parse(jsonMatch ? jsonMatch[0] : clean);
+    let parsed;
+    try {
+      parsed = JSON.parse(jsonMatch ? jsonMatch[0] : clean);
+    } catch(parseErr) {
+      // Last resort: extract title and description manually
+      const titleMatch = clean.match(/"title"\s*:\s*"([^"]+)"/);
+      const descMatch = clean.match(/"description"\s*:\s*"([\s\S]+?)"\s*[,}]/);
+      if (titleMatch) {
+        parsed = {
+          title: titleMatch[1],
+          description: descMatch ? descMatch[1].replace(/\n/g, "
+") : clean
+        };
+      } else {
+        throw new Error("JSON parse failed: " + parseErr.message);
+      }
+    }
 
     // ── Validate title length ─────────────────────────────────────────────
     let title = (parsed.title || productName || "Product").trim();
