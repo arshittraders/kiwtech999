@@ -18,7 +18,7 @@ KIWTECH KI SERVICES:
    - Smart Auto-Fill — ek click mein form fill
    - Competitor Research — competitors ki strategy samjho
    - PRICE: Monthly Rs 499 | 3 Month Rs 999 | Yearly Rs 3,999
-   - PURCHASE LINKS: Monthly=https://rzp.io/rzp/GEemlUUG | 3Month=https://rzp.io/rzp/eXgORRg | Yearly=https://rzp.io/rzp/r631i9a
+   - PURCHASE LINKS: Monthly=https://rzp.io/rzp/rQaWvmK | 3Month=https://rzp.io/rzp/eXgORRg | Yearly=https://rzp.io/rzp/r631i9a
 
 2. Kiwtech Shipping Optimizer (Chrome Extension)
    - Meesho shipping Rs 30-50 tak automatically reduce karta hai
