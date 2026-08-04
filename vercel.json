@@ -42,6 +42,19 @@
           "value": "Content-Type"
         }
       ]
+    },
+    {
+      "source": "/version-research.json",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-cache"
+        }
+      ]
     }
   ]
 }
