@@ -1,11 +1,12 @@
 {
   "version": "5.1",
   "release_date": "2026-08-04",
-  "download_url": "https://github.com/arshittraders/kiwtech999/releases/download/v1.0.3/kiwtech-research-tool-v5-final.zip",
+  "download_url": "https://github.com/arshittraders/kiwtech999/releases/download/v1.0.3/kiwtech-research-tool-v5-final.2.zip",
   "changelog": [
-    "Shipping price fix",
-    "Price aur MRP accurate",
-    "Catalog name fix"
+    "Shipping price fix \u2014 ab sahi fetch hoti hai",
+    "Price aur MRP suppliers[0] se accurate",
+    "Catalog name fix",
+    "Auto update system added"
   ],
   "force_update": false,
   "min_version": "5.0"
