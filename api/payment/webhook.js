@@ -4,8 +4,10 @@ const { sendLicenseEmail } = require("../../lib/email");
 const { genKey } = require("../../lib/helpers");
 
 const PLANS = {
-  demo:    { days: 1,  paise: 5782   },   // ₹57.82 — 1 din
-  monthly: { days: 30, paise: 117882 },   // ₹1178.82 — 30 din
+  demo:          { days: 1,  paise: 5782   },   // ₹57.82 — 1 din
+  monthly:       { days: 30, paise: 117882 },   // ₹1178.82 — 30 din
+  shipping_only: { days: 30, paise: 29900  },   // ₹299 — sirf Shipping Optimizer (unlimited)
+  pro:           { days: 30, paise: 49900  },   // ₹499 — All-in-One (sab tools)
 };
 
 module.exports = async (req, res) => {
@@ -61,7 +63,9 @@ module.exports = async (req, res) => {
     return null;
   };
 
-  const creditPlan = CREDIT_PLANS[plan] || detectCreditPlan(payment.amount);
+  // Agar notes mein license plan aaya hai (shipping_only / pro / monthly / demo)
+  // toh credits wale raste pe mat jao — warna ₹299 aur ₹499 dono collide karte hain.
+  const creditPlan = PLANS[plan] ? null : (CREDIT_PLANS[plan] || detectCreditPlan(payment.amount));
 
   if (creditPlan) {
     try {
@@ -105,7 +109,12 @@ module.exports = async (req, res) => {
   let resolvedPlan = plan;
   let planCfg = PLANS[plan];
   if (!planCfg) {
-    resolvedPlan = payment.amount >= 100000 ? "monthly" : "demo";
+    // Amount se guess — pehle yahan ₹499 wala payment "demo" (1 din) ban jata tha
+    const amt = payment.amount;
+    if (amt >= 100000)     resolvedPlan = "monthly";
+    else if (amt >= 49000) resolvedPlan = "pro";            // ₹499+
+    else if (amt >= 29000) resolvedPlan = "shipping_only";  // ₹299+
+    else                   resolvedPlan = "demo";
     planCfg = PLANS[resolvedPlan];
   }
 
