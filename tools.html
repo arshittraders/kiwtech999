@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Kiwtech Tools — Meesho Seller Chrome Extension</title>
-<meta name="description" content="Kiwtech Meesho All-in-One Tool — AI listing, shipping optimizer, rank check, auto-fill. Ek hi extension mein. Free demo."/>
+<meta name="description" content="Kiwtech Meesho All-in-One Tool — AI listing, shipping optimizer, rank check, auto-fill. Ek hi extension mein. ₹349/month."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Space+Mono:wght@700&display=swap" rel="stylesheet"/>
 <style>
@@ -79,7 +79,6 @@ h2{font-size:clamp(26px,4vw,42px);font-weight:900;line-height:1.1;margin-bottom:
 .pcard{background:var(--white);border:2px solid var(--border);border-radius:20px;padding:28px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s}
 .pcard:hover{transform:translateY(-5px);box-shadow:0 20px 40px rgba(0,0,0,.09)}
 .pcard::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
-.pcard.demo::before{background:var(--nb)}
 .pcard.monthly::before{background:var(--np)}
 .pcard.lifetime::before{background:var(--ny)}
 .pcard.featured{border-color:var(--np)}
@@ -100,8 +99,6 @@ h2{font-size:clamp(26px,4vw,42px);font-weight:900;line-height:1.1;margin-bottom:
 .plan-btn.pink:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(255,45,120,.35)}
 .plan-btn.gold{background:var(--ny);color:#000}
 .plan-btn.gold:hover{background:#ffe000;transform:translateY(-1px)}
-/* DEMO FORM */
-#demo{padding:80px 20px;background:var(--white)}
 .di{max-width:520px;margin:0 auto;text-align:center}
 .dcard{background:var(--bg);border:2px solid var(--border);border-radius:20px;padding:44px 40px;margin-top:40px;position:relative;overflow:hidden}
 .dcard::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:var(--ny)}
@@ -241,6 +238,30 @@ footer{background:var(--text);padding:40px 48px 24px}
 .vid-point-txt{font-size:12px;font-weight:700;}
 .vid-section.dark .vid-point-txt{color:rgba(255,255,255,.8);}
 @media(max-width:768px){.vid-points{grid-template-columns:1fr}}
+
+/* ── launch offer / price drop ───────────────────────────── */
+.price-drop{display:inline-flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;
+  background:#fff;border:2.5px solid var(--text);border-radius:18px;padding:14px 24px;
+  margin:22px auto 10px;box-shadow:6px 6px 0 var(--np);}
+.pd-old{font-size:30px;font-weight:900;color:var(--muted);text-decoration:line-through;text-decoration-thickness:3px;}
+.pd-arrow{font-size:24px;font-weight:900;color:var(--text);}
+.pd-new{font-size:46px;font-weight:900;color:var(--text);line-height:1;}
+.pd-per{font-size:16px;font-weight:700;color:var(--muted);}
+.pd-save{background:var(--ng);color:#06320a;font-size:13px;font-weight:900;
+  padding:6px 12px;border-radius:100px;border:2px solid var(--text);}
+.pd-note{font-size:13.5px;color:var(--text);font-weight:600;margin-bottom:22px;}
+.pd-note b{background:var(--ny);padding:1px 7px;border-radius:5px;}
+.hero-trust{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;margin-top:20px;
+  font-size:12.5px;font-weight:700;color:var(--muted);}
+.slots{max-width:420px;margin:18px auto 0;}
+.slots-bar{height:12px;background:#e2e5f5;border-radius:100px;overflow:hidden;border:2px solid var(--text);}
+.slots-fill{height:100%;background:linear-gradient(90deg,var(--ng),var(--ny));}
+.slots-txt{font-size:12px;font-weight:800;color:var(--text);margin-top:8px;}
+@media(max-width:560px){
+  .pd-new{font-size:38px;} .pd-old{font-size:24px;}
+  .price-drop{gap:10px;padding:12px 16px;}
+  .hero-trust{gap:10px;font-size:11.5px;}
+}
 </style>
 </head>
 <body>
@@ -260,12 +281,24 @@ footer{background:var(--text);padding:40px 48px 24px}
   <div class="hb hb1"></div>
   <div class="hb hb2"></div>
   <div class="hero-inner">
-    <div class="hero-badge">All-in-One Tool for Meesho Sellers</div>
+    <div class="hero-badge">🔥 Launch Offer — Pehle 1000 Meesho Sellers</div>
     <h1>Meesho Pe <span class="hy">10x Faster</span><br/>Grow Karo</h1>
     <p class="hero-sub">Ek AI-powered Chrome extension — listings banao, shipping cost kam karo, rank track karo. Sab ek hi jagah.</p>
+
+    <div class="price-drop">
+      <div class="pd-old">₹499</div>
+      <div class="pd-arrow">→</div>
+      <div class="pd-new">₹349<span class="pd-per">/month</span></div>
+      <div class="pd-save">30% OFF</div>
+    </div>
+    <div class="pd-note">Pehle <b>1000 Meesho sellers</b> ke liye — uske baad ₹499/month</div>
+
     <div class="hero-btns">
       <a href="RAZORPAY_349_LINK" target="_blank" class="btn-y">₹349/month Se Shuru Karo</a>
       <a href="#features" class="btn-p">Features Dekho →</a>
+    </div>
+    <div class="hero-trust">
+      <span>✅ Instant activation</span><span>✅ Koi credit system nahi</span><span>✅ WhatsApp support</span>
     </div>
   </div>
 </section>
@@ -300,23 +333,13 @@ footer{background:var(--text);padding:40px 48px 24px}
             <li style="font-size:13px;padding:7px 0;font-weight:500;">✅ Image Studio — 8 listing images</li>
           </ul>
 
-          <div style="background:#fff;border:2px solid var(--border);border-radius:14px;padding:18px;margin-bottom:16px;">
-            <div style="font-size:13px;font-weight:800;color:var(--text);margin-bottom:12px;">🎁 Free Demo Try Karo — Gmail Daalo</div>
-            <input type="email" id="demo-email-card" placeholder="apki.gmail@gmail.com"
-              style="width:100%;padding:11px 14px;border:2px solid var(--border);border-radius:10px;font-size:14px;font-family:inherit;outline:none;box-sizing:border-box;margin-bottom:10px;"/>
-            <button onclick="claimDemoCard()"
-              style="width:100%;padding:12px;background:var(--np);color:#fff;font-size:14px;font-weight:900;border:none;border-radius:10px;cursor:pointer;">
-              📧 Demo Key + ZIP Email Pe Bhejo
-            </button>
-            <div id="demo-card-msg" style="font-size:12px;margin-top:8px;display:none;"></div>
-          </div>
-
-          <div style="text-align:center;margin-bottom:12px;font-size:12px;color:var(--muted);font-weight:600;">— Ya seedha kharido —</div>
-
           <a href="RAZORPAY_349_LINK" target="_blank"
             style="display:block;text-align:center;padding:14px;background:var(--np);color:#fff;font-size:15px;font-weight:900;border-radius:12px;text-decoration:none;">
             ₹349 / month<br><span style="font-weight:500;font-size:11px;">Saare features · koi limit nahi</span>
           </a>
+          <div style="text-align:center;margin-top:12px;font-size:12px;color:var(--muted);font-weight:600;line-height:1.6;">
+            📧 Payment ke turant baad aapki <b style="color:var(--text);">license key aur download link</b><br>email pe aa jayegi
+          </div>
         </div>
 
         <!-- YouTube Video -->
@@ -336,93 +359,10 @@ footer{background:var(--text);padding:40px 48px 24px}
 </section>
 
 <script>
-// Demo claim karo card se
-async function claimDemoCard() {
-  const emailEl = document.getElementById('demo-email-card');
-  const msgEl = document.getElementById('demo-card-msg');
-  const email = emailEl.value.trim().toLowerCase();
-
-  if (!email || !email.endsWith('@gmail.com')) {
-    msgEl.textContent = '❌ Sirf @gmail.com allowed hai';
-    msgEl.style.color = '#dc2626';
-    msgEl.style.display = 'block';
-    return;
-  }
-
-  msgEl.textContent = '⏳ Bhej raha hoon...';
-  msgEl.style.color = '#6b7280';
-  msgEl.style.display = 'block';
-
-  try {
-    const r = await fetch('https://kiwtech999.vercel.app/api/claim-demo', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email })
-    });
-    const d = await r.json();
-    if (d.success) {
-      msgEl.textContent = '✅ Key + ZIP bhej di! Gmail check karo (spam bhi)';
-      msgEl.style.color = '#16a34a';
-      emailEl.value = '';
-    } else {
-      msgEl.textContent = '❌ ' + (d.error || 'Error aaya — dobara try karo');
-      msgEl.style.color = '#dc2626';
-    }
-  } catch(e) {
-    msgEl.textContent = '❌ Network error — dobara try karo';
-    msgEl.style.color = '#dc2626';
-  }
-}
 
 // YouTube embed
 var RESEARCH_YT_ID = '';  // Apna YouTube video ID yahan daalein
 var SHIPPING_YT_ID = '';  // Apna YouTube video ID yahan daalein
-
-async function claimShippingCard() {
-  const emailEl = document.getElementById('ship-email-card');
-  const msgEl = document.getElementById('ship-card-msg');
-  const btn = document.getElementById('ship-claim-btn');
-  const email = emailEl.value.trim().toLowerCase();
-
-  if (!email || !email.includes('@')) {
-    msgEl.textContent = '❌ Valid email daalo';
-    msgEl.style.color = '#dc2626';
-    msgEl.style.display = 'block';
-    return;
-  }
-
-  btn.textContent = '⏳ Bhej raha hoon...';
-  btn.disabled = true;
-  msgEl.style.display = 'none';
-
-  try {
-    const r = await fetch('https://kiwtech999.vercel.app/api/claim-shipping', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email })
-    });
-    const d = await r.json();
-    if (d.success) {
-      msgEl.innerHTML = d.isNew
-        ? '✅ Demo key + ZIP bhej di! Gmail check karo (spam bhi)'
-        : '✅ ZIP bhej di! Gmail check karo — demo key andar hai';
-      msgEl.style.color = '#39ff14';
-      msgEl.style.display = 'block';
-      emailEl.value = '';
-    } else {
-      msgEl.textContent = '❌ ' + (d.error || 'Error — dobara try karo');
-      msgEl.style.color = '#dc2626';
-      msgEl.style.display = 'block';
-    }
-  } catch(e) {
-    msgEl.textContent = '❌ Network error — dobara try karo';
-    msgEl.style.color = '#dc2626';
-    msgEl.style.display = 'block';
-  }
-
-  btn.textContent = '📧 Demo Key + ZIP Email Pe Lo';
-  btn.disabled = false;
-}
 
 function loadYT(el, idVar) {
   var id = idVar === 'RESEARCH_YT_ID' ? RESEARCH_YT_ID : SHIPPING_YT_ID;
@@ -437,7 +377,7 @@ function loadYT(el, idVar) {
 <section class="vid-section light" id="research-video">
   <div class="vid-inner">
     <div class="vid-header">
-      <div class="vid-tag pink">🧠 Research Tool — Demo Video</div>
+      <div class="vid-tag pink">🧠 All-in-One Tool — Demo Video</div>
       <div class="vid-title">Dekho Kaise Kaam Karta Hai</div>
       <div class="vid-sub">AI listing, rank check, auto-fill — sab kuch ek video mein</div>
     </div>
@@ -587,42 +527,6 @@ const obs = new IntersectionObserver(entries => {
 }, {threshold:.12});
 document.querySelectorAll('.fu').forEach(el => obs.observe(el));
 
-// Demo key claim
-async function claimDemo() {
-  const email = document.getElementById('demoEmail').value.trim();
-  const btn   = document.getElementById('demoBtn');
-  const res   = document.getElementById('demoRes');
-  if (!email || !email.includes('@')) {
-    res.textContent = '❌ Valid Gmail dalo';
-    res.className = 'dres err';
-    res.style.display = 'block';
-    return;
-  }
-  btn.disabled = true;
-  btn.textContent = 'Bhej rahe hain...';
-  res.style.display = 'none';
-  try {
-    const r = await fetch('https://kiwtech999.vercel.app/api/claim-demo', {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({email})
-    });
-    const d = await r.json();
-    if (r.ok && d.success) {
-      res.textContent = '✅ Key bhej di! Gmail check karo (spam bhi dekho). Key: ' + (d.key || '');
-      res.className = 'dres ok';
-    } else {
-      res.textContent = '❌ ' + (d.error || 'Kuch gadbad hui — WhatsApp pe contact karo');
-      res.className = 'dres err';
-    }
-  } catch(e) {
-    res.textContent = '❌ Server se connect nahi hua — WhatsApp karo: 8377065737';
-    res.className = 'dres err';
-  }
-  res.style.display = 'block';
-  btn.disabled = false;
-  btn.textContent = 'Free Key Lo';
-}
 </script>
 
 <script>
