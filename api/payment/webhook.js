@@ -8,7 +8,7 @@ const PLANS = {
   monthly:       { days: 30, paise: 117882 },   // ₹1178.82 — 30 din
   shipping_only: { days: 30, paise: 29900  },   // ₹299 — purana, legacy
   pro:           { days: 30, paise: 49900  },   // ₹499 — purana, legacy
-  allinone:      { days: 30, paise: 34900  },   // ₹349 — All-in-One launch offer (30 din access)
+  allinone:      { days: 30, paise: 34900  },   // ₹349 GST included — All-in-One launch offer (30 din)
 };
 
 module.exports = async (req, res) => {
@@ -112,7 +112,8 @@ module.exports = async (req, res) => {
   if (!planCfg) {
     // Amount se guess — pehle yahan ₹499 wala payment "demo" (1 din) ban jata tha
     const amt = payment.amount;
-    // ₹349 launch offer — GST ke saath ₹411.82 bhi aa sakta hai, dono ek hi plan
+    // ₹349 GST included. Band rakha hai taaki GST alag lagne wale
+    // purane links (₹411.82) bhi isi plan pe aayein.
     if (amt >= 100000)                      resolvedPlan = "monthly";
     else if (amt >= 49000)                  resolvedPlan = "pro";       // ₹499+
     else if (amt >= 30000 && amt <= 45000)  resolvedPlan = "allinone";  // ₹349 ya ₹411.82
