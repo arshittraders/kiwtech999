@@ -344,13 +344,15 @@ footer{background:var(--text);padding:40px 48px 24px}
 
         <!-- YouTube Video -->
         <div style="padding:0 24px 24px;">
-          <div style="position:relative;width:100%;padding-bottom:56.25%;border-radius:14px;overflow:hidden;background:#0d1424;cursor:pointer;" onclick="loadYT(this,'RESEARCH_YT_ID')">
+          <a href="#research-video" style="display:block;position:relative;width:100%;padding-bottom:56.25%;border-radius:14px;overflow:hidden;background:#0d1424;text-decoration:none;">
+            <img src="/assets/video/kiwtech-demo-poster.jpg" alt="Demo video"
+              style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55;">
             <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;">
-              <div style="width:56px;height:56px;background:var(--np);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:10px;">▶</div>
-              <div style="color:#fff;font-size:13px;font-weight:800;">All-in-One Tool Tutorial</div>
-              <div style="color:rgba(255,255,255,.5);font-size:11px;margin-top:4px;">Video coming soon</div>
+              <div style="width:56px;height:56px;background:var(--np);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:10px;color:#fff;">▶</div>
+              <div style="color:#fff;font-size:13px;font-weight:800;">Demo Video Dekho</div>
+              <div style="color:rgba(255,255,255,.7);font-size:11px;margin-top:4px;">2.5 min — poora tool</div>
             </div>
-          </div>
+          </a>
         </div>
       </div>
 
@@ -360,15 +362,6 @@ footer{background:var(--text);padding:40px 48px 24px}
 
 <script>
 
-// YouTube embed
-var RESEARCH_YT_ID = '';  // Apna YouTube video ID yahan daalein
-var SHIPPING_YT_ID = '';  // Apna YouTube video ID yahan daalein
-
-function loadYT(el, idVar) {
-  var id = idVar === 'RESEARCH_YT_ID' ? RESEARCH_YT_ID : SHIPPING_YT_ID;
-  if (!id) { alert('Video jald aayega! WhatsApp karo: 8377065737'); return; }
-  el.innerHTML = "<iframe style='position:absolute;top:0;left:0;width:100%;height:100%;border:none;' src='https://www.youtube.com/embed/" + id + "?autoplay=1&rel=0' allow='autoplay;encrypted-media' allowfullscreen></iframe>";
-}
 </script>
 
 <!-- RESEARCH TOOL FEATURES -->
@@ -379,14 +372,15 @@ function loadYT(el, idVar) {
     <div class="vid-header">
       <div class="vid-tag pink">🧠 All-in-One Tool — Demo Video</div>
       <div class="vid-title">Dekho Kaise Kaam Karta Hai</div>
-      <div class="vid-sub">AI listing, rank check, auto-fill — sab kuch ek video mein</div>
+      <div class="vid-sub">Install se lekar har feature tak — 2.5 minute mein poora tool samjho</div>
     </div>
     <div class="vid-frame" id="research-vid-frame">
-      <div class="vid-placeholder" id="research-placeholder" onclick="loadResearchVideo()">
-        <div class="vid-play" style="background:var(--np);">▶</div>
-        <div class="vid-placeholder-txt">Research Tool Tutorial Dekho</div>
-        <div class="vid-placeholder-sub">YouTube pe jaake samajho ya yahan play karo</div>
-      </div>
+      <video controls preload="none" playsinline
+        poster="/assets/video/kiwtech-demo-poster.jpg"
+        style="position:absolute;top:0;left:0;width:100%;height:100%;background:#0d1424;object-fit:cover;">
+        <source src="/assets/video/kiwtech-demo.mp4" type="video/mp4">
+        Aapka browser video support nahi karta — <a href="/assets/video/kiwtech-demo.mp4">yahan se download karo</a>.
+      </video>
     </div>
     <div class="vid-points">
       <div class="vid-point"><div class="vid-point-ico">🧠</div><div class="vid-point-txt">AI se listing banao — 2 min mein</div></div>
@@ -530,28 +524,6 @@ document.querySelectorAll('.fu').forEach(el => obs.observe(el));
 </script>
 
 <script>
-// Research Tool Video — YouTube ID yahan daalein
-var RESEARCH_YT_ID = ""; // e.g. "dQw4w9WgXcQ"
-// Shipping Optimizer Video — YouTube ID yahan daalein
-var SHIPPING_YT_ID = ""; // e.g. "dQw4w9WgXcQ"
-
-function loadResearchVideo() {
-  if (!RESEARCH_YT_ID) {
-    alert("Video coming soon! WhatsApp karo: 8377065737");
-    return;
-  }
-  var frame = document.getElementById("research-vid-frame");
-  frame.innerHTML = "<iframe src='https://www.youtube.com/embed/" + RESEARCH_YT_ID + "?autoplay=1&rel=0' allow='autoplay; encrypted-media' allowfullscreen></iframe>";
-}
-
-function loadShippingVideo() {
-  if (!SHIPPING_YT_ID) {
-    alert("Video coming soon! WhatsApp karo: 8377065737");
-    return;
-  }
-  var frame = document.getElementById("shipping-vid-frame");
-  frame.innerHTML = "<iframe src='https://www.youtube.com/embed/" + SHIPPING_YT_ID + "?autoplay=1&rel=0' allow='autoplay; encrypted-media' allowfullscreen></iframe>";
-}
 </script>
 
 <!-- Kiara Chat Bubble -->
