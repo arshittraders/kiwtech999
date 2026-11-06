@@ -580,10 +580,10 @@ setTimeout(()=>{document.getElementById('kiara-notif').style.display='none';},11
   function pay(){if(busy)return;var n=document.getElementById('kbn').value.trim(),em=document.getElementById('kbe').value.trim().toLowerCase(),ph=document.getElementById('kbp').value.replace(/\D/g,'').slice(-10);
     if(!n)return err('Naam daalein');if(!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/.test(em))return err('Sahi email daalein — key isi pe aayegi');if(!/^[6-9]\d{9}$/.test(ph))return err('10 digit WhatsApp number daalein');
     busy=true;var b=document.getElementById('kbgo');b.disabled=true;b.textContent='Ek second…';
-    fetch('/api/payment/create-order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({plan:'allinone',name:n,email:em,phone:ph})}).then(function(r){return r.json()}).then(function(o){
+    fetch('https://ceoehwleopykotddcxxk.supabase.co/functions/v1/pay-links',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'kwt_order',name:n,email:em,phone:ph})}).then(function(r){return r.json()}).then(function(o){
       if(!o.orderId)return err(o.error||'Order nahi bana — WhatsApp pe message karein');
       fb('track','AddPaymentInfo',{value:349,currency:'INR'});
-      loadRzp(function(){var rz=new Razorpay({key:o.keyId,amount:o.amount,currency:'INR',order_id:o.orderId,name:'Kiwtech',description:'Meesho All-in-One Tool — 30 din',prefill:{name:n,email:em,contact:'+91'+ph},notes:{plan:'allinone',email:em,name:n,phone:ph},theme:{color:'#9333ea'},
+      loadRzp(function(){var rz=new Razorpay({key:o.keyId,amount:o.amount,currency:'INR',order_id:o.orderId,name:'Kiwtech',description:'Meesho All-in-One Tool — 30 din',prefill:{name:n,email:em,contact:'+91'+ph},notes:{plan:'allinone',email:em,name:n,phone:ph,src:'kiwtech.in'},theme:{color:'#9333ea'},
         handler:function(resp){fb('track','Purchase',{value:349,currency:'INR',content_name:'Kiwtech Meesho All-in-One'},{eventID:resp.razorpay_payment_id});
           X.innerHTML='<div class="ok"><div style="font-size:54px">🎉</div><b>Payment ho gaya!</b><p>License key aur download link <b style="display:inline;font-size:14px">'+em+'</b> pe 2–3 minute mein aa jayega (Spam folder bhi dekh lein).</p><a class="kb-btn" href="https://wa.me/918506015340?text='+encodeURIComponent('[KWT-PAID] Payment ho gaya — '+resp.razorpay_payment_id+' · '+em)+'" target="_blank">💬 WhatsApp pe confirm karein</a></div>';},
         modal:{ondismiss:function(){err('Payment poora nahi hua — dobara try karein')}}});rz.open();});
