@@ -263,6 +263,25 @@ footer{background:var(--text);padding:40px 48px 24px}
   .hero-trust{gap:10px;font-size:11.5px;}
 }
 </style>
+<!-- Meta Pixel (Kiwtech Pixel) -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','954588167496633');fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=954588167496633&ev=PageView&noscript=1"/></noscript>
+<style>
+.kb-btn{display:inline-block;padding:15px 30px;background:linear-gradient(135deg,#ff2d78,#9333ea);color:#fff!important;font-size:16px;font-weight:900;border:none;border-radius:12px;cursor:pointer;text-decoration:none;box-shadow:0 12px 30px -10px rgba(255,45,120,.7);transition:transform .2s}
+.kb-btn:hover{transform:translateY(-2px)}
+.kb-wa{display:block;text-align:center;margin-top:8px;font-size:13px;font-weight:700;color:#25D366;text-decoration:none}
+#kbm{position:fixed;inset:0;background:rgba(10,8,30,.6);display:none;align-items:center;justify-content:center;z-index:9999;padding:16px}
+#kbm .bx{background:#fff;color:#111;border-radius:18px;max-width:400px;width:100%;padding:24px 20px;box-shadow:0 30px 80px rgba(0,0,0,.4);font-family:inherit}
+#kbm h3{margin:0 0 4px;font-size:20px}#kbm p{margin:0 0 14px;color:#555;font-size:13px}
+#kbm input{width:100%;box-sizing:border-box;border:1.5px solid #ddd;border-radius:10px;padding:12px;margin-bottom:10px;font-size:15px}
+#kbm .go{width:100%;padding:14px;border:0;border-radius:10px;background:linear-gradient(135deg,#ff2d78,#9333ea);color:#fff;font-weight:900;font-size:16px;cursor:pointer}
+#kbm .x{float:right;border:0;background:none;font-size:22px;cursor:pointer;color:#888}
+#kbm .er{color:#dc2626;font-size:13px;min-height:16px;margin-top:6px}
+#kbm .ok{text-align:center}#kbm .ok b{display:block;font-size:22px;margin:8px 0}
+</style>
 </head>
 <body>
 
@@ -294,7 +313,8 @@ footer{background:var(--text);padding:40px 48px 24px}
     <div class="pd-note">Pehle <b>1000 Meesho sellers</b> ke liye · GST included · uske baad ₹499/month</div>
 
     <div class="hero-btns">
-      <a href="https://wa.me/918506015340?text=%5BKWT-WEB-HERO%5D%20Mujhe%20Kiwtech%20Meesho%20All-in-One%20Tool%20chahiye%20-%20Rs%20349%20wala%20launch%20offer" target="_blank" class="btn-y">₹349/month — WhatsApp Pe Order Karo</a>
+      <a href="#buy" class="kb-btn" data-buy="hero">💳 Abhi Khareedo — ₹349 (UPI / Card)</a>
+      <a href="https://wa.me/918506015340?text=%5BKWT-WEB-HERO%5D%20Mujhe%20Kiwtech%20Meesho%20All-in-One%20Tool%20chahiye%20-%20Rs%20349%20wala%20launch%20offer" target="_blank" class="btn-y" data-wa="1">💬 WhatsApp pe poochho</a>
       <a href="#features" class="btn-p">Features Dekho →</a>
     </div>
     <div class="hero-trust">
@@ -333,12 +353,13 @@ footer{background:var(--text);padding:40px 48px 24px}
             <li style="font-size:13px;padding:7px 0;font-weight:500;">✅ Image Studio — 8 listing images</li>
           </ul>
 
-          <a href="https://wa.me/918506015340?text=%5BKWT-WEB-CARD%5D%20Mujhe%20Kiwtech%20Meesho%20All-in-One%20Tool%20chahiye%20-%20Rs%20349%20wala%20launch%20offer" target="_blank"
+          <a href="#buy" class="kb-btn" data-buy="card" style="display:block;text-align:center;margin-bottom:10px">💳 Abhi Khareedo — ₹349</a>
+          <a data-wa="1" href="https://wa.me/918506015340?text=%5BKWT-WEB-CARD%5D%20Mujhe%20Kiwtech%20Meesho%20All-in-One%20Tool%20chahiye%20-%20Rs%20349%20wala%20launch%20offer" target="_blank"
             style="display:block;text-align:center;padding:14px;background:#25D366;color:#fff;font-size:15px;font-weight:900;border-radius:12px;text-decoration:none;">
             ₹349 / month — WhatsApp Pe Order<br><span style="font-weight:500;font-size:11px;">Saare features · koi limit nahi</span>
           </a>
           <div style="text-align:center;margin-top:12px;font-size:12px;color:var(--muted);font-weight:600;line-height:1.6;">
-            💬 WhatsApp pe payment link milega · payment ke turant baad<br><b style="color:var(--text);">license key aur download link</b> email pe aa jayegi
+            💳 UPI / Card se seedha payment · payment ke turant baad<br><b style="color:var(--text);">license key aur download link</b> email pe aa jayegi
           </div>
         </div>
 
@@ -471,7 +492,8 @@ footer{background:var(--text);padding:40px 48px 24px}
           <li>🚀 Smart auto-fill + competitor research</li>
           <li>🚀 WhatsApp support</li>
         </ul>
-        <a href="https://wa.me/918506015340?text=%5BKWT-WEB-PRICE%5D%20Mujhe%20Kiwtech%20Meesho%20All-in-One%20Tool%20chahiye%20-%20Rs%20349%20wala%20launch%20offer" target="_blank" class="plan-btn pink" style="background:#25D366;">WhatsApp Pe Order Karo — ₹349</a>
+        <a href="#buy" class="kb-btn" data-buy="price" style="display:block;text-align:center;margin-bottom:10px">💳 Abhi Khareedo — ₹349</a>
+        <a data-wa="1" href="https://wa.me/918506015340?text=%5BKWT-WEB-PRICE%5D%20Mujhe%20Kiwtech%20Meesho%20All-in-One%20Tool%20chahiye%20-%20Rs%20349%20wala%20launch%20offer" target="_blank" class="plan-btn pink" style="background:#25D366;">WhatsApp Pe Order Karo — ₹349</a>
       </div>
     </div>
     <p style="text-align:center;font-size:12px;color:var(--muted);margin-top:18px;font-weight:600">* ₹349 mein GST included — koi extra charge nahi · Payment ke turant baad key email pe · Device-locked license</p>
@@ -541,6 +563,35 @@ let kiaraOpen=false;
 function toggleKiara(){kiaraOpen=!kiaraOpen;document.getElementById('kiara-frame').style.display=kiaraOpen?'block':'none';document.getElementById('kiara-bubble').textContent=kiaraOpen?'✕':'💬';document.getElementById('kiara-notif').style.display='none';}
 setTimeout(()=>{if(!kiaraOpen)document.getElementById('kiara-notif').style.display='flex';},3000);
 setTimeout(()=>{document.getElementById('kiara-notif').style.display='none';},11000);
+</script>
+<div id="kbm" role="dialog" aria-modal="true"><div class="bx" id="kbx"></div></div>
+<script>
+(function(){
+  var M=document.getElementById('kbm'),X=document.getElementById('kbx'),busy=false;
+  function fb(){try{fbq.apply(null,arguments)}catch(e){}}
+  fb('track','ViewContent',{content_name:'Kiwtech Meesho All-in-One',value:349,currency:'INR'});
+  function form(){X.innerHTML='<button class="x" aria-label="Close" onclick="document.getElementById(\'kbm\').style.display=\'none\'">×</button><h3>₹349 — All-in-One Tool</h3><p>30 din · saare features · GST included. License key aur download link isi email pe aayega.</p>'+
+    '<input id="kbn" placeholder="Aapka naam" autocomplete="name"><input id="kbe" type="email" placeholder="Gmail ID (isi pe key aayegi)" autocomplete="email"><input id="kbp" inputmode="numeric" placeholder="WhatsApp number" autocomplete="tel">'+
+    '<button class="go" id="kbgo">Pay ₹349 →</button><div class="er" id="kber"></div><div style="text-align:center;font-size:11px;color:#888;margin-top:8px">🔒 Razorpay secure · UPI / Card / Netbanking</div>';
+    document.getElementById('kbgo').onclick=pay;}
+  function open(e){if(e)e.preventDefault();form();M.style.display='flex';fb('track','InitiateCheckout',{value:349,currency:'INR',content_name:'Kiwtech Meesho All-in-One'});}
+  function loadRzp(cb){if(window.Razorpay)return cb();var t=document.createElement('script');t.src='https://checkout.razorpay.com/v1/checkout.js';t.onload=cb;t.onerror=function(){err('Payment load nahi hua — net check karein')};document.head.appendChild(t);}
+  function err(m){var e=document.getElementById('kber');if(e)e.textContent=m;busy=false;var b=document.getElementById('kbgo');if(b){b.disabled=false;b.textContent='Pay ₹349 →'}}
+  function pay(){if(busy)return;var n=document.getElementById('kbn').value.trim(),em=document.getElementById('kbe').value.trim().toLowerCase(),ph=document.getElementById('kbp').value.replace(/\D/g,'').slice(-10);
+    if(!n)return err('Naam daalein');if(!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/.test(em))return err('Sahi email daalein — key isi pe aayegi');if(!/^[6-9]\d{9}$/.test(ph))return err('10 digit WhatsApp number daalein');
+    busy=true;var b=document.getElementById('kbgo');b.disabled=true;b.textContent='Ek second…';
+    fetch('/api/payment/create-order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({plan:'allinone',name:n,email:em,phone:ph})}).then(function(r){return r.json()}).then(function(o){
+      if(!o.orderId)return err(o.error||'Order nahi bana — WhatsApp pe message karein');
+      fb('track','AddPaymentInfo',{value:349,currency:'INR'});
+      loadRzp(function(){var rz=new Razorpay({key:o.keyId,amount:o.amount,currency:'INR',order_id:o.orderId,name:'Kiwtech',description:'Meesho All-in-One Tool — 30 din',prefill:{name:n,email:em,contact:'+91'+ph},notes:{plan:'allinone',email:em,name:n,phone:ph},theme:{color:'#9333ea'},
+        handler:function(resp){fb('track','Purchase',{value:349,currency:'INR',content_name:'Kiwtech Meesho All-in-One'},{eventID:resp.razorpay_payment_id});
+          X.innerHTML='<div class="ok"><div style="font-size:54px">🎉</div><b>Payment ho gaya!</b><p>License key aur download link <b style="display:inline;font-size:14px">'+em+'</b> pe 2–3 minute mein aa jayega (Spam folder bhi dekh lein).</p><a class="kb-btn" href="https://wa.me/918506015340?text='+encodeURIComponent('[KWT-PAID] Payment ho gaya — '+resp.razorpay_payment_id+' · '+em)+'" target="_blank">💬 WhatsApp pe confirm karein</a></div>';},
+        modal:{ondismiss:function(){err('Payment poora nahi hua — dobara try karein')}}});rz.open();});
+    }).catch(function(){err('Network error — dobara try karein')});}
+  document.addEventListener('click',function(e){var a=e.target.closest('[data-buy]');if(a)return open(e);if(e.target.closest('[data-wa]'))fb('track','Contact');});
+  if(location.hash==='#buy')setTimeout(open,600);
+  M.addEventListener('click',function(e){if(e.target===M)M.style.display='none'});
+})();
 </script>
 </body>
 </html>
