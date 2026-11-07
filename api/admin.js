@@ -15,6 +15,24 @@ module.exports = async (req, res) => {
   try {
     // ── genkey ──
     if (action === "genkey" || (!action && name !== undefined)) {
+      // All-in-One (Research Tool v5) extension verifies keys on the Cloudflare worker,
+      // so paid All-in-One keys must be created there (same as the worker /admin panel).
+      if (plan === "allinone") {
+        const CF = "https://kiwtech-backend.kiwtech.workers.dev";
+        const gmail = String(email || "").trim().toLowerCase();
+        if (!gmail) return res.json({ success: false, error: "Email required" });
+        if (!process.env.CF_ADMIN_PASSWORD) return res.json({ success: false, error: "CF_ADMIN_PASSWORD missing on Vercel" });
+        const lr = await fetch(CF + "/api/admin/login", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ password: process.env.CF_ADMIN_PASSWORD }) });
+        const ld = await lr.json().catch(() => ({}));
+        if (!ld.success) return res.json({ success: false, error: "CF login failed: " + (ld.error || lr.status) });
+        const d = parseInt(days) || 30;
+        const cr = await fetch(CF + "/api/admin/create", { method: "POST", headers: { "Content-Type": "application/json", "X-Admin-Token": ld.token }, body: JSON.stringify({ gmail, plan: "monthly", days: d, note: "auto-paid " + (name || "") }) });
+        const cd = await cr.json().catch(() => ({}));
+        if (!cd.success || !cd.key) return res.json({ success: false, error: "CF key create failed: " + (cd.error || cr.status) });
+        const cfExpiry = new Date(Date.now() + d * 86400000).toISOString().slice(0, 10);
+        if (doSendEmail) await sendLicenseEmail({ email: gmail, name: name || "Customer", key: cd.key, plan: "allinone", expiry: cfExpiry });
+        return res.json({ success: true, key: cd.key, via: "cf" });
+      }
       const newKey = genKey();
       const finalExpiry = plan === "lifetime" ? null :
         expiry || (days ? new Date(Date.now() + parseInt(days) * 86400000).toISOString().slice(0, 10) : null);
