@@ -20,7 +20,7 @@
     {
       "src": "/download-research",
       "headers": {
-        "Location": "https://github.com/arshittraders/kiwtech999/releases/download/v1.0.3/kiwtech-research-tool-v5-final.2.zip"
+        "Location": "/downloads/kiwtech-meesho-tool-v5.zip"
       },
       "status": 302
     }
