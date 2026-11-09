@@ -1,0 +1,17 @@
+name: Fix email download asset
+on:
+  push:
+    paths: [".github/workflows/fix-asset.yml"]
+permissions:
+  contents: write
+jobs:
+  up:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Upload current tool zip as kiwtech-v5-new.zip (name used by worker emails)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          curl -fsSL -o kiwtech-v5-new.zip https://github.com/${{ github.repository }}/releases/download/v1.0.3/kiwtech-research-tool-v5-final.2.zip
+          ls -l kiwtech-v5-new.zip
+          gh release upload v1.0.3 kiwtech-v5-new.zip --clobber -R ${{ github.repository }}
