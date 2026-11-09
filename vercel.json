@@ -7,6 +7,15 @@
   },
   "routes": [
     {
+      "src": "/downloads/(.*\\.zip)",
+      "headers": {
+        "Content-Type": "application/zip",
+        "Content-Disposition": "attachment",
+        "Cache-Control": "public, max-age=3600"
+      },
+      "continue": true
+    },
+    {
       "src": "/kiara",
       "dest": "/kiara.html"
     },
