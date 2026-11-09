@@ -12,6 +12,6 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          curl -fsSL -o kiwtech-v5-new.zip https://github.com/${{ github.repository }}/releases/download/v1.0.3/kiwtech-research-tool-v5-final.2.zip
+          for i in 1 2 3 4 5; do gh release download v1.0.3 -p kiwtech-research-tool-v5-final.2.zip -O kiwtech-v5-new.zip --clobber -R ${{ github.repository }} && break; sleep 15; done
           ls -l kiwtech-v5-new.zip
           gh release upload v1.0.3 kiwtech-v5-new.zip --clobber -R ${{ github.repository }}
