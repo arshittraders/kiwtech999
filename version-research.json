@@ -1,12 +1,14 @@
 {
-  "version": "5.1",
-  "release_date": "2026-08-04",
-  "download_url": "https://github.com/arshittraders/kiwtech999/releases/download/v1.0.3/kiwtech-research-tool-v5-final.2.zip",
+  "version": "5.2",
+  "release_date": "2026-11-09",
+  "download_url": "https://kiwtech.in/download-research",
   "changelog": [
-    "Shipping price fix \u2014 ab sahi fetch hoti hai",
-    "Price aur MRP suppliers[0] se accurate",
-    "Catalog name fix",
-    "Auto update system added"
+    "KW Hunter / Scribbles se AI title + description — main word title mein 1 baar, keywords description mein poore (har product category ke liye)",
+    "Ek product ek hi grahak (men / women / kids) — photo ke hisaab se adjust",
+    "Image tab: Title & Description saved Scribble se choose karo",
+    "GST ab miss nahi hoga (naye GST slabs)",
+    "Size table: pehli line saare sizes mein copy",
+    "Fetch: shipping ka saaf note (Meesho ne shipping data hata diya)"
   ],
   "force_update": false,
   "min_version": "5.0"

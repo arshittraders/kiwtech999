@@ -1,17 +1,18 @@
 name: Fix email download asset
 on:
   push:
-    paths: [".github/workflows/fix-asset.yml"]
+    paths: [".github/workflows/fix-asset.yml", "downloads/kiwtech-meesho-tool-v5.zip"]
 permissions:
   contents: write
 jobs:
   up:
     runs-on: ubuntu-latest
     steps:
-      - name: Upload current tool zip as kiwtech-v5-new.zip (name used by worker emails)
+      - uses: actions/checkout@v4
+      - name: Publish downloads/kiwtech-meesho-tool-v5.zip under both GitHub names (email links + old links)
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          for i in 1 2 3 4 5; do gh release download v1.0.3 -p kiwtech-research-tool-v5-final.2.zip -O kiwtech-v5-new.zip --clobber -R ${{ github.repository }} && break; sleep 15; done
-          ls -l kiwtech-v5-new.zip
-          gh release upload v1.0.3 kiwtech-v5-new.zip --clobber -R ${{ github.repository }}
+          cp downloads/kiwtech-meesho-tool-v5.zip kiwtech-v5-new.zip
+          cp downloads/kiwtech-meesho-tool-v5.zip kiwtech-research-tool-v5-final.2.zip
+          for i in 1 2 3 4 5; do gh release upload v1.0.3 kiwtech-v5-new.zip kiwtech-research-tool-v5-final.2.zip --clobber -R ${{ github.repository }} && break; sleep 15; done
