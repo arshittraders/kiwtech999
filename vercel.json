@@ -7,6 +7,14 @@
   },
   "routes": [
     {
+      "src": "/ddl/?",
+      "status": 302,
+      "headers": {
+        "Location": "https://chat.whatsapp.com/Krr29fhin5hLIhSrKGIjQ2",
+        "Cache-Control": "no-store"
+      }
+    },
+    {
       "src": "/downloads/(.*\\.zip)",
       "headers": {
         "Content-Type": "application/zip",
